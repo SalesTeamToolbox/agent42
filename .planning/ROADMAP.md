@@ -12,7 +12,7 @@ Add five independent LLM inference providers (Cerebras, Groq, Mistral, SambaNova
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation + Cerebras** - Lay provider enum plumbing, fix SpendingTracker free-model detection, integrate Cerebras (genuinely free, fastest inference)
+- [x] **Phase 1: Foundation + Cerebras** (1/2 plans) - Lay provider enum plumbing, fix SpendingTracker free-model detection, integrate Cerebras (genuinely free, fastest inference)
 - [ ] **Phase 2: Groq Integration** - Add Groq (genuinely free ~14K req/day, Llama 70B + GPT-OSS 120B)
 - [ ] **Phase 3: Mistral Integration** - Add Mistral via two-key architecture (Codestral free endpoint + La Plateforme critic-only)
 - [ ] **Phase 4: SambaNova Integration** - Add SambaNova (credits-based) with request transforms for temp clamp, stream=False for tools, and strict removal
@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Unit tests for Cerebras ProviderSpec, ModelSpec registration, and $0 pricing pass
 **Plans:** 2 plans
 Plans:
-- [ ] 01-01-PLAN.md — Register Cerebras provider + enum plumbing + $0 pricing + config
+- [x] 01-01-PLAN.md — Register Cerebras provider + enum plumbing + $0 pricing + config (DONE 2026-03-02)
 - [ ] 01-02-PLAN.md — Unit tests for Cerebras registration and SpendingTracker pricing
 
 ### Phase 2: Groq Integration
@@ -101,7 +101,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation + Cerebras | 0/2 | Planning complete | - |
+| 1. Foundation + Cerebras | 1/2 | In progress | - |
 | 2. Groq Integration | 0/TBD | Not started | - |
 | 3. Mistral Integration | 0/TBD | Not started | - |
 | 4. SambaNova Integration | 0/TBD | Not started | - |

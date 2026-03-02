@@ -7,10 +7,10 @@
 
 ### Cerebras Integration
 
-- [ ] **CERE-01**: Register ProviderType.CEREBRAS with ProviderSpec (base_url: `https://api.cerebras.ai/v1`, api_key_env: `CEREBRAS_API_KEY`)
-- [ ] **CERE-02**: Register 4 ModelSpec entries — `cerebras-gpt-oss-120b` (primary, 65K context, 3000 tok/s), `cerebras-qwen3-235b` (critic, 65K context, 1400 tok/s), `cerebras-llama-8b` (quick, 128K context, 1800 tok/s), `cerebras-zai-glm` (reasoning, 32K context, 100 RPD limit)
-- [ ] **CERE-03**: All Cerebras models classified as ModelTier.FREE
-- [ ] **CERE-04**: Add $0 pricing entries to SpendingTracker `_BUILTIN_PRICES` for all Cerebras model IDs
+- [x] **CERE-01**: Register ProviderType.CEREBRAS with ProviderSpec (base_url: `https://api.cerebras.ai/v1`, api_key_env: `CEREBRAS_API_KEY`)
+- [x] **CERE-02**: Register 4 ModelSpec entries — `cerebras-gpt-oss-120b` (primary, 65K context, 3000 tok/s), `cerebras-qwen3-235b` (critic, 65K context, 1400 tok/s), `cerebras-llama-8b` (quick, 8K context free tier), `cerebras-zai-glm` (reasoning, 65K context, 100 RPD limit)
+- [x] **CERE-03**: All Cerebras models classified as ModelTier.FREE
+- [x] **CERE-04**: Add $0 pricing entries to SpendingTracker `_BUILTIN_PRICES` for all Cerebras model IDs
 
 ### Groq Integration
 
@@ -58,16 +58,16 @@
 
 ### Infrastructure
 
-- [ ] **INFR-01**: Add ProviderType enum values for CEREBRAS, GROQ, MISTRAL, MISTRAL_CODESTRAL, SAMBANOVA, TOGETHER
-- [ ] **INFR-02**: Extend SpendingTracker free-model detection beyond `or-free-` prefix / `:free` suffix to cover new providers
+- [x] **INFR-01**: Add ProviderType enum values for CEREBRAS, GROQ, MISTRAL, MISTRAL_CODESTRAL, SAMBANOVA, TOGETHER
+- [x] **INFR-02**: Extend SpendingTracker free-model detection beyond `or-free-` prefix / `:free` suffix to cover new providers
 - [ ] **INFR-03**: Add provider-specific request transforms (SambaNova temp clamp, SambaNova stream=False for tools, SambaNova strict removal)
 - [ ] **INFR-04**: Health checks in model_catalog.py cover new providers (minimal completion test per provider)
-- [ ] **INFR-05**: Graceful degradation — missing API keys for any new provider must not crash Agent42, just skip that provider
+- [x] **INFR-05**: Graceful degradation — missing API keys for any new provider must not crash Agent42, just skip that provider
 
 ### Testing
 
-- [ ] **TEST-01**: Unit tests for each new ProviderSpec/ModelSpec registration
-- [ ] **TEST-02**: Unit tests for SpendingTracker pricing with new provider models
+- [x] **TEST-01**: Unit tests for each new ProviderSpec/ModelSpec registration
+- [x] **TEST-02**: Unit tests for SpendingTracker pricing with new provider models
 - [ ] **TEST-03**: Unit tests for SambaNova request transforms (temp clamp, stream=False, strict removal)
 - [ ] **TEST-04**: Unit tests for GEMINI_FREE_TIER and OPENROUTER_FREE_ONLY config flags
 - [ ] **TEST-05**: Unit tests for updated fallback chain with provider diversity
@@ -108,15 +108,15 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CERE-01 | Phase 1 | Pending |
-| CERE-02 | Phase 1 | Pending |
-| CERE-03 | Phase 1 | Pending |
-| CERE-04 | Phase 1 | Pending |
-| INFR-01 | Phase 1 | Pending |
-| INFR-02 | Phase 1 | Pending |
-| INFR-05 | Phase 1 | Pending |
-| TEST-01 | Phase 1 | Pending |
-| TEST-02 | Phase 1 | Pending |
+| CERE-01 | Phase 1 | Complete (01-01) |
+| CERE-02 | Phase 1 | Complete (01-01) |
+| CERE-03 | Phase 1 | Complete (01-01) |
+| CERE-04 | Phase 1 | Complete (01-01) |
+| INFR-01 | Phase 1 | Complete (01-01) |
+| INFR-02 | Phase 1 | Complete (01-01) |
+| INFR-05 | Phase 1 | Complete (01-01) |
+| TEST-01 | Phase 1 | Complete (01-01) |
+| TEST-02 | Phase 1 | Complete (01-01) |
 | GROQ-01 | Phase 2 | Pending |
 | GROQ-02 | Phase 2 | Pending |
 | GROQ-03 | Phase 2 | Pending |
