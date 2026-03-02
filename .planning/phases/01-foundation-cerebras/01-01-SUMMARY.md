@@ -69,8 +69,8 @@ completed: 2026-03-02
 
 ## Task Commits
 
-1. **Task 1: ProviderType enum, Cerebras ProviderSpec, ModelSpecs, pricing** - `be717ba` (feat)
-2. **Task 2: cerebras_api_key Settings field and .env.example documentation** - `ced278d` (feat)
+1. **Task 1: ProviderType enum, Cerebras ProviderSpec, ModelSpecs, pricing** - `3aac192` (feat)
+2. **Task 2: cerebras_api_key Settings field and .env.example documentation** - `195ab0c` (feat)
 
 ## Files Created/Modified
 
