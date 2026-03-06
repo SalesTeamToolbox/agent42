@@ -38,7 +38,7 @@ See [v1.1-ROADMAP.md](milestones/v1.1-ROADMAP.md) for full details.
 
 **Milestone Goal:** Implement MCP servers, hooks, skills, and subagents to improve development velocity, catch production bugs earlier, and codify repetitive workflows
 
-- [x] **Phase 11: MCP Server Integration** - Configure context7 and GitHub MCP servers for library docs and PR/issue management (completed 2026-03-06)
+- [x] **Phase 11: MCP Server Integration** - Configure context7 and GitHub MCP servers for library docs and PR/issue management (completed 2026-03-06)
 - [ ] **Phase 12: Security Gate Hook** - Add PreToolUse hook that blocks edits to sensitive files without explicit confirmation
 - [ ] **Phase 13: Scaffolding Skills** - Create skills that generate test files, provider boilerplate, and tool boilerplate from project conventions
 - [ ] **Phase 14: Operational Skills** - Create skills for production health checks and pitfall table maintenance
@@ -67,7 +67,9 @@ Plans:
   1. Edits to sandbox.py, command_filter.py, config.py, auth.py, and .env are blocked by a PreToolUse gate before the edit happens
   2. The gate outputs a clear message identifying which file is sensitive and why confirmation is required
   3. The PreToolUse gate and existing PostToolUse security-monitor.py operate as complementary layers (pre blocks, post alerts) without duplicate warnings
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 12-01-PLAN.md — Create shared security_config.py, PreToolUse security-gate.py hook, refactor security-monitor.py, register in settings.json
 
 ### Phase 13: Scaffolding Skills
 **Goal**: Developer can generate correctly-patterned boilerplate for tests, providers, and tools in a single invocation instead of manual copy-paste
@@ -117,7 +119,7 @@ Plans:
 | 9. Error Handling and User Feedback | v1.1 | 1/1 | Complete | 2026-03-06 |
 | 10. Visual Polish and Consistency | v1.1 | 0/1 | Deferred | -- |
 | 11. MCP Server Integration | 1/1 | Complete    | 2026-03-06 | -- |
-| 12. Security Gate Hook | v1.2 | 0/? | Not started | -- |
+| 12. Security Gate Hook | v1.2 | 0/1 | Planned | -- |
 | 13. Scaffolding Skills | v1.2 | 0/? | Not started | -- |
 | 14. Operational Skills | v1.2 | 0/? | Not started | -- |
 | 15. Specialized Subagents | v1.2 | 0/? | Not started | -- |
