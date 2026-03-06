@@ -56,27 +56,27 @@ Requirements for Claude Code Automation Enhancements milestone. Each maps to roa
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MCP-01 | — | Pending |
-| MCP-02 | — | Pending |
-| MCP-03 | — | Pending |
-| HOOK-01 | — | Pending |
-| HOOK-02 | — | Pending |
-| HOOK-03 | — | Pending |
-| SKILL-01 | — | Pending |
-| SKILL-02 | — | Pending |
-| SKILL-03 | — | Pending |
-| SKILL-04 | — | Pending |
-| SKILL-05 | — | Pending |
-| AGENT-01 | — | Pending |
-| AGENT-02 | — | Pending |
-| AGENT-03 | — | Pending |
-| AGENT-04 | — | Pending |
+| MCP-01 | Phase 11 | Pending |
+| MCP-02 | Phase 11 | Pending |
+| MCP-03 | Phase 11 | Pending |
+| HOOK-01 | Phase 12 | Pending |
+| HOOK-02 | Phase 12 | Pending |
+| HOOK-03 | Phase 12 | Pending |
+| SKILL-01 | Phase 13 | Pending |
+| SKILL-02 | Phase 13 | Pending |
+| SKILL-03 | Phase 13 | Pending |
+| SKILL-04 | Phase 14 | Pending |
+| SKILL-05 | Phase 14 | Pending |
+| AGENT-01 | Phase 15 | Pending |
+| AGENT-02 | Phase 15 | Pending |
+| AGENT-03 | Phase 15 | Pending |
+| AGENT-04 | Phase 15 | Pending |
 
 **Coverage:**
 - v1.2 requirements: 15 total
-- Mapped to phases: 0
-- Unmapped: 15
+- Mapped to phases: 15
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-05*
-*Last updated: 2026-03-05 after initial definition*
+*Last updated: 2026-03-05 after roadmap creation*
