@@ -31,7 +31,7 @@ Restructure Agent42's model routing around L1 (workhorse) and L2 (premium) tiers
 **Plans**: 2 plans
 
 Plans:
-- [ ] 16-01-PLAN.md — Register StrongWall provider/model, enforce non-streaming for all requests
+- [x] 16-01-PLAN.md — Register StrongWall provider/model, enforce non-streaming for all requests
 - [ ] 16-02-PLAN.md — Provider health check polling, flat-rate cost tracking, dashboard integration
 
 ### Phase 17: Tier Routing Architecture
@@ -96,7 +96,7 @@ Phases execute in numeric order: 16 -> 17 -> 18 -> 19 -> 20
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 16. StrongWall Provider | 0/2 | Not started | - |
+| 16. StrongWall Provider | 1/2 | In progress | - |
 | 17. Tier Routing Architecture | 0/2 | Not started | - |
 | 18. Agent Config Backend | 0/1 | Not started | - |
 | 19. Agent Config Dashboard | 0/2 | Not started | - |
@@ -104,4 +104,4 @@ Phases execute in numeric order: 16 -> 17 -> 18 -> 19 -> 20
 
 ---
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-06*
+*Last updated: 2026-03-06 (16-01 complete)*
