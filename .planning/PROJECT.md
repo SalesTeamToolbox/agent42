@@ -26,6 +26,10 @@ Agent42 must always be able to operate on free-tier LLMs, with enough model dive
 - ✓ SambaNova request transforms (temp clamp, stream=False, strict removal) — v1.0
 - ✓ Full test coverage for all new providers — v1.0
 
+- ✓ Unified error taxonomy with structured {error, message, action} API responses — v1.1
+- ✓ Loading indicators (spinner, progress bar, typing dots) with 200ms threshold — v1.1
+- ✓ Timeout warnings at 25s with user controls — v1.1
+
 ### Active
 
 ## Current Milestone: v1.2 Claude Code Automation Enhancements
@@ -85,6 +89,9 @@ Tech stack: Python 3.11+, FastAPI, AsyncOpenAI, aiofiles, pytest.
 | ProviderType enum in Phase 1 | All 6 values added upfront, future phases only need Spec entries | ✓ Good — clean dependency chain |
 | deepcopy for SambaNova strict removal | Prevents mutating caller's tool definitions | ✓ Good — first provider needing tool mutation |
 | Provider-diverse round-robin | _find_healthy_free_model cycles providers before retrying same | ✓ Good — prevents quota exhaustion |
+| Unified error taxonomy | classify_error() mirrors iteration_engine heuristics for consistency | ✓ Good — single source of truth |
+| 200ms spinner threshold | Prevents flicker on fast API calls | ✓ Good — clean UX |
+| Safe DOM manipulation only | createElement/textContent, no innerHTML per security rules | ✓ Good — XSS prevention |
 
 ---
-*Last updated: 2026-03-05 after v1.2 milestone start*
+*Last updated: 2026-03-06 after Phase 9*
