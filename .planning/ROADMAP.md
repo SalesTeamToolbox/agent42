@@ -55,7 +55,9 @@ See [v1.1-ROADMAP.md](milestones/v1.1-ROADMAP.md) for full details.
   2. Developer can list, create, and comment on GitHub issues and PRs from within Claude Code
   3. Developer can check CI/workflow status for the agent42 repo from within Claude Code
   4. `.mcp.json` persists server configs so they survive session restarts and can be shared
-**Plans**: TBD
+**Plans**: 1 plan
+Plans:
+- [ ] 11-01-PLAN.md — Configure context7, GitHub, and Playwright MCP servers; clean up stale .playwright-mcp directory
 
 ### Phase 12: Security Gate Hook
 **Goal**: Security-sensitive files cannot be edited without the developer explicitly confirming awareness
@@ -113,9 +115,9 @@ See [v1.1-ROADMAP.md](milestones/v1.1-ROADMAP.md) for full details.
 | 7. Real-time UI Updates | v1.1 | 2/2 | Complete | 2026-03-05 |
 | 8. Authentication Flow Improvements | v1.1 | 1/1 | Complete | 2026-03-05 |
 | 9. Error Handling and User Feedback | v1.1 | 1/1 | Complete | 2026-03-06 |
-| 10. Visual Polish and Consistency | v1.1 | 0/1 | Deferred | — |
-| 11. MCP Server Integration | v1.2 | 0/? | Not started | — |
-| 12. Security Gate Hook | v1.2 | 0/? | Not started | — |
-| 13. Scaffolding Skills | v1.2 | 0/? | Not started | — |
-| 14. Operational Skills | v1.2 | 0/? | Not started | — |
-| 15. Specialized Subagents | v1.2 | 0/? | Not started | — |
+| 10. Visual Polish and Consistency | v1.1 | 0/1 | Deferred | -- |
+| 11. MCP Server Integration | v1.2 | 0/1 | Planned | -- |
+| 12. Security Gate Hook | v1.2 | 0/? | Not started | -- |
+| 13. Scaffolding Skills | v1.2 | 0/? | Not started | -- |
+| 14. Operational Skills | v1.2 | 0/? | Not started | -- |
+| 15. Specialized Subagents | v1.2 | 0/? | Not started | -- |
