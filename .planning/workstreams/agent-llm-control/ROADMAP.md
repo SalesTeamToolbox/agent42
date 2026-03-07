@@ -13,7 +13,7 @@ Restructure Agent42's model routing around L1 (workhorse) and L2 (premium) tiers
 
 - [x] **Phase 16: StrongWall Provider** - Integrate StrongWall.ai as OpenAI-compatible provider with health check and non-streaming response handling
 - [x] **Phase 17: Tier Routing Architecture** - Restructure model_router.py around L1/L2 tiers with new fallback chain (completed 2026-03-07)
-- [ ] **Phase 18: Agent Config Backend** - Per-agent routing config storage, API endpoints, and inheritance from global defaults
+- [x] **Phase 18: Agent Config Backend** - Per-agent routing config storage, API endpoints, and inheritance from global defaults (completed 2026-03-07)
 - [ ] **Phase 19: Agent Config Dashboard** - Settings page LLM Routing section and Agents page per-agent override UI
 - [ ] **Phase 20: Streaming Simulation** - Simulated streaming for chat display from non-streaming providers
 
@@ -98,7 +98,7 @@ Phases execute in numeric order: 16 -> 17 -> 18 -> 19 -> 20
 |-------|----------------|--------|-----------|
 | 16. StrongWall Provider | 2/2 | Complete   | 2026-03-07 |
 | 17. Tier Routing Architecture | 2/2 | Complete    | 2026-03-07 |
-| 18. Agent Config Backend | 1/1 | Complete | 2026-03-07 |
+| 18. Agent Config Backend | 1/1 | Complete    | 2026-03-07 |
 | 19. Agent Config Dashboard | 0/2 | Not started | - |
 | 20. Streaming Simulation | 0/1 | Not started | - |
 
