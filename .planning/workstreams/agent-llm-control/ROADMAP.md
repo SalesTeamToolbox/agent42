@@ -13,7 +13,7 @@ Restructure Agent42's model routing around L1 (workhorse) and L2 (premium) tiers
 
 - [x] **Phase 16: StrongWall Provider** - Integrate StrongWall.ai as OpenAI-compatible provider with health check and non-streaming response handling
 - [x] **Phase 17: Tier Routing Architecture** - Restructure model_router.py around L1/L2 tiers with new fallback chain (completed 2026-03-07)
-- [x] **Phase 18: Agent Config Backend** - Per-agent routing config storage, API endpoints, and inheritance from global defaults (completed 2026-03-07)
+- [x] **Phase 18: Agent Config Backend** - Per-agent routing config storage, API endpoints, and inheritance from global defaults (completed 2026-03-07)
 - [ ] **Phase 19: Agent Config Dashboard** - Settings page LLM Routing section and Agents page per-agent override UI
 - [ ] **Phase 20: Streaming Simulation** - Simulated streaming for chat display from non-streaming providers
 
@@ -71,11 +71,11 @@ Plans:
   1. Settings page shows LLM Routing section where user can set global default L1, L2, critic, and fallback providers/models
   2. Agents page shows per-agent routing controls where user can override primary, critic, and fallback models for individual agents
   3. Changes made in the UI take effect on subsequent agent dispatches without requiring server restart
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 19-01: Settings page LLM Routing section
-- [ ] 19-02: Agents page per-agent override controls
+- [ ] 19-01-PLAN.md — Settings page LLM Routing tab with global defaults, shared routing helpers, Providers tab terminology updates, StrongWall API key field
+- [ ] 19-02-PLAN.md — Agents page per-agent routing controls in detail view, model chips on grid cards
 
 ### Phase 20: Streaming Simulation
 **Goal**: Chat messages from non-streaming providers (StrongWall) display with progressive token reveal, matching the UX of streaming providers
@@ -104,4 +104,4 @@ Phases execute in numeric order: 16 -> 17 -> 18 -> 19 -> 20
 
 ---
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-07 (Phase 18 complete)*
+*Last updated: 2026-03-07 (Phase 19 planned)*
