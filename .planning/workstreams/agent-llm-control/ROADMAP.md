@@ -47,7 +47,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 17-01: L1/L2 tier structure and resolution chain
+- [x] 17-01: L1/L2 tier structure and resolution chain
 - [ ] 17-02: Fallback chain and backward compatibility
 
 ### Phase 18: Agent Config Backend
@@ -97,11 +97,11 @@ Phases execute in numeric order: 16 -> 17 -> 18 -> 19 -> 20
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 16. StrongWall Provider | 2/2 | Complete    | 2026-03-06 |
-| 17. Tier Routing Architecture | 0/2 | Not started | - |
+| 17. Tier Routing Architecture | 1/2 | In progress | - |
 | 18. Agent Config Backend | 0/1 | Not started | - |
 | 19. Agent Config Dashboard | 0/2 | Not started | - |
 | 20. Streaming Simulation | 0/1 | Not started | - |
 
 ---
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-06 (16-02 complete, Phase 16 done)*
+*Last updated: 2026-03-07 (17-01 complete)*
