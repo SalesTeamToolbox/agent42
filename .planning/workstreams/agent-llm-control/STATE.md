@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-07T04:16:54.384Z"
+last_updated: "2026-03-07T07:48:15Z"
 ---
 
 # Project State
@@ -13,23 +13,23 @@ last_updated: "2026-03-07T04:16:54.384Z"
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Agent42 runs agents reliably with tiered provider routing (L1 workhorse -> free fallback -> L2 premium)
-**Current focus:** v1.3 Phase 17 complete -- all plans executed (Tier Routing Architecture)
+**Current focus:** v1.3 Phase 18 complete -- Agent Config Backend (per-agent routing overrides)
 
 ## Current Position
 
-Phase: 17 of 20 (Tier Routing Architecture) -- PLANS COMPLETE (pending verification)
-Plan: 2 of 2 in current phase
-Status: Both plans complete, ready for verification
-Last activity: 2026-03-07 -- 17-02 complete (FALLBACK_ROUTING rename + L1/L2/fallback tests)
+Phase: 18 of 20 (Agent Config Backend) -- COMPLETE
+Plan: 1 of 1 in current phase
+Status: Phase 18 complete, ready for Phase 19 (Agent Config Dashboard)
+Last activity: 2026-03-07 -- 18-01 complete (AgentRoutingStore + API endpoints + available models)
 
-Progress: [███░░░░░░░] 37%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 10.8min
-- Total execution time: 43min
+- Total plans completed: 5
+- Average duration: 12.2min
+- Total execution time: 61min
 
 **By Phase:**
 
@@ -37,6 +37,7 @@ Progress: [███░░░░░░░] 37%
 |-------|-------|-------|----------|
 | 16. StrongWall Provider | 2/2 | 15min | 7.5min |
 | 17. Tier Routing Architecture | 2/2 | 28min | 14min |
+| 18. Agent Config Backend | 1/1 | 18min | 18min |
 
 *Updated after each plan completion*
 
@@ -64,6 +65,12 @@ Progress: [███░░░░░░░] 37%
 - [17-01] L1 self-critique: same model, different reviewer prompt
 - [17-01] FALLBACK_ROUTING alias kept permanently (zero runtime cost)
 - [17-01] isinstance(val, str) guard on settings.l1_default_model for MagicMock safety
+- [18-01] Profile override inserted as step 1b between admin override and dynamic routing
+- [18-01] get_effective() merges profile + _default only, NOT FALLBACK_ROUTING -- falls through when no primary
+- [18-01] has_config() guards profile path to prevent empty get_effective() short-circuiting
+- [18-01] Critic auto-pairs with primary when unset (self-critique pattern)
+- [18-01] data/agent_routing.json auto-created on first write (gitignored data/ dir)
+- [18-01] Available models endpoint filters by configured API keys and groups by l1/fallback/l2 tiers
 
 ### Pending Todos
 
@@ -78,5 +85,5 @@ Progress: [███░░░░░░░] 37%
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Phase 18 context gathered
-Resume file: .planning/workstreams/agent-llm-control/phases/18-agent-config-backend/18-CONTEXT.md
+Stopped at: Completed 18-01-PLAN.md (Agent Config Backend)
+Resume file: .planning/workstreams/agent-llm-control/phases/18-agent-config-backend/18-01-SUMMARY.md
