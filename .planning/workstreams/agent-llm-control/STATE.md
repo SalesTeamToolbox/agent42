@@ -2,16 +2,8 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-07T07:57:08.175Z"
----
-
----
-gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: unknown
-last_updated: "2026-03-07T07:48:15Z"
+status: in-progress
+last_updated: "2026-03-07T17:36:46Z"
 ---
 
 # Project State
@@ -21,23 +13,23 @@ last_updated: "2026-03-07T07:48:15Z"
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Agent42 runs agents reliably with tiered provider routing (L1 workhorse -> free fallback -> L2 premium)
-**Current focus:** v1.3 Phase 18 complete -- Agent Config Backend (per-agent routing overrides)
+**Current focus:** v1.3 Phase 19 in progress -- Agent Config Dashboard (Settings LLM Routing tab complete, Agents page routing next)
 
 ## Current Position
 
-Phase: 18 of 20 (Agent Config Backend) -- COMPLETE
-Plan: 1 of 1 in current phase
-Status: Phase 18 complete, ready for Phase 19 (Agent Config Dashboard)
-Last activity: 2026-03-07 -- 18-01 complete (AgentRoutingStore + API endpoints + available models)
+Phase: 19 of 20 (Agent Config Dashboard) -- IN PROGRESS
+Plan: 1 of 2 in current phase -- COMPLETE
+Status: 19-01 complete (Settings LLM Routing tab), ready for 19-02 (Agents page routing)
+Last activity: 2026-03-07 -- 19-01 complete (LLM Routing tab + shared helpers + Providers updates)
 
-Progress: [█████░░░░░] 50%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 12.2min
-- Total execution time: 61min
+- Total plans completed: 6
+- Average duration: 11min
+- Total execution time: 66min
 
 **By Phase:**
 
@@ -46,6 +38,7 @@ Progress: [█████░░░░░] 50%
 | 16. StrongWall Provider | 2/2 | 15min | 7.5min |
 | 17. Tier Routing Architecture | 2/2 | 28min | 14min |
 | 18. Agent Config Backend | 1/1 | 18min | 18min |
+| 19. Agent Config Dashboard | 1/2 | 5min | 5min |
 
 *Updated after each plan completion*
 
@@ -79,6 +72,10 @@ Progress: [█████░░░░░] 50%
 - [18-01] Critic auto-pairs with primary when unset (self-critique pattern)
 - [18-01] data/agent_routing.json auto-created on first write (gitignored data/ dir)
 - [18-01] Available models endpoint filters by configured API keys and groups by l1/fallback/l2 tiers
+- [19-01] Three dropdowns (Primary, Critic, Fallback) matching backend API fields -- L2/Premium is a tier option within each dropdown's optgroup
+- [19-01] STRONGWALL_API_KEY added to ADMIN_CONFIGURABLE_KEYS so settingSecret() renders as admin-editable
+- [19-01] Chain summary uses styled badges with source-aware coloring (teal/gold/muted)
+- [19-01] Empty string in routingEdits means "clear override" (send null to API), undefined means "no change"
 
 ### Pending Todos
 
@@ -93,5 +90,5 @@ Progress: [█████░░░░░] 50%
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Completed 18-01-PLAN.md (Agent Config Backend)
-Resume file: .planning/workstreams/agent-llm-control/phases/18-agent-config-backend/18-01-SUMMARY.md
+Stopped at: Completed 19-01-PLAN.md (Settings LLM Routing tab)
+Resume file: .planning/workstreams/agent-llm-control/phases/19-agent-config-dashboard/19-01-SUMMARY.md
