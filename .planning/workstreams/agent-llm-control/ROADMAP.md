@@ -12,9 +12,9 @@ Restructure Agent42's model routing around L1 (workhorse) and L2 (premium) tiers
 - Decimal phases (16.1, 16.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 16: StrongWall Provider** - Integrate StrongWall.ai as OpenAI-compatible provider with health check and non-streaming response handling
-- [x] **Phase 17: Tier Routing Architecture** - Restructure model_router.py around L1/L2 tiers with new fallback chain (completed 2026-03-07)
-- [ ] **Phase 18: Agent Config Backend** - Per-agent routing config storage, API endpoints, and inheritance from global defaults
-- [ ] **Phase 19: Agent Config Dashboard** - Settings page LLM Routing section and Agents page per-agent override UI
+- [x] **Phase 17: Tier Routing Architecture** - Restructure model_router.py around L1/L2 tiers with new fallback chain (completed 2026-03-07)
+- [x] **Phase 18: Agent Config Backend** - Per-agent routing config storage, API endpoints, and inheritance from global defaults (completed 2026-03-07)
+- [x] **Phase 19: Agent Config Dashboard** - Settings page LLM Routing section and Agents page per-agent override UI (completed 2026-03-07)
 - [ ] **Phase 20: Streaming Simulation** - Simulated streaming for chat display from non-streaming providers
 
 ## Phase Details
@@ -44,11 +44,11 @@ Plans:
   3. OpenRouter paid models are available as L2 when OR balance is present and OPENROUTER_FREE_ONLY is not set
   4. Critical task types (coding, debugging, app_create) no longer default to OR free models -- they use L1 or established free providers
   5. Users without StrongWall API key retain existing routing behavior (backward compatible)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [x] 17-01: L1/L2 tier structure and resolution chain
-- [ ] 17-02: Fallback chain and backward compatibility
+- [x] 17-02: Fallback chain and backward compatibility
 
 ### Phase 18: Agent Config Backend
 **Goal**: Per-agent routing overrides are stored, served via API, and inherit from global defaults
@@ -58,10 +58,10 @@ Plans:
   1. API endpoint returns per-agent routing config (primary, critic, fallback models) that correctly merges agent-specific overrides with global defaults
   2. Agent routing config persists across server restarts (saved to disk)
   3. Available model/provider options returned by API reflect only providers with configured API keys (no dead options)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 18-01: Config storage, API endpoints, and dynamic provider enumeration
+- [x] 18-01-PLAN.md — AgentRoutingStore, ModelRouter profile integration, API endpoints, available-models enumeration
 
 ### Phase 19: Agent Config Dashboard
 **Goal**: Users can view and modify LLM routing through the dashboard -- global defaults on Settings page, per-agent overrides on Agents page
@@ -71,11 +71,11 @@ Plans:
   1. Settings page shows LLM Routing section where user can set global default L1, L2, critic, and fallback providers/models
   2. Agents page shows per-agent routing controls where user can override primary, critic, and fallback models for individual agents
   3. Changes made in the UI take effect on subsequent agent dispatches without requiring server restart
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 19-01: Settings page LLM Routing section
-- [ ] 19-02: Agents page per-agent override controls
+- [x] 19-01-PLAN.md — Settings page LLM Routing tab with global defaults, shared routing helpers, Providers tab terminology updates, StrongWall API key field
+- [x] 19-02-PLAN.md — Agents page per-agent routing controls in detail view, model chips on grid cards
 
 ### Phase 20: Streaming Simulation
 **Goal**: Chat messages from non-streaming providers (StrongWall) display with progressive token reveal, matching the UX of streaming providers
@@ -96,12 +96,12 @@ Phases execute in numeric order: 16 -> 17 -> 18 -> 19 -> 20
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 16. StrongWall Provider | 2/2 | Complete    | 2026-03-06 |
+| 16. StrongWall Provider | 2/2 | Complete   | 2026-03-07 |
 | 17. Tier Routing Architecture | 2/2 | Complete    | 2026-03-07 |
-| 18. Agent Config Backend | 0/1 | Not started | - |
-| 19. Agent Config Dashboard | 0/2 | Not started | - |
+| 18. Agent Config Backend | 1/1 | Complete    | 2026-03-07 |
+| 19. Agent Config Dashboard | 2/2 | Complete    | 2026-03-07 |
 | 20. Streaming Simulation | 0/1 | Not started | - |
 
 ---
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-07 (17-01 complete)*
+*Last updated: 2026-03-07 (19-02 complete)*

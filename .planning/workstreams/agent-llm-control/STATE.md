@@ -3,7 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-07T04:16:54.384Z"
+last_updated: "2026-03-07T17:58:19.232Z"
+---
+
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: in-progress
+last_updated: "2026-03-07T17:50:42Z"
 ---
 
 # Project State
@@ -13,23 +21,23 @@ last_updated: "2026-03-07T04:16:54.384Z"
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Agent42 runs agents reliably with tiered provider routing (L1 workhorse -> free fallback -> L2 premium)
-**Current focus:** v1.3 Phase 17 complete -- all plans executed (Tier Routing Architecture)
+**Current focus:** v1.3 Phase 19 complete -- Agent Config Dashboard (Settings + Agents routing UIs done), ready for Phase 20
 
 ## Current Position
 
-Phase: 17 of 20 (Tier Routing Architecture) -- PLANS COMPLETE (pending verification)
-Plan: 2 of 2 in current phase
-Status: Both plans complete, ready for verification
-Last activity: 2026-03-07 -- 17-02 complete (FALLBACK_ROUTING rename + L1/L2/fallback tests)
+Phase: 19 of 20 (Agent Config Dashboard) -- COMPLETE
+Plan: 2 of 2 in current phase -- COMPLETE
+Status: Phase 19 complete, ready for Phase 20 (Streaming Simulation)
+Last activity: 2026-03-07 -- 19-02 complete (Agents page per-agent routing + model chips)
 
-Progress: [███░░░░░░░] 37%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 10.8min
-- Total execution time: 43min
+- Total plans completed: 7
+- Average duration: 10.6min
+- Total execution time: 74min
 
 **By Phase:**
 
@@ -37,6 +45,8 @@ Progress: [███░░░░░░░] 37%
 |-------|-------|-------|----------|
 | 16. StrongWall Provider | 2/2 | 15min | 7.5min |
 | 17. Tier Routing Architecture | 2/2 | 28min | 14min |
+| 18. Agent Config Backend | 1/1 | 18min | 18min |
+| 19. Agent Config Dashboard | 2/2 | 13min | 6.5min |
 
 *Updated after each plan completion*
 
@@ -64,6 +74,20 @@ Progress: [███░░░░░░░] 37%
 - [17-01] L1 self-critique: same model, different reviewer prompt
 - [17-01] FALLBACK_ROUTING alias kept permanently (zero runtime cost)
 - [17-01] isinstance(val, str) guard on settings.l1_default_model for MagicMock safety
+- [18-01] Profile override inserted as step 1b between admin override and dynamic routing
+- [18-01] get_effective() merges profile + _default only, NOT FALLBACK_ROUTING -- falls through when no primary
+- [18-01] has_config() guards profile path to prevent empty get_effective() short-circuiting
+- [18-01] Critic auto-pairs with primary when unset (self-critique pattern)
+- [18-01] data/agent_routing.json auto-created on first write (gitignored data/ dir)
+- [18-01] Available models endpoint filters by configured API keys and groups by l1/fallback/l2 tiers
+- [19-01] Three dropdowns (Primary, Critic, Fallback) matching backend API fields -- L2/Premium is a tier option within each dropdown's optgroup
+- [19-01] STRONGWALL_API_KEY added to ADMIN_CONFIGURABLE_KEYS so settingSecret() renders as admin-editable
+- [19-01] Chain summary uses styled badges with source-aware coloring (teal/gold/muted)
+- [19-01] Empty string in routingEdits means "clear override" (send null to API), undefined means "no change"
+- [19-02] routingSelect() extended with scope parameter ('default' vs 'agent') to route changes to correct state object
+- [19-02] loadProfileDetail() fetches profile + routing data in parallel via Promise.all
+- [19-02] _default profile shows link to Settings > LLM Routing instead of inline routing controls
+- [19-02] Model chip on cards uses muted text + '(inherited)' for inherited, normal text for overridden
 
 ### Pending Todos
 
@@ -78,5 +102,5 @@ Progress: [███░░░░░░░] 37%
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Phase 18 context gathered
-Resume file: .planning/workstreams/agent-llm-control/phases/18-agent-config-backend/18-CONTEXT.md
+Stopped at: Completed 19-02-PLAN.md (Agents page per-agent routing)
+Resume file: .planning/workstreams/agent-llm-control/phases/19-agent-config-dashboard/19-02-SUMMARY.md
