@@ -120,6 +120,10 @@ v1.2 decisions:
 - (15-01) Test coverage auditor uses weighted scoring: security_risk*3 + change_frequency*2 + complexity*1
 - (15-01) Deploy verifier references 5 specific pitfalls (94, 106, 114, 115, 116) as codified deployment lessons
 - (15-01) Migration impact agent includes rollback plan section for safe dependency upgrades
+- (16-01) JCODEMUNCH_GUIDANCE dict does not hardcode repo_id; injected via emit_jcodemunch_guidance() parameter
+- (16-01) Drift detection only checks get_symbol responses (not search_symbols/get_file_outline)
+- (16-01) jcodemunch-reindex.py registered in catch-all PostToolUse entry; self-filters for jcodemunch tools
+- (16-01) PostToolUse drift detection always exits 0 (advisory); Stop structural changes can block (exit 2)
 - (16-02) All jcodemunch GSD steps are conditional on list_repos availability check
 - (16-02) Repo identifiers detected dynamically from list_repos, never hardcoded in GSD templates
 - (16-02) Context budget guard limits implementation_targets to ~2000 lines
@@ -146,6 +150,6 @@ Pre-existing test failures (out of scope):
 
 ## Session Continuity
 
-Last session: 2026-03-07T04:26:03Z
-Stopped at: Completed 16-02-PLAN.md (Phase 16 complete, all jcodemunch deep integration done)
+Last session: 2026-03-07T04:35:23Z
+Stopped at: Completed 16-01-PLAN.md (context-loader jcodemunch guidance + drift detection hooks)
 Resume file: None
