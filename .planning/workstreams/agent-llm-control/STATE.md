@@ -78,5 +78,5 @@ Progress: [███░░░░░░░] 37%
 ## Session Continuity
 
 Last session: 2026-03-07
-Stopped at: Completed 17-01-PLAN.md
-Resume file: .planning/workstreams/agent-llm-control/phases/17-tier-routing-architecture/17-01-SUMMARY.md
+Stopped at: Phase 18 context gathered
+Resume file: .planning/workstreams/agent-llm-control/phases/18-agent-config-backend/18-CONTEXT.md
