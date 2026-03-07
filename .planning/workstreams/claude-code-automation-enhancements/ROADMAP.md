@@ -129,7 +129,7 @@ Plans:
 | 12. Security Gate Hook | 1/1 | Complete    | 2026-03-06 | -- |
 | 13. Scaffolding Skills | v1.2 | Complete    | 2026-03-06 | 2026-03-06 |
 | 14. Operational Skills | v1.2 | Complete    | 2026-03-06 | 2026-03-06 |
-| 15. Specialized Subagents | v1.2 | 1/1 | Complete | 2026-03-06 |
+| 15. Specialized Subagents | v1.2 | Complete    | 2026-03-07 | 2026-03-06 |
 | 16. jcodemunch Deep Integration | v1.2 | 0/? | Not started | -- |
 
 ### Phase 16: jcodemunch Deep Integration
