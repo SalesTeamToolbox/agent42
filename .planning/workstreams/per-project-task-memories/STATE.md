@@ -1,6 +1,9 @@
 ---
-workstream: per-project-task-memories
-created: 2026-03-17
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: unknown
+last_updated: "2026-03-17T18:55:13.200Z"
 ---
 
 # Project State
