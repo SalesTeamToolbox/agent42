@@ -94,7 +94,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 19.1-01-PLAN.md — Backend fixes: remote terminal guard, /api/remote/status endpoint, resize message parsing, Wave 0 tests
+- [x] 19.1-01-PLAN.md — Backend fixes: remote terminal guard, /api/remote/status endpoint, resize message parsing, Wave 0 tests
 - [ ] 19.1-02-PLAN.md — Frontend rewrite: VS Code layout, drag handle, "+" dropdown, color tabs, auto-reconnect, Ctrl+backtick, chat removal, CSS updates
 
 ### Phase 20: Streaming Simulation
@@ -120,9 +120,9 @@ Phases execute in numeric order: 16 -> 17 -> 18 -> 19 -> 19.1 -> 20
 | 17. Tier Routing Architecture | 2/2 | Complete    | 2026-03-07 |
 | 18. Agent Config Backend | 1/1 | Complete    | 2026-03-07 |
 | 19. Agent Config Dashboard | 2/2 | Complete    | 2026-03-07 |
-| 19.1 UI Redesign | 0/2 | Planned | - |
+| 19.1 UI Redesign | 1/2 | In Progress | 2026-03-17 (plan 01) |
 | 20. Streaming Simulation | 0/1 | Not started | - |
 
 ---
 *Roadmap created: 2026-03-06*
-*Last updated: 2026-03-07 (19-02 complete)*
+*Last updated: 2026-03-17 (19.1-01 complete)*

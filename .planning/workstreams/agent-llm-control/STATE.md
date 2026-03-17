@@ -21,14 +21,14 @@ last_updated: "2026-03-07T17:50:42Z"
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Agent42 runs agents reliably with tiered provider routing (L1 workhorse -> free fallback -> L2 premium)
-**Current focus:** v1.3 Phase 19 complete -- Agent Config Dashboard (Settings + Agents routing UIs done), ready for Phase 20
+**Current focus:** Phase 19.1 UI Redesign in progress — backend fixes done (Plan 01), frontend rewrite next (Plan 02)
 
 ## Current Position
 
-Phase: 19 of 20 (Agent Config Dashboard) -- COMPLETE
-Plan: 2 of 2 in current phase -- COMPLETE
-Status: Phase 19 complete, ready for Phase 20 (Streaming Simulation)
-Last activity: 2026-03-07 -- 19-02 complete (Agents page per-agent routing + model chips)
+Phase: 19.1 of 20 (UI Redesign) -- IN PROGRESS
+Plan: 1 of 2 in current phase -- COMPLETE (Plan 02 next)
+Status: Phase 19.1 Plan 01 complete, ready for Plan 02 (Frontend Rewrite)
+Last activity: 2026-03-17 -- 19.1-01 complete (Backend fixes + Wave 0 tests)
 
 Progress: [████████░░] 80%
 
@@ -47,6 +47,7 @@ Progress: [████████░░] 80%
 | 17. Tier Routing Architecture | 2/2 | 28min | 14min |
 | 18. Agent Config Backend | 1/1 | 18min | 18min |
 | 19. Agent Config Dashboard | 2/2 | 13min | 6.5min |
+| 19.1. UI Redesign | 1/2 | 12min | 12min |
 
 *Updated after each plan completion*
 
@@ -88,6 +89,9 @@ Progress: [████████░░] 80%
 - [19-02] loadProfileDetail() fetches profile + routing data in parallel via Promise.all
 - [19-02] _default profile shows link to Settings > LLM Routing instead of inline routing controls
 - [19-02] Model chip on cards uses muted text + '(inherited)' for inherited, normal text for overridden
+- [19.1-01] Use empty string default for AGENT42_REMOTE_HOST (not 'agent42-prod') — fail closed rather than silently connecting to wrong host
+- [19.1-01] Add /api/remote/status endpoint to enable frontend feature detection before attempting WebSocket connections
+- [19.1-01] Mark test_ide_html.py tests as xfail until Plan 02 ships — Wave 0 tests define target state not current state
 
 ### Roadmap Evolution
 
@@ -105,6 +109,6 @@ Progress: [████████░░] 80%
 
 ## Session Continuity
 
-Last session: 2026-03-07
-Stopped at: Completed 19-02-PLAN.md (Agents page per-agent routing)
-Resume file: .planning/workstreams/agent-llm-control/phases/19-agent-config-dashboard/19-02-SUMMARY.md
+Last session: 2026-03-17
+Stopped at: Completed 19.1-01-PLAN.md (Backend fixes + Wave 0 tests)
+Resume file: .planning/workstreams/agent-llm-control/phases/19.1-ui-redesign/19.1-01-SUMMARY.md
