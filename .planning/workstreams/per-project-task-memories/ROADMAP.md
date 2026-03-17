@@ -9,7 +9,7 @@
 
 ## Phases
 
-- [ ] **Phase 20: Task Metadata Foundation** - Establish task_id/task_type payload schema and type-aware retrieval
+- [x] **Phase 20: Task Metadata Foundation** - Establish task_id/task_type payload schema and type-aware retrieval
 - [ ] **Phase 21: Effectiveness Tracking and Learning Extraction** - Async tool tracking, SQLite store, and post-task learning pipeline
 - [ ] **Phase 22: Proactive Context Injection** - Inject past learnings into new tasks at UserPromptSubmit
 - [ ] **Phase 23: Recommendations Engine** - Surface tool/skill recommendations from aggregated effectiveness data
@@ -28,7 +28,7 @@
   3. `search_with_lifecycle()` called with `task_type_filter="coding"` returns only entries tagged `task_type: "coding"` — not entries tagged other types
   4. Calling `begin_task()` sets task context so that all subsequent memory writes in that session inherit the task_id and task_type without the caller passing them explicitly
   5. Qdrant `task_type` and `task_id` payload indexes exist — a filtered query on 100K points runs in under 50ms
-**Plans**: TBD
+**Plans**: 1 of 1 (20-01-PLAN.md complete)
 
 ### Phase 21: Effectiveness Tracking and Learning Extraction
 **Goal**: Every completed task produces structured effectiveness records and a durable learning entry, with zero latency added to the tool execution path
@@ -70,7 +70,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 20. Task Metadata Foundation | 0/? | Not started | - |
+| 20. Task Metadata Foundation | 1/1 | Complete | 2026-03-17 |
 | 21. Effectiveness Tracking and Learning Extraction | 0/? | Not started | - |
 | 22. Proactive Context Injection | 0/? | Not started | - |
 | 23. Recommendations Engine | 0/? | Not started | - |

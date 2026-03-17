@@ -15,24 +15,24 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 ## Current Position
 
 Phase: 20 of 23 (Task Metadata Foundation)
-Plan: 0 of ? in current phase
-Status: Ready to plan
-Last activity: 2026-03-17 — Roadmap created, 4 phases derived from 20 requirements
+Plan: 1 of 1 in current phase (plan 01 complete)
+Status: Phase 20 complete — ready for Phase 21
+Last activity: 2026-03-17 — Plan 20-01 executed: TaskType enum + task lifecycle protocol + payload injection
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [##░░░░░░░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: 0 hours
+- Total plans completed: 1
+- Average duration: 5 min
+- Total execution time: ~0.1 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 20. Task Metadata Foundation | 0 | — | — |
+| 20. Task Metadata Foundation | 1 | 5 min | 5 min |
 | 21. Tracking and Learning | 0 | — | — |
 | 22. Proactive Injection | 0 | — | — |
 | 23. Recommendations Engine | 0 | — | — |
@@ -45,6 +45,10 @@ Progress: [░░░░░░░░░░] 0%
 - RETR-01/02 grouped with Phase 20: type-aware retrieval is a search layer change that belongs with schema work, not injection work
 - Tracking and extraction together in Phase 21: both depend on ToolTracker and share test infrastructure
 - Injection (Phase 22) before recommendations (Phase 23): injection delivers value on every task; recommendations need accumulated data
+- get_task_context() returns string value of enum (not the enum member) — Qdrant payloads must be JSON-serializable strings
+- Task fields conditionally injected (only when non-None) — outside task context, payload has no task_id/task_type keys at all
+- Payload indexes scoped to MEMORY and HISTORY only — CONVERSATIONS and KNOWLEDGE not needed for task filtering
+- Lazy import of get_task_context inside methods to prevent circular imports (memory -> core direction only)
 
 ### Key Architecture Constraints (from research)
 
@@ -65,5 +69,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-17
-Stopped at: Phase 20 context gathered
-Resume file: .planning/workstreams/per-project-task-memories/phases/20-task-metadata-foundation/20-CONTEXT.md
+Stopped at: Completed 20-task-metadata-foundation/20-01-PLAN.md
+Resume file: .planning/workstreams/per-project-task-memories/phases/20-task-metadata-foundation/20-01-SUMMARY.md
