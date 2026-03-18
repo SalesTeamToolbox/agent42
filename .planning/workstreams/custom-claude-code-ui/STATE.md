@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T17:03:32Z"
+last_updated: "2026-03-18T17:14:17Z"
 ---
 
 # Project State
@@ -18,25 +18,25 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 ## Current Position
 
 Phase: 2 of 4 (Frontend Chat UI — in progress)
-Plan: 1 of 5 in Phase 2 complete
-Status: Phase 2 in progress — Plan 02-01 (Wave 0 test scaffold) complete
-Last activity: 2026-03-18 — Plan 02-01 complete (Wave 0 test scaffold: 20 tests across 5 classes, all RED as expected)
+Plan: 3 of 5 in Phase 2 complete
+Status: Phase 2 in progress — Plans 02-01, 02-02, 02-03 complete
+Last activity: 2026-03-18 — Plan 02-03 complete (CDN deps in index.html + .cc-chat-* CSS in style.css)
 
-Progress: [████░░░░░░] 40%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 8.5 min
-- Total execution time: 33 min
+- Total plans completed: 6
+- Average duration: 6.2 min
+- Total execution time: 37 min
 
 **By Phase:**
 
 | Phase                | Plans    | Total  | Avg/Plan |
 |----------------------|----------|--------|----------|
 | 01-backend-ws-bridge | 3/3 DONE | 29 min | 9.7 min  |
-| 02-core-chat-ui      | 1/5      | 4 min  | 4 min    |
+| 02-core-chat-ui      | 3/5      | 8 min  | 2.7 min  |
 
 *Updated after each plan completion*
 
@@ -58,6 +58,9 @@ Progress: [████░░░░░░] 40%
 - Auth status check uses exit code only (not JSON parsing) — insulated from claude CLI schema changes
 - Session listing uses per-file try/except — corrupt files do not break GET /api/cc/sessions
 - Wave 0 scaffold uses source-text inspection (Path.read_text) — identical to test_ide_html.py; 20 tests across 5 classes; TestCCChatStop uses inspect.getsource(dashboard.server) for backend pattern checks
+- Use highlight.min.js (full bundle) not core.min.js — core has zero language definitions built in
+- hljs CSS scoped to .cc-chat-messages to prevent conflicts with existing .md-code-block styles
+- CDN load order: marked -> marked-highlight -> hljs -> DOMPurify -> app.js (UMD globals must exist when app.js runs)
 
 ### Pending Todos
 
@@ -72,5 +75,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-18
-Stopped at: Plan 02-01 complete — Wave 0 test scaffold done. 20 tests RED. Ready for Plan 02-02 (CDN deps + index.html).
+Stopped at: Plan 02-03 complete — CDN deps + CSS done. index.html has 4 CDN libs, style.css has all .cc-chat-* classes. Ready for Plan 02-04 (JS rendering engine).
 Resume file: None
