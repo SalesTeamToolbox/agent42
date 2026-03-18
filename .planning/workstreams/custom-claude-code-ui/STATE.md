@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T17:31:00Z"
+last_updated: "2026-03-18T17:41:00Z"
 ---
 
 # Project State
@@ -17,26 +17,26 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 
 ## Current Position
 
-Phase: 2 of 4 (Frontend Chat UI — in progress)
-Plan: 4 of 5 in Phase 2 complete
-Status: Phase 2 in progress — Plans 02-01, 02-02, 02-03, 02-04 complete
-Last activity: 2026-03-18 — Plan 02-04 complete (ideOpenCCChat, streaming bubble lifecycle, ccRenderMarkdown, ideActivateTab chatPanel fix)
+Phase: 2 of 4 (Frontend Chat UI — COMPLETE)
+Plan: 5 of 5 in Phase 2 complete
+Status: Phase 2 DONE — All plans complete (02-01 through 02-05)
+Last activity: 2026-03-18 — Plan 02-05 complete (ccSend, ccStop, ccHandleKeydown, ccInputResize, ccUpdateSlashDropdown, CC_SLASH_COMMANDS — all 20 tests GREEN)
 
-Progress: [██████░░░░] 60%
+Progress: [████████░░] 70%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 6.2 min
-- Total execution time: 37 min
+- Total plans completed: 7
+- Average duration: 6.1 min
+- Total execution time: 45 min
 
 **By Phase:**
 
 | Phase                | Plans    | Total  | Avg/Plan |
 |----------------------|----------|--------|----------|
 | 01-backend-ws-bridge | 3/3 DONE | 29 min | 9.7 min  |
-| 02-core-chat-ui      | 4/5      | 19 min | 4.8 min  |
+| 02-core-chat-ui      | 5/5 DONE | 27 min | 5.4 min  |
 
 *Updated after each plan completion*
 
@@ -64,6 +64,9 @@ Progress: [██████░░░░] 60%
 - markedHighlight CDN UMD pattern: markedHighlight.markedHighlight (namespace.function) not globalThis.markedHighlight
 - Global security_reminder_hook.py blocks first innerHTML assignment per session; second attempt allowed — DOMPurify usage is safe
 - ideOpenCCChat replaces ideOpenClaude in all onclick HTML strings; ideOpenClaude function kept intact for backward compat
+- Slash command dropdown uses only safe DOM APIs (createElement, textContent) — no innerHTML with user input to prevent XSS
+- ccSend handles /clear locally (clears DOM) without sending to CC backend — avoids unnecessary WS traffic
+- ccStop leaves sending state true — backend turn_complete event resets it via ccSetSendingState (correct lifecycle)
 
 ### Pending Todos
 
@@ -78,5 +81,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-18
-Stopped at: Plan 02-04 complete — ideOpenCCChat, streaming bubble lifecycle, ccRenderMarkdown, ideActivateTab chatPanel fix done. TestCCChatRendering (9/9) and TestCCChatScrolling (2/2) all GREEN. Ready for Plan 02-05 (input handling: ccSend, ccStop, ccHandleKeydown, ccInputResize, ccUpdateSlashDropdown).
+Stopped at: Plan 02-05 complete — Phase 2 Core Chat UI DONE. ccSend, ccStop, ccHandleKeydown, ccInputResize, ccUpdateSlashDropdown, CC_SLASH_COMMANDS added. All 20 test_cc_chat_ui.py tests GREEN. Ready for Phase 3 (session persistence).
 Resume file: None

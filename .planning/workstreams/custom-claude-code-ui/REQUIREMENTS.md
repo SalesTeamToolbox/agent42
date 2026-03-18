@@ -24,8 +24,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **CHAT-04**: Code blocks render with syntax highlighting via highlight.js
 - [x] **CHAT-05**: All AI-generated HTML is sanitized via DOMPurify before DOM insertion
 - [x] **CHAT-06**: Streaming uses append-only DOM (no re-render of previous messages) with 50ms batched updates
-- [ ] **CHAT-07**: Auto-scroll pins to bottom during streaming, releases when user scrolls up
-- [ ] **CHAT-08**: Stop button cancels active generation (kills CC process)
+- [x] **CHAT-07**: Auto-scroll pins to bottom during streaming, releases when user scrolls up
+- [x] **CHAT-08**: Stop button cancels active generation (kills CC process)
 - [x] **CHAT-09**: Thinking/reasoning blocks display in collapsible sections with distinct styling
 
 ### Tool Use Display
@@ -39,10 +39,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Rich Input
 
-- [ ] **INPUT-01**: Multi-line text input box with Shift+Enter for newlines and Enter to send
-- [ ] **INPUT-02**: Input supports paragraph breaks (multiple newlines preserved)
-- [ ] **INPUT-03**: Input box auto-resizes vertically as content grows (up to configurable max height)
-- [ ] **INPUT-04**: Slash command autocomplete dropdown (e.g., /help, /clear, /compact)
+- [x] **INPUT-01**: Multi-line text input box with Shift+Enter for newlines and Enter to send
+- [x] **INPUT-02**: Input supports paragraph breaks (multiple newlines preserved)
+- [x] **INPUT-03**: Input box auto-resizes vertically as content grows (up to configurable max height)
+- [x] **INPUT-04**: Slash command autocomplete dropdown (e.g., /help, /clear, /compact)
 
 ### Session Management
 

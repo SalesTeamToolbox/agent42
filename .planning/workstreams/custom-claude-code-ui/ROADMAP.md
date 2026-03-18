@@ -25,7 +25,7 @@ user-chosen workspace arrangement.
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Backend WS Bridge** - WebSocket endpoint that spawns CC subprocess and relays typed events to the frontend
-- [ ] **Phase 2: Core Chat UI** - Streaming chat panel with markdown rendering, sanitization, input box, and scroll-pin
+- [x] **Phase 2: Core Chat UI** - Streaming chat panel with markdown rendering, sanitization, input box, and scroll-pin
 - [ ] **Phase 3: Tool Use + Sessions** - Tool use cards, permission UI, session persistence, and multi-session tabs
 - [ ] **Phase 4: Layout + Diff Viewer** - Tab/panel layout modes, user toggle, and Monaco diff editor integration
 
@@ -67,7 +67,7 @@ Plans:
 - [x] 02-02-PLAN.md — Backend stop handler (server.py asyncio.wait() concurrent receive)
 - [x] 02-03-PLAN.md — CDN deps (index.html) + CC chat CSS classes (style.css)
 - [x] 02-04-PLAN.md — Core chat JS: ideOpenCCChat, streaming bubble lifecycle, ccRenderMarkdown
-- [ ] 02-05-PLAN.md — Input controls: ccSend, ccStop, ccInputResize, ccUpdateSlashDropdown
+- [x] 02-05-PLAN.md — Input controls: ccSend, ccStop, ccInputResize, ccUpdateSlashDropdown
 
 ### Phase 3: Tool Use + Sessions
 **Goal**: Users can see exactly what Claude Code is doing (tool calls, permissions) and can resume past conversations from a session history sidebar
@@ -101,6 +101,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Backend WS Bridge | 3/3 | Complete | 2026-03-18 |
-| 2. Core Chat UI | 3/5 | In progress | - |
+| 2. Core Chat UI | 5/5 | Complete | 2026-03-18 |
 | 3. Tool Use + Sessions | 0/? | Not started | - |
 | 4. Layout + Diff Viewer | 0/? | Not started | - |
