@@ -68,6 +68,10 @@ Progress: [████████░░] 70%
 - ccSend handles /clear locally (clears DOM) without sending to CC backend — avoids unnecessary WS traffic
 - ccStop leaves sending state true — backend turn_complete event resets it via ccSetSendingState (correct lifecycle)
 
+### Roadmap Evolution
+
+- Phase 5 added: Streaming PTY bridge and CC initialization optimization (addresses pipe buffering and ~50s cold start)
+
 ### Pending Todos
 
 None.
