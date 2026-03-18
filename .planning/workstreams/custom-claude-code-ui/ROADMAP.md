@@ -7,10 +7,12 @@ created: 2026-03-17
 **Goal:** CC chat responses stream in real-time via PTY (not block-buffered PIPE), with initialization progress visible and optional pre-warming to eliminate cold start delay
 **Requirements:** PTY-01, PTY-02, PTY-03, PTY-04, PTY-05
 **Depends on:** Phase 2
-**Plans:** 0 plans
+**Plans:** 3 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 5 to break down)
+- [ ] 05-01-PLAN.md — Wave 0 test scaffold (test_cc_pty.py + cc_init_event.ndjson fixture)
+- [ ] 05-02-PLAN.md — PTY subprocess + init progress + keepalive (server.py)
+- [ ] 05-03-PLAN.md — Pre-warmed CC session pool (server.py)
 
 ---
 
@@ -38,6 +40,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Core Chat UI** - Streaming chat panel with markdown rendering, sanitization, input box, and scroll-pin
 - [ ] **Phase 3: Tool Use + Sessions** - Tool use cards, permission UI, session persistence, and multi-session tabs
 - [ ] **Phase 4: Layout + Diff Viewer** - Tab/panel layout modes, user toggle, and Monaco diff editor integration
+- [ ] **Phase 5: Streaming PTY Bridge** - PTY subprocess for real-time streaming, init progress, pre-warm pool
 
 ## Phase Details
 
@@ -103,10 +106,28 @@ Plans:
   4. Code diffs proposed by CC display in Monaco's built-in diff editor with side-by-side comparison
 **Plans**: TBD
 
+### Phase 5: Streaming PTY Bridge & CC Initialization Optimization
+**Goal**: CC chat responses stream in real-time via PTY (not block-buffered PIPE), with initialization progress visible and optional pre-warming to eliminate cold start delay
+**Depends on**: Phase 2
+**Requirements**: PTY-01, PTY-02, PTY-03, PTY-04, PTY-05
+**Success Criteria** (what must be TRUE):
+  1. CC subprocess uses PTY (winpty on Windows, pty on Unix) instead of PIPE, enabling line-buffered stdout and real-time stream_event delta delivery
+  2. Initialization progress is relayed to the frontend -- system events (hook_started, MCP server connecting) shown as italicized status messages during the ~50s CC cold start
+  3. A pre-warmed CC session pool keeps one idle CC session ready per user, so the first message response is near-instant (no MCP init delay)
+  4. If PTY is unavailable, the system falls back to PIPE with assistant event text extraction (current behavior preserved)
+  5. cc_chat_ws sends periodic keepalive messages during CC init without triggering page reload or disconnect
+**Plans**: 3 plans
+
+Plans:
+
+- [ ] 05-01-PLAN.md — Wave 0 test scaffold (test_cc_pty.py + cc_init_event.ndjson fixture)
+- [ ] 05-02-PLAN.md — PTY subprocess + init progress + keepalive (server.py)
+- [ ] 05-03-PLAN.md — Pre-warmed CC session pool (server.py)
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 (Phase 5 can run after Phase 2)
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -114,3 +135,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 2. Core Chat UI | 5/5 | Complete | 2026-03-18 |
 | 3. Tool Use + Sessions | 0/? | Not started | - |
 | 4. Layout + Diff Viewer | 0/? | Not started | - |
+| 5. Streaming PTY Bridge | 0/3 | Planning complete | - |
