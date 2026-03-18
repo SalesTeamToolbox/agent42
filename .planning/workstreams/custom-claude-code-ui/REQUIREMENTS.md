@@ -77,6 +77,14 @@ Deferred to future release. Tracked but not in current roadmap.
 - **ADV-03**: Remote CC sessions via SSH relay to VPS
 - **ADV-04**: Export conversation as markdown
 
+### Streaming PTY Bridge & Initialization
+
+- **PTY-01**: CC subprocess uses winpty (Windows) / pty (Unix) instead of PIPE — enabling line-buffered stdout and real-time `stream_event` delta delivery
+- **PTY-02**: Initialization progress relayed to frontend — system events (hook_started, MCP server connecting) shown as status messages during the ~50s CC cold start
+- **PTY-03**: Pre-warmed CC session pool — keep one idle CC process ready so first message response is near-instant (no MCP init delay)
+- **PTY-04**: Graceful degradation — if winpty unavailable, fall back to PIPE with `assistant` event text extraction (current behavior)
+- **PTY-05**: WS heartbeat tolerance — cc_chat_ws keeps connection alive during long CC init without triggering page reload
+
 ## Out of Scope
 
 | Feature | Reason |
@@ -126,11 +134,16 @@ Deferred to future release. Tracked but not in current roadmap.
 | LAYOUT-02 | Phase 4 | Pending |
 | LAYOUT-03 | Phase 4 | Pending |
 | LAYOUT-04 | Phase 4 | Pending |
+| PTY-01 | Phase 5 | Pending |
+| PTY-02 | Phase 5 | Pending |
+| PTY-03 | Phase 5 | Pending |
+| PTY-04 | Phase 5 | Pending |
+| PTY-05 | Phase 5 | Pending |
 
 **Coverage:**
 
-- v1 requirements: 35 total
-- Mapped to phases: 35
+- v1 requirements: 40 total
+- Mapped to phases: 40
 - Unmapped: 0
 
 ---

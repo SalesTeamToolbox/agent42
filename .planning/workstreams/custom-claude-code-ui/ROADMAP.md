@@ -2,6 +2,16 @@
 workstream: custom-claude-code-ui
 milestone: v2.0
 created: 2026-03-17
+### Phase 5: Streaming PTY bridge and CC initialization optimization
+
+**Goal:** CC chat responses stream in real-time via PTY (not block-buffered PIPE), with initialization progress visible and optional pre-warming to eliminate cold start delay
+**Requirements:** PTY-01, PTY-02, PTY-03, PTY-04, PTY-05
+**Depends on:** Phase 2
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 5 to break down)
+
 ---
 
 # Roadmap: Custom Claude Code UI
