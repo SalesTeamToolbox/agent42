@@ -27,7 +27,11 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
   3. User runs `bash setup.sh` and the project repo is indexed in jcodemunch (verifiable via `list_repos` returning the project)
   4. User re-runs `bash setup.sh` on an already-configured system and no existing configuration is overwritten or corrupted
   5. User sees a post-setup health report listing MCP server reachable, jcodemunch responding, and Qdrant accessible (with pass/fail per service)
-**Plans**: TBD
+**Plans**: 3 plans
+
+- [ ] 01-01-PLAN.md — Hook frontmatter + test scaffolding (Wave 1)
+- [ ] 01-02-PLAN.md — Python setup helpers + MCP health flag (Wave 1)
+- [ ] 01-03-PLAN.md — jcodemunch indexer + setup.sh integration + tests (Wave 2)
 
 ### Phase 2: Windows + CLAUDE.md
 **Goal**: Users on Windows with Git Bash can run the same setup command without errors, and any user can generate a project CLAUDE.md pre-loaded with Agent42 conventions and pitfall patterns
@@ -68,7 +72,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Setup Foundation | 0/TBD | Not started | - |
+| 1. Setup Foundation | 0/3 | Planned | - |
 | 2. Windows + CLAUDE.md | 0/TBD | Not started | - |
 | 3. Memory Sync | 0/TBD | Not started | - |
 | 4. Context Engine | 0/TBD | Not started | - |
