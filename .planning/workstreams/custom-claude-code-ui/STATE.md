@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-18T22:23:00.000Z"
+last_updated: "2026-03-18T22:13:17.000Z"
 ---
 
 # Project State
@@ -13,23 +13,23 @@ last_updated: "2026-03-18T22:23:00.000Z"
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Agent42 must provide a rich, VS Code-quality Claude Code chat experience in its web IDE
-**Current focus:** Phase 5 — Streaming PTY Bridge
+**Current focus:** Phase 5 — COMPLETE
 
 ## Current Position
 
-Phase: 5 of 5 (Streaming PTY Bridge — IN PROGRESS)
-Plan: 2 of 3 in Phase 5 complete
-Status: Phase 5 Plan 2 DONE - PTY bridge + keepalive + expanded _parse_cc_event (10/13 tests pass)
-Last activity: 2026-03-18 — Plan 05-02 complete (PTY subprocess, _parse_cc_event expansion, keepalive)
+Phase: 5 of 5 (Streaming PTY Bridge — COMPLETE)
+Plan: 3 of 3 in Phase 5 complete
+Status: Phase 5 DONE - All 13 test_cc_pty.py tests GREEN. Pre-warm pool with 5-min idle timeout.
+Last activity: 2026-03-18 — Plan 05-03 complete (pre-warm pool, idle cleanup, ?warm=true integration)
 
-Progress: [█████████░] 93%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
-- Average duration: 7.9 min
-- Total execution time: 63 min
+- Total plans completed: 9
+- Average duration: 7.6 min
+- Total execution time: 69 min
 
 **By Phase:**
 
@@ -37,7 +37,7 @@ Progress: [█████████░] 93%
 |----------------------|----------|--------|----------|
 | 01-backend-ws-bridge | 3/3 DONE | 29 min | 9.7 min  |
 | 02-core-chat-ui      | 5/5 DONE | 27 min | 5.4 min  |
-| 05-streaming-pty     | 2/3 DONE | 33 min | 16.5 min |
+| 05-streaming-pty     | 3/3 DONE | 39 min | 13.0 min |
 
 *Updated after each plan completion*
 
@@ -73,6 +73,8 @@ Progress: [█████████░] 93%
 - `cc_` prefix on all `cc_chat_ws` PTY variables to avoid collision with terminal WS PTY variables in same `create_app()` closure
 - PTY-with-PIPE-fallback: try PTY spawn, except Exception -> `use_cc_pty=False`, then PIPE path; PIPE fallback identical to pre-PTY implementation (PTY-04 preserved)
 - `hook_response` subtype suppressed from frontend relay (too verbose for UI); `hook_started` emits "Loading {name}..." progress status
+- Warm pool keyed by username (one per user not per tab); atomic pop prevents double-claim
+- ?warm=true opt-in triggers _cc_spawn_warm() background task at WS open; warm session_id injected via --resume
 
 ### Roadmap Evolution
 
@@ -91,5 +93,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-18
-Stopped at: Plan 05-02 complete - PTY subprocess + keepalive + expanded _parse_cc_event. 10/13 test_cc_pty.py tests pass (9 xpass + 1 pass). Only TestPreWarmPool 3 tests remain xfail. Ready for Plan 05-03 (pre-warm pool).
+Stopped at: Plan 05-03 complete - pre-warm pool with `_cc_spawn_warm()`, `_cc_prewarm_idle_task()`, ?warm=true integration. All 13 test_cc_pty.py GREEN. Phase 5 COMPLETE.
 Resume file: None
