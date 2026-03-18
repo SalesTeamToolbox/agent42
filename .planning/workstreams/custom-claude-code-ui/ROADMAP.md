@@ -41,7 +41,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. When the `claude` CLI is not available, the endpoint sends a fallback error message indicating API mode instead of crashing
   4. A `GET /api/cc/sessions` request returns a list of session metadata (session ID, timestamps); a `DELETE` removes the entry
   5. Calling `claude auth status` or equivalent reports subscription availability that the frontend can read
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+
+- [x] 01-01-PLAN.md — Wave 0 test scaffold (test_cc_bridge.py + NDJSON fixture)
+- [x] 01-02-PLAN.md — CC WebSocket bridge + NDJSON parser + session helpers
+- [x] 01-03-PLAN.md — Session REST endpoints + auth-status with 60s cache
 
 ### Phase 2: Core Chat UI
 **Goal**: Users can have a streaming conversation with Claude Code in a chat panel that renders markdown correctly and safely, with proper scroll behavior and input controls
@@ -53,7 +59,15 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. While a response streams, the chat panel stays pinned to the bottom; scrolling up during streaming stops auto-scroll and a scroll-to-bottom button appears
   4. The Stop button cancels an in-progress generation; the Send button (Enter key) submits messages; Shift+Enter inserts a newline; the input box grows vertically as text is typed
   5. Typing `/` in the input shows a slash command autocomplete dropdown with available commands
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+
+- [ ] 02-01-PLAN.md — Wave 0 test scaffold (tests/test_cc_chat_ui.py — 16 tests)
+- [ ] 02-02-PLAN.md — Backend stop handler (server.py asyncio.wait() concurrent receive)
+- [ ] 02-03-PLAN.md — CDN deps (index.html) + CC chat CSS classes (style.css)
+- [ ] 02-04-PLAN.md — Core chat JS: ideOpenCCChat, streaming bubble lifecycle, ccRenderMarkdown
+- [ ] 02-05-PLAN.md — Input controls: ccSend, ccStop, ccInputResize, ccUpdateSlashDropdown
 
 ### Phase 3: Tool Use + Sessions
 **Goal**: Users can see exactly what Claude Code is doing (tool calls, permissions) and can resume past conversations from a session history sidebar
@@ -87,6 +101,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Backend WS Bridge | 3/3 | Complete | 2026-03-18 |
-| 2. Core Chat UI | 0/? | Not started | - |
+| 2. Core Chat UI | 0/5 | Not started | - |
 | 3. Tool Use + Sessions | 0/? | Not started | - |
 | 4. Layout + Diff Viewer | 0/? | Not started | - |
