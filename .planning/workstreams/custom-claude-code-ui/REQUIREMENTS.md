@@ -13,8 +13,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **BRIDGE-02**: Backend translates CC stream-json events (system, stream_event, result) into a normalized message format (text_delta, tool_start, tool_complete, turn_complete, etc.)
 - [x] **BRIDGE-03**: Session registry tracks active CC processes by session ID, allowing multi-session management
 - [x] **BRIDGE-04**: Multi-turn conversations work via `--resume <session_id>` — process re-spawned per turn with session continuity
-- [ ] **BRIDGE-05**: Fallback path uses existing `/api/ide/chat` (Anthropic API via httpx) when `claude` CLI is not available
-- [ ] **BRIDGE-06**: Server detects CC subscription status via `claude auth status` and reports availability to frontend
+- [x] **BRIDGE-05**: Fallback path uses existing `/api/ide/chat` (Anthropic API via httpx) when `claude` CLI is not available
+- [x] **BRIDGE-06**: Server detects CC subscription status via `claude auth status` and reports availability to frontend
 
 ### Chat Rendering
 
@@ -91,12 +91,12 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BRIDGE-01 | Phase 1 | Pending |
-| BRIDGE-02 | Phase 1 | Pending |
-| BRIDGE-03 | Phase 1 | Pending |
-| BRIDGE-04 | Phase 1 | Pending |
-| BRIDGE-05 | Phase 1 | Pending |
-| BRIDGE-06 | Phase 1 | Pending |
+| BRIDGE-01 | Phase 1 | Complete |
+| BRIDGE-02 | Phase 1 | Complete |
+| BRIDGE-03 | Phase 1 | Complete |
+| BRIDGE-04 | Phase 1 | Complete |
+| BRIDGE-05 | Phase 1 | Complete |
+| BRIDGE-06 | Phase 1 | Complete |
 | CHAT-01 | Phase 2 | Pending |
 | CHAT-02 | Phase 2 | Pending |
 | CHAT-03 | Phase 2 | Pending |
@@ -136,4 +136,4 @@ Deferred to future release. Tracked but not in current roadmap.
 ---
 
 *Requirements defined: 2026-03-17*
-*Last updated: 2026-03-17 after roadmap creation*
+*Last updated: 2026-03-18 after Plan 01-03 — Phase 1 complete, BRIDGE-01 through BRIDGE-06 all done*
