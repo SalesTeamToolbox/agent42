@@ -63,7 +63,12 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. After accumulating memory over multiple sessions, a consolidation pass runs and MEMORY.md has fewer, denser entries with duplicates removed and related entries merged
   2. Search results returned by `agent42_memory search` include a confidence score and recall count, with higher-confidence entries ranked above lower-confidence entries for the same query
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+
+- [x] 04-01-PLAN.md -- Consolidation worker, config vars, consolidate tool action, tests (QUAL-01)
+- [ ] 04-02-PLAN.md -- Dashboard stats + trigger endpoint, search scoring fix (QUAL-01, QUAL-02)
 
 ## Progress
 
@@ -75,4 +80,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Auto-Sync Hook | 2/2 | Complete | 2026-03-18 |
 | 2. Intelligent Learning | 2/2 | Complete | 2026-03-19 |
 | 3. CLAUDE.md Integration | 1/1 | Complete | 2026-03-19 |
-| 4. Memory Quality | 0/TBD | Not started | - |
+| 4. Memory Quality | 1/2 | In Progress | - |

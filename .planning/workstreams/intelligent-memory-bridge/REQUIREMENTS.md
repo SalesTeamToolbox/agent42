@@ -28,7 +28,7 @@
 
 ### Memory Quality
 
-- [ ] **QUAL-01**: Agent42 MEMORY.md is periodically consolidated (remove duplicates, merge related entries)
+- [x] **QUAL-01**: Agent42 MEMORY.md is periodically consolidated (remove duplicates, merge related entries)
 - [ ] **QUAL-02**: Search results include confidence scores and recall counts for relevance ranking
 
 ## Out of Scope
@@ -56,7 +56,7 @@
 | INTEG-01 | Phase 3 | Complete |
 | INTEG-02 | Phase 3 | Complete |
 | INTEG-03 | Phase 3 | Complete |
-| QUAL-01 | Phase 4 | Pending |
+| QUAL-01 | Phase 4 | Complete |
 | QUAL-02 | Phase 4 | Pending |
 
 **Coverage:**

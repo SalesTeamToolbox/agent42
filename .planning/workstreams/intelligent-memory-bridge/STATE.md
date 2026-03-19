@@ -14,24 +14,24 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 
 **Core value:** When Agent42 is installed, its enhanced Qdrant-backed memory becomes the primary memory system automatically — no user intervention needed.
 
-**Current focus:** Phase 3: CLAUDE.md Integration — Plan 01 complete
+**Current focus:** Phase 4: Memory Quality -- Plan 01 complete
 
 ## Current Position
 
-Phase: 3 of 4 (CLAUDE.md Integration)
-Plan: 1 of 1 (03-01-PLAN.md — COMPLETE)
-Status: Phase 3 complete
-Last activity: 2026-03-19 — Phase 3 Plan 01 executed: generate_claude_md_section + setup.sh wiring
+Phase: 4 of 4 (Memory Quality)
+Plan: 1 of 2 (04-01-PLAN.md -- COMPLETE)
+Status: Phase 4 in progress
+Last activity: 2026-03-19 -- Phase 4 Plan 01 executed: Qdrant dedup consolidation worker + memory tool consolidate action
 
-Progress: [███████░░░] 70%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 4
-- Average duration: 9 min
-- Total execution time: 0.57 hours
+- Total plans completed: 5
+- Average duration: 10 min
+- Total execution time: 1.05 hours
 
 **By Phase:**
 
@@ -40,6 +40,7 @@ Progress: [███████░░░] 70%
 | 01-auto-sync-hook       | 2/2   | 13 min | 6.5 min  |
 | 02-intelligent-learning | 2/2   | 27 min | 13.5 min |
 | 03-claude-md-integration| 1/1   | 12 min | 12 min   |
+| 04-memory-quality       | 1/2   | 29 min | 29 min   |
 
 Updated after each plan completion
 
@@ -64,6 +65,10 @@ Updated after each plan completion
 - [03-01]: Idempotency: strip one leading newline from after-marker slice on replacement — prevents trailing blank line accumulation per run
 - [03-01]: Marker-based managed section uses HTML comment markers (BEGIN/END AGENT42 MEMORY) — invisible in rendered Markdown, not interpreted by Claude Code
 - [03-01]: Template uses double-dash not em-dash to avoid encoding issues across platforms
+- [04-01]: Sliding window (WINDOW_SIZE=200) limits O(n^2) to O(n*window): avoids full pairwise comparison for large collections
+- [04-01]: Sort newest-first before comparison: keeps recently-added entries when duplicates found (fresher data preferred)
+- [04-01]: Skip history and conversations collections: chronological logs where dedup would corrupt event timeline
+- [04-01]: fire-and-forget consolidation trigger: asyncio.create_task() not await in _handle_store to keep store action non-blocking
 
 ### Pending Todos
 
@@ -76,5 +81,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-19
-Stopped at: Completed 03-claude-md-integration/03-01-PLAN.md
-Resume file: .planning/workstreams/intelligent-memory-bridge/phases/03-claude-md-integration/03-01-SUMMARY.md
+Stopped at: Completed 04-memory-quality/04-01-PLAN.md
+Resume file: .planning/workstreams/intelligent-memory-bridge/phases/04-memory-quality/04-01-SUMMARY.md
