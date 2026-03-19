@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-19T00:06:39.220Z"
+last_updated: "2026-03-19T04:29:05Z"
 ---
 
 # Project State: Intelligent Memory Bridge
@@ -14,30 +14,31 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 
 **Core value:** When Agent42 is installed, its enhanced Qdrant-backed memory becomes the primary memory system automatically — no user intervention needed.
 
-**Current focus:** Phase 1: Auto-Sync Hook
+**Current focus:** Phase 2: Intelligent Learning
 
 ## Current Position
 
-Phase: 1 of 1 (Auto-Sync Hook)
-Plan: 2 of 2 complete in current phase (01-01 done, 01-02 done)
-Status: Phase 01 complete
-Last activity: 2026-03-18 — Completed 01-02: Hook activation, reindex_cc, dashboard cc_sync
+Phase: 2 of 2 (Intelligent Learning)
+Plan: 1 of 2 complete in current phase (02-01 done)
+Status: Phase 02 in progress — plan 02-01 complete
+Last activity: 2026-03-19 — Completed 02-01: knowledge-learn hook, worker, 35 tests passing
 
-Progress: [██████████] 100%
+Progress: [████████░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 2
-- Average duration: 7 min
-- Total execution time: 0.22 hours
+- Total plans completed: 3
+- Average duration: 8.3 min
+- Total execution time: 0.38 hours
 
 **By Phase:**
 
-| Phase              | Plans | Total  | Avg/Plan |
-|--------------------|-------|--------|----------|
-| 01-auto-sync-hook  | 2/2   | 13 min | 6.5 min  |
+| Phase                  | Plans | Total  | Avg/Plan |
+|------------------------|-------|--------|----------|
+| 01-auto-sync-hook      | 2/2   | 13 min | 6.5 min  |
+| 02-intelligent-learning| 1/2   | 13 min | 13 min   |
 
 *Updated after each plan completion*
 
@@ -53,17 +54,20 @@ Progress: [██████████] 100%
 - [01-02]: Patch `memory.embeddings.*` not `tools.memory_tool.*` when unit-testing `_handle_reindex_cc` — imports are local inside the method, source module is the correct patch target
 - [01-02]: `reindex_cc` checks `retrieve()` before upsert to skip already-synced files — makes catch-up idempotent without re-embedding unchanged files
 - [01-02]: `_load_cc_sync_status` nested inside `create_app()` as a non-async def — cheap local file read with graceful exception fallback
+- [02-01]: Hook pre-extracts last 20 messages to temp file — avoids shell arg length limits, keeps hook startup under 30ms
+- [02-01]: Dedup uses raw_score (not lifecycle-adjusted score) against 0.85 threshold — prevents confidence-boosted entries from being treated as highly similar
+- [02-01]: KNOWLEDGE collection uses 384-dim ONNX vectors (not 1536-dim OpenAI) — consistent with rest of Agent42 memory subsystem
 
 ### Pending Todos
 
-None yet.
+- Implement `/api/knowledge/learn` Agent42 API endpoint (plan 02-02)
 
 ### Blockers/Concerns
 
-None yet.
+None.
 
 ## Session Continuity
 
-Last session: 2026-03-18T23:56:06Z
-Stopped at: Completed 01-02-PLAN.md — hook activated, reindex_cc added, dashboard cc_sync added, 29 tests passing
+Last session: 2026-03-19T04:29:05Z
+Stopped at: Completed 02-01-PLAN.md — knowledge-learn hook + worker + 35 tests, all passing
 Resume file: None

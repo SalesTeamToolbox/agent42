@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Auto-Sync Hook** - Intercept CC memory writes and sync to Qdrant automatically
 - [ ] **Phase 2: Intelligent Learning** - Extract structured learnings from conversation context at session end
-- [ ] **Phase 3: CLAUDE.md Integration** - Steer Claude to use Agent42 memory via instructions and setup automation
+- [x] **Phase 3: CLAUDE.md Integration** - Steer Claude to use Agent42 memory via instructions and setup automation (completed 2026-03-19)
 - [ ] **Phase 4: Memory Quality** - Keep Qdrant store clean with dedup, consolidation, and confidence scoring
 
 ## Phase Details
@@ -69,6 +69,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Auto-Sync Hook | 2/2 | Complete | 2026-03-18 |
-| 2. Intelligent Learning | 0/TBD | Not started | - |
-| 3. CLAUDE.md Integration | 0/TBD | Not started | - |
+| 2. Intelligent Learning | 1/2 | In progress | - |
+| 3. CLAUDE.md Integration | 2/2 | Complete   | 2026-03-19 |
 | 4. Memory Quality | 0/TBD | Not started | - |
