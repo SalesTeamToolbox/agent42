@@ -13,7 +13,7 @@ This workstream builds an invisible bridge between Claude Code's flat-file memor
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Auto-Sync Hook** - Intercept CC memory writes and sync to Qdrant automatically
-- [ ] **Phase 2: Intelligent Learning** - Extract structured learnings from conversation context at session end
+- [x] **Phase 2: Intelligent Learning** - Extract structured learnings from conversation context at session end (completed 2026-03-19)
 - [x] **Phase 3: CLAUDE.md Integration** - Steer Claude to use Agent42 memory via instructions and setup automation (completed 2026-03-19)
 - [ ] **Phase 4: Memory Quality** - Keep Qdrant store clean with dedup, consolidation, and confidence scoring
 
@@ -40,7 +40,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. After a session involving deployment or debugging tool usage, relevant patterns are stored in Qdrant
   4. A pattern stored in prior sessions has its confidence score increased when it appears again in a new session
   5. Entries are tagged with a category (security, feature, refactor, deploy) that matches the nature of the work
-**Plans**: TBD
+**Plans**: 2 (02-01 complete, 02-02 complete)
 
 ### Phase 3: CLAUDE.md Integration
 **Goal**: Claude prefers Agent42 memory for both reads and writes by default, and new Agent42 installations automatically configure this preference without any user editing CLAUDE.md manually
@@ -69,6 +69,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Auto-Sync Hook | 2/2 | Complete | 2026-03-18 |
-| 2. Intelligent Learning | 1/2 | In progress | - |
+| 2. Intelligent Learning | 2/2 | Complete | 2026-03-19 |
 | 3. CLAUDE.md Integration | 2/2 | Complete   | 2026-03-19 |
 | 4. Memory Quality | 0/TBD | Not started | - |

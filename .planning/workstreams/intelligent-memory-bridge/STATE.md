@@ -2,8 +2,8 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-19T04:29:05Z"
+status: complete
+last_updated: "2026-03-19T04:43:15Z"
 ---
 
 # Project State: Intelligent Memory Bridge
@@ -14,16 +14,16 @@ See: .planning/PROJECT.md (updated 2026-03-18)
 
 **Core value:** When Agent42 is installed, its enhanced Qdrant-backed memory becomes the primary memory system automatically — no user intervention needed.
 
-**Current focus:** Phase 2: Intelligent Learning
+**Current focus:** Phase 2: Intelligent Learning — COMPLETE
 
 ## Current Position
 
 Phase: 2 of 2 (Intelligent Learning)
-Plan: 1 of 2 complete in current phase (02-01 done)
-Status: Phase 02 in progress — plan 02-01 complete
-Last activity: 2026-03-19 — Completed 02-01: knowledge-learn hook, worker, 35 tests passing
+Plan: 2 of 2 complete in current phase (02-01 and 02-02 done)
+Status: All phases complete — workstream complete
+Last activity: 2026-03-19 — Completed 02-02: /api/knowledge/learn endpoint, KNOWLEDGE indexes, 40 tests passing
 
-Progress: [████████░░] 75%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -38,9 +38,9 @@ Progress: [████████░░] 75%
 | Phase                  | Plans | Total  | Avg/Plan |
 |------------------------|-------|--------|----------|
 | 01-auto-sync-hook      | 2/2   | 13 min | 6.5 min  |
-| 02-intelligent-learning| 1/2   | 13 min | 13 min   |
+| 02-intelligent-learning| 2/2   | 27 min | 13.5 min |
 
-*Updated after each plan completion*
+Updated after each plan completion
 
 ## Accumulated Context
 
@@ -57,10 +57,13 @@ Progress: [████████░░] 75%
 - [02-01]: Hook pre-extracts last 20 messages to temp file — avoids shell arg length limits, keeps hook startup under 30ms
 - [02-01]: Dedup uses raw_score (not lifecycle-adjusted score) against 0.85 threshold — prevents confidence-boosted entries from being treated as highly similar
 - [02-01]: KNOWLEDGE collection uses 384-dim ONNX vectors (not 1536-dim OpenAI) — consistent with rest of Agent42 memory subsystem
+- [02-02]: Pydantic models defined inside endpoint function — avoids module-level import side effects; co-located with instructor call
+- [02-02]: asyncio.to_thread wraps instructor sync call — never block FastAPI event loop; instructor's OpenAI client is synchronous
+- [02-02]: Provider routing: OPENROUTER_API_KEY -> gemini-2.0-flash-001 via openrouter.ai; OPENAI_API_KEY -> gpt-4o-mini direct — avoids dead OR free models (pitfall #90)
 
 ### Pending Todos
 
-- Implement `/api/knowledge/learn` Agent42 API endpoint (plan 02-02)
+None — workstream complete.
 
 ### Blockers/Concerns
 
@@ -68,6 +71,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-19T04:29:05Z
-Stopped at: Completed 02-01-PLAN.md — knowledge-learn hook + worker + 35 tests, all passing
+Last session: 2026-03-19T04:43:15Z
+Stopped at: Completed 02-02-PLAN.md — /api/knowledge/learn endpoint + KNOWLEDGE indexes + 40 tests, all passing
 Resume file: None
