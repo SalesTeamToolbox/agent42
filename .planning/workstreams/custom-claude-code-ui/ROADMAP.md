@@ -98,7 +98,7 @@ Plans:
 Plans:
 
 - [x] 03-01-PLAN.md — Wave 0 test scaffold (test_cc_tool_use.py + cc_tool_result_sample.ndjson fixture)
-- [ ] 03-02-PLAN.md — Backend: _parse_cc_event tool_result/permission + session metadata extension
+- [x] 03-02-PLAN.md — Backend: _parse_cc_event tool_result/permission + session metadata extension
 - [ ] 03-03-PLAN.md — Frontend: tool card rendering (create/delta/complete/output) + CSS
 - [ ] 03-04-PLAN.md — Frontend: permission request UI + trust mode + CSS
 - [ ] 03-05-PLAN.md — Frontend: session persistence, tab strip, sidebar, token bar + CSS
@@ -141,6 +141,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 (Phase 5 can run after Phase 2
 |-------|----------------|--------|-----------|
 | 1. Backend WS Bridge | 3/3 | Complete | 2026-03-18 |
 | 2. Core Chat UI | 5/5 | Complete | 2026-03-18 |
-| 3. Tool Use + Sessions | 1/5 | In Progress | - |
+| 3. Tool Use + Sessions | 2/5 | In Progress | - |
 | 4. Layout + Diff Viewer | 0/? | Not started | - |
 | 5. Streaming PTY Bridge | 3/3 | Complete | 2026-03-18 |
