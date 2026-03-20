@@ -33,12 +33,12 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 
 ## Current Position
 
-Phase: 4 of 5 (Layout + Diff Viewer — Wave 0 scaffold complete)
-Plan: 1 of 4 in Phase 4 complete
-Status: Plan 04-01 DONE - Wave 0 test scaffold: 12 source-inspection tests for LAYOUT-01 through LAYOUT-04; 8 XPASS (LAYOUT-01/02/03 features already in app.js/style.css), 4 XFAIL (LAYOUT-04 diff viewer pending)
-Last activity: 2026-03-20 — Plan 04-01 complete (test_cc_layout.py Wave 0 scaffold with TestCCPanelLayout, TestCCPanelCSS, TestDiffViewer)
+Phase: 4 of 5 (Layout + Diff Viewer — Panel container infrastructure complete)
+Plan: 2 of 4 in Phase 4 complete
+Status: Plan 04-02 DONE - Panel container infrastructure: .ide-main-editor-area wrapper, #ide-cc-panel, #ide-panel-drag-handle, initPanelDragHandle(), ideToggleCCPanel() stub, _ccPanelMode flag, cc_panel_width localStorage; CSS rules for all three elements. 8 XPASS (LAYOUT-01/02), 4 XFAIL (LAYOUT-04 diff viewer pending)
+Last activity: 2026-03-20 — Plan 04-02 complete (HTML template restructure, drag handle wired, panel CSS, activity bar CC icon)
 
-Progress: [████████░░] 80%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
@@ -111,6 +111,9 @@ Progress: [████████░░] 80%
 - LAYOUT-02/03 features already in app.js and style.css before Plan 04-01 execution; Wave 0 scaffold confirms 8/12 tests XPASS
 - LAYOUT-04 (ideOpenDiffTab, createDiffEditor, View Diff) not yet implemented; 4 tests XFAIL for Plan 04-04
 - Wave 0 source inspection tests: xfail(strict=False) allows XPASS when feature already exists — correct TDD state
+- ideToggleCCPanel() implemented as functional stub in Plan 04-02 (not just no-op) — enables immediate test verification; Plan 04-03 adds full mode-switching logic
+- .ide-main flex-direction changed from column to row in Plan 04-02; .ide-main-editor-area wrapper uses min-width:0 to prevent flex overflow
+- `_isPanelDragging` uses separate namespace from `_isDragging` (terminal) to prevent variable collision in `create_app()` closure
 
 ### Roadmap Evolution
 
@@ -129,5 +132,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-20
-Stopped at: Plan 04-01 complete - Wave 0 test scaffold (tests/test_cc_layout.py, 12 tests: 8 XPASS LAYOUT-01/02/03, 4 XFAIL LAYOUT-04 diff viewer). Phase 4 in progress.
+Stopped at: Plan 04-02 complete - panel container infrastructure (HTML template restructure, initPanelDragHandle, ideToggleCCPanel stub, CSS, activity bar CC icon). 8 XPASS LAYOUT-01/02, 4 XFAIL LAYOUT-04. Phase 4 plan 2/4 complete.
 Resume file: None

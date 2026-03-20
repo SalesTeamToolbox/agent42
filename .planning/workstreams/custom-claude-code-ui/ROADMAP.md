@@ -117,7 +117,7 @@ Plans:
 Plans:
 
 - [x] 04-01-PLAN.md — Wave 0 test scaffold (tests/test_cc_layout.py — 12 tests)
-- [ ] 04-02-PLAN.md — HTML template restructure + panel container + drag handle + CSS (LAYOUT-01, LAYOUT-02)
+- [x] 04-02-PLAN.md — HTML template restructure + panel container + drag handle + CSS (LAYOUT-01, LAYOUT-02)
 - [ ] 04-03-PLAN.md — Tab-to-panel mode switching with session transfer (LAYOUT-03)
 - [ ] 04-04-PLAN.md — Monaco diff editor tab + View Diff tool card buttons (LAYOUT-04)
 
@@ -149,5 +149,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 (Phase 5 can run after Phase 2
 | 1. Backend WS Bridge | 3/3 | Complete | 2026-03-18 |
 | 2. Core Chat UI | 5/5 | Complete | 2026-03-18 |
 | 3. Tool Use + Sessions | 5/5 | Complete | 2026-03-19 |
-| 4. Layout + Diff Viewer | 1/4 | In Progress | - |
+| 4. Layout + Diff Viewer | 2/4 | In Progress | - |
 | 5. Streaming PTY Bridge | 3/3 | Complete | 2026-03-18 |
