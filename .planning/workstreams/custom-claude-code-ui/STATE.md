@@ -29,23 +29,23 @@ last_updated: "2026-03-18T22:13:17.000Z"
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Agent42 must provide a rich, VS Code-quality Claude Code chat experience in its web IDE
-**Current focus:** Phase 3 — Tool Use and Sessions (Wave 0 scaffold complete)
+**Current focus:** Phase 4 — Layout + Diff Viewer — COMPLETE
 
 ## Current Position
 
-Phase: 4 of 5 (Layout + Diff Viewer — Full tab-to-panel mode switching complete)
-Plan: 3 of 4 in Phase 4 complete
-Status: Plan 04-03 DONE - Full ideToggleCCPanel three-state toggle: ideOpenCCPanel, ideCloseCCPanel, ideMoveSessionsToPanel (DOM reparenting via appendChild, WS preserved), ideMoveSessionsToTab, ideActivateTab panel-mode branch, ideRenderTabs panel filter. All 8 LAYOUT-01/02/03 tests XPASS, 4 XFAIL (LAYOUT-04 diff viewer pending)
-Last activity: 2026-03-20 — Plan 04-03 complete (full mode switching, CC sessions transfer between tab and panel without WS interruption)
+Phase: 4 of 5 COMPLETE (Layout + Diff Viewer — all 4 plans done)
+Plan: 4 of 4 in Phase 4 complete
+Status: Plan 04-04 DONE - Monaco diff editor tabs with side-by-side view, ideOpenDiffTab, ideDetectLanguage, ccOpenDiffFromToolCard, View Diff + Open File buttons on Write/Edit tool cards. All 12 LAYOUT-01/02/03/04 tests XPASS. Phase 4 fully complete.
+Last activity: 2026-03-20 — Plan 04-04 complete (Monaco diff editor integration, all LAYOUT tests green)
 
-Progress: [█████████░] 90%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
-- Average duration: 7.5 min
-- Total execution time: 90 min
+- Total plans completed: 13
+- Average duration: 7.6 min
+- Total execution time: 102 min
 
 **By Phase:**
 
@@ -55,6 +55,7 @@ Progress: [█████████░] 90%
 | 02-core-chat-ui      | 5/5 DONE | 27 min | 5.4 min  |
 | 05-streaming-pty     | 3/3 DONE | 39 min | 13.0 min |
 | 03-tool-use-sessions | 5/5 DONE | 49 min | 9.8 min  |
+| 04-layout-diff-viewer| 4/4 DONE | ~30 min| ~7.5 min |
 
 *Updated after each plan completion*
 
@@ -118,6 +119,11 @@ Progress: [█████████░] 90%
 - 50ms setTimeout for ideMoveSessionsToPanel when opening new CC session ensures tab is in _ideTabs array before move iterates
 - ideActivateTab panel-mode branch early returns to avoid #ide-cc-container visibility logic when session is in panel
 - ideRenderTabs uses return "" in map() for panel-mode CC tabs — excluded from join but tab stays in _ideTabs for state tracking
+- Diff tab object shape: {type:"diff", diffEditor, diffOriginalModel, diffModifiedModel, el:.ide-diff-container, path:"filename \u2194 Changes"}
+- .ide-diff-container class on diff container divs enables querySelectorAll for targeted hide-all in ideActivateTab (cleaner than inline style selector)
+- Both diff panes forced read-only: originalEditable:false in createDiffEditor options + getOriginalEditor/getModifiedEditor().updateOptions({readOnly:true})
+- ccOpenDiffFromToolCard fetches original via GET /api/ide/file with Authorization header; falls back to empty string on 404 (new file case)
+- ideDetectLanguage maps 25+ extensions to Monaco language IDs; called in ideOpenDiffTab with fallback to plaintext
 
 ### Roadmap Evolution
 
@@ -136,5 +142,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-20
-Stopped at: Plan 04-03 complete - full ideToggleCCPanel three-state toggle, ideMoveSessionsToPanel/Tab with DOM reparenting (WS preserved), ideActivateTab panel-mode branch, ideRenderTabs panel filter. 8 XPASS LAYOUT-01/02/03, 4 XFAIL LAYOUT-04. Phase 4 plan 3/4 complete.
+Stopped at: Plan 04-04 complete - Monaco diff editor tabs (ideOpenDiffTab, ideDetectLanguage, ccOpenDiffFromToolCard), View Diff + Open File buttons on tool cards (ccFinalizeToolCard), diff branches in ideActivateTab/ideCloseTab. All 12 LAYOUT-01/02/03/04 tests XPASS. Phase 4 COMPLETE (4/4 plans done).
 Resume file: None

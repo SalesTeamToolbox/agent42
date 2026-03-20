@@ -39,7 +39,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Backend WS Bridge** - WebSocket endpoint that spawns CC subprocess and relays typed events to the frontend
 - [x] **Phase 2: Core Chat UI** - Streaming chat panel with markdown rendering, sanitization, input box, and scroll-pin
 - [x] **Phase 3: Tool Use + Sessions** - Tool use cards, permission UI, session persistence, and multi-session tabs
-- [ ] **Phase 4: Layout + Diff Viewer** - Tab/panel layout modes, user toggle, and Monaco diff editor integration
+- [x] **Phase 4: Layout + Diff Viewer** - Tab/panel layout modes, user toggle, and Monaco diff editor integration
 - [ ] **Phase 5: Streaming PTY Bridge** - PTY subprocess for real-time streaming, init progress, pre-warm pool
 
 ## Phase Details
@@ -118,8 +118,8 @@ Plans:
 
 - [x] 04-01-PLAN.md — Wave 0 test scaffold (tests/test_cc_layout.py — 12 tests)
 - [x] 04-02-PLAN.md — HTML template restructure + panel container + drag handle + CSS (LAYOUT-01, LAYOUT-02)
-- [ ] 04-03-PLAN.md — Tab-to-panel mode switching with session transfer (LAYOUT-03)
-- [ ] 04-04-PLAN.md — Monaco diff editor tab + View Diff tool card buttons (LAYOUT-04)
+- [x] 04-03-PLAN.md — Tab-to-panel mode switching with session transfer (LAYOUT-03)
+- [x] 04-04-PLAN.md — Monaco diff editor tab + View Diff tool card buttons (LAYOUT-04)
 
 ### Phase 5: Streaming PTY Bridge & CC Initialization Optimization
 **Goal**: CC chat responses stream in real-time via PTY (not block-buffered PIPE), with initialization progress visible and optional pre-warming to eliminate cold start delay
@@ -149,5 +149,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 (Phase 5 can run after Phase 2
 | 1. Backend WS Bridge | 3/3 | Complete | 2026-03-18 |
 | 2. Core Chat UI | 5/5 | Complete | 2026-03-18 |
 | 3. Tool Use + Sessions | 5/5 | Complete | 2026-03-19 |
-| 4. Layout + Diff Viewer | 3/4 | In Progress|  |
+| 4. Layout + Diff Viewer | 4/4 | Complete | 2026-03-20 |
 | 5. Streaming PTY Bridge | 3/3 | Complete | 2026-03-18 |
