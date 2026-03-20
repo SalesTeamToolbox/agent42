@@ -33,12 +33,12 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 
 ## Current Position
 
-Phase: 3 of 5 (Tool Use and Sessions — COMPLETE)
-Plan: 5 of 5 in Phase 3 complete
-Status: Plan 03-05 DONE - Session management: sessionStorage persistence, tab strip, session sidebar, ccResumeSession (reuses ccMakeWsHandler), token bar. All SESS-01 through SESS-06 complete.
-Last activity: 2026-03-19 — Plan 03-05 complete (session persistence, tab strip, sidebar, token bar — all TestSessionPersistence, TestMultiSessionTabs, TestSessionSidebar, TestTokenBar XPASS)
+Phase: 4 of 5 (Layout + Diff Viewer — Wave 0 scaffold complete)
+Plan: 1 of 4 in Phase 4 complete
+Status: Plan 04-01 DONE - Wave 0 test scaffold: 12 source-inspection tests for LAYOUT-01 through LAYOUT-04; 8 XPASS (LAYOUT-01/02/03 features already in app.js/style.css), 4 XFAIL (LAYOUT-04 diff viewer pending)
+Last activity: 2026-03-20 — Plan 04-01 complete (test_cc_layout.py Wave 0 scaffold with TestCCPanelLayout, TestCCPanelCSS, TestDiffViewer)
 
-Progress: [██████████] 100%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
@@ -108,6 +108,9 @@ Progress: [██████████] 100%
 - ccResumeSession reuses ccMakeWsHandler factory — no handler duplication, consistent with Plan 03-03 architecture
 - Session sidebar hidden by default; ccToggleSessionSidebar lazy-loads sessions on first open
 - Token accumulation is client-side only per session; resets on ccResumeSession
+- LAYOUT-02/03 features already in app.js and style.css before Plan 04-01 execution; Wave 0 scaffold confirms 8/12 tests XPASS
+- LAYOUT-04 (ideOpenDiffTab, createDiffEditor, View Diff) not yet implemented; 4 tests XFAIL for Plan 04-04
+- Wave 0 source inspection tests: xfail(strict=False) allows XPASS when feature already exists — correct TDD state
 
 ### Roadmap Evolution
 
@@ -125,6 +128,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-19
-Stopped at: Plan 03-05 complete - session management (sessionStorage persistence, tab strip, session sidebar, ccResumeSession using ccMakeWsHandler, token bar). All SESS-01 through SESS-06 XPASS. Phase 3 complete.
+Last session: 2026-03-20
+Stopped at: Plan 04-01 complete - Wave 0 test scaffold (tests/test_cc_layout.py, 12 tests: 8 XPASS LAYOUT-01/02/03, 4 XFAIL LAYOUT-04 diff viewer). Phase 4 in progress.
 Resume file: None
