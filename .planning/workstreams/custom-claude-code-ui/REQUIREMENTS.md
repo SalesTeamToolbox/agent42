@@ -57,7 +57,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **LAYOUT-01**: CC interface opens as an editor tab in the main editor area
 - [ ] **LAYOUT-02**: CC interface can also open as a dedicated resizable side panel (right)
-- [ ] **LAYOUT-03**: User can switch between tab and panel modes
+- [x] **LAYOUT-03**: User can switch between tab and panel modes
 - [ ] **LAYOUT-04**: Diff viewer uses Monaco's built-in diff editor for proposed code changes
 
 ## v2 Requirements
@@ -132,7 +132,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | SESS-06 | Phase 3 | Complete |
 | LAYOUT-01 | Phase 4 | Pending |
 | LAYOUT-02 | Phase 4 | Pending |
-| LAYOUT-03 | Phase 4 | Pending |
+| LAYOUT-03 | Phase 4 | Complete |
 | LAYOUT-04 | Phase 4 | Pending |
 | PTY-01 | Phase 5 | Pending |
 | PTY-02 | Phase 5 | Pending |

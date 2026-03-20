@@ -33,10 +33,10 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 
 ## Current Position
 
-Phase: 4 of 5 (Layout + Diff Viewer — Panel container infrastructure complete)
-Plan: 2 of 4 in Phase 4 complete
-Status: Plan 04-02 DONE - Panel container infrastructure: .ide-main-editor-area wrapper, #ide-cc-panel, #ide-panel-drag-handle, initPanelDragHandle(), ideToggleCCPanel() stub, _ccPanelMode flag, cc_panel_width localStorage; CSS rules for all three elements. 8 XPASS (LAYOUT-01/02), 4 XFAIL (LAYOUT-04 diff viewer pending)
-Last activity: 2026-03-20 — Plan 04-02 complete (HTML template restructure, drag handle wired, panel CSS, activity bar CC icon)
+Phase: 4 of 5 (Layout + Diff Viewer — Full tab-to-panel mode switching complete)
+Plan: 3 of 4 in Phase 4 complete
+Status: Plan 04-03 DONE - Full ideToggleCCPanel three-state toggle: ideOpenCCPanel, ideCloseCCPanel, ideMoveSessionsToPanel (DOM reparenting via appendChild, WS preserved), ideMoveSessionsToTab, ideActivateTab panel-mode branch, ideRenderTabs panel filter. All 8 LAYOUT-01/02/03 tests XPASS, 4 XFAIL (LAYOUT-04 diff viewer pending)
+Last activity: 2026-03-20 — Plan 04-03 complete (full mode switching, CC sessions transfer between tab and panel without WS interruption)
 
 Progress: [█████████░] 90%
 
@@ -114,6 +114,10 @@ Progress: [█████████░] 90%
 - ideToggleCCPanel() implemented as functional stub in Plan 04-02 (not just no-op) — enables immediate test verification; Plan 04-03 adds full mode-switching logic
 - .ide-main flex-direction changed from column to row in Plan 04-02; .ide-main-editor-area wrapper uses min-width:0 to prevent flex overflow
 - `_isPanelDragging` uses separate namespace from `_isDragging` (terminal) to prevent variable collision in `create_app()` closure
+- DOM reparenting via appendChild() preserves WS connection (tab.ws) and all inline onclick handlers — only tab.el DOM position changes
+- 50ms setTimeout for ideMoveSessionsToPanel when opening new CC session ensures tab is in _ideTabs array before move iterates
+- ideActivateTab panel-mode branch early returns to avoid #ide-cc-container visibility logic when session is in panel
+- ideRenderTabs uses return "" in map() for panel-mode CC tabs — excluded from join but tab stays in _ideTabs for state tracking
 
 ### Roadmap Evolution
 
@@ -132,5 +136,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-03-20
-Stopped at: Plan 04-02 complete - panel container infrastructure (HTML template restructure, initPanelDragHandle, ideToggleCCPanel stub, CSS, activity bar CC icon). 8 XPASS LAYOUT-01/02, 4 XFAIL LAYOUT-04. Phase 4 plan 2/4 complete.
+Stopped at: Plan 04-03 complete - full ideToggleCCPanel three-state toggle, ideMoveSessionsToPanel/Tab with DOM reparenting (WS preserved), ideActivateTab panel-mode branch, ideRenderTabs panel filter. 8 XPASS LAYOUT-01/02/03, 4 XFAIL LAYOUT-04. Phase 4 plan 3/4 complete.
 Resume file: None

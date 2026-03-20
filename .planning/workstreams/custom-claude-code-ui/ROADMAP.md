@@ -149,5 +149,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 (Phase 5 can run after Phase 2
 | 1. Backend WS Bridge | 3/3 | Complete | 2026-03-18 |
 | 2. Core Chat UI | 5/5 | Complete | 2026-03-18 |
 | 3. Tool Use + Sessions | 5/5 | Complete | 2026-03-19 |
-| 4. Layout + Diff Viewer | 2/4 | In Progress | - |
+| 4. Layout + Diff Viewer | 3/4 | In Progress|  |
 | 5. Streaming PTY Bridge | 3/3 | Complete | 2026-03-18 |
