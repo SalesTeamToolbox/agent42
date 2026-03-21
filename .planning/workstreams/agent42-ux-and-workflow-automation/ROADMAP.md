@@ -50,7 +50,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plan list:**
 
 - [x] 02-01-PLAN.md — Always-on GSD skill + CLAUDE.md methodology section (GSD-01, GSD-02)
-- [ ] 02-02-PLAN.md — Context-loader hook GSD detection + smart skip logic (GSD-03, GSD-04)
+- [x] 02-02-PLAN.md — Context-loader hook GSD detection + smart skip logic (GSD-03, GSD-04)
 
 ### Phase 3: Desktop App Experience
 **Goal**: Users can install Agent42 as a PWA and launch it from the desktop without a browser address bar or tabs

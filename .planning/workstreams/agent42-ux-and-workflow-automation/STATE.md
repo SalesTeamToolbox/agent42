@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-gsd-auto-activation-01-PLAN.md
-last_updated: "2026-03-21T01:14:31.540Z"
+stopped_at: Completed 02-gsd-auto-activation-02-PLAN.md
+last_updated: "2026-03-21T01:20:46.809Z"
 progress:
   total_phases: 4
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # State: Agent42 UX & Workflow Automation
@@ -50,6 +50,7 @@ Plan: 2 of 2
 | Phase 01-memory-pipeline P02 | 15 | 2 tasks | 2 files |
 | Phase 01 P03 | 14min | 1 tasks | 2 files |
 | Phase 02-gsd-auto-activation P01 | 6 | 3 tasks | 3 files |
+| Phase 02-gsd-auto-activation P02 | 7min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -67,6 +68,8 @@ Plan: 2 of 2
 - [Phase 02-gsd-auto-activation]: always: true skill is primary GSD activation mechanism — no LLM call, pure behavioral instruction injection
 - [Phase 02-gsd-auto-activation]: CLAUDE.md Development Methodology section inserted before Common Pitfalls — append-only, no existing content rewritten
 - [Phase 02-gsd-auto-activation]: Skill includes .planning/active-workstream check (D-13) to avoid double-activating inside running GSD sessions
+- [Phase 02-gsd-auto-activation]: GSD work type uses files=[] and section=None — no lessons/references to load; discard before lessons loop prevents None-section KeyError
+- [Phase 02-gsd-auto-activation]: Active-workstream suppression reads file content (not just exists) — empty file means no active session, nudge fires
 
 ### Known State
 
@@ -85,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T01:14:31.534Z
-Stopped at: Completed 02-gsd-auto-activation-01-PLAN.md
+Last session: 2026-03-21T01:20:46.804Z
+Stopped at: Completed 02-gsd-auto-activation-02-PLAN.md
 Resume file: None
