@@ -45,11 +45,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. For a trivial task (e.g., "what does range() do?"), Claude skips GSD and answers directly
   3. CLAUDE.md contains a GSD section that establishes it as the default process when Agent42 is installed
   4. The always-on skill is active and instructs Claude to recognize when GSD applies
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 **Plan list:**
 
-- [ ] 02-01-PLAN.md — Always-on GSD skill + CLAUDE.md methodology section (GSD-01, GSD-02)
+- [x] 02-01-PLAN.md — Always-on GSD skill + CLAUDE.md methodology section (GSD-01, GSD-02)
 - [ ] 02-02-PLAN.md — Context-loader hook GSD detection + smart skip logic (GSD-03, GSD-04)
 
 ### Phase 3: Desktop App Experience
@@ -80,7 +80,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Memory Pipeline | 3/3 | Complete |  |
-| 2. GSD Auto-Activation | 0/2 | In Progress | - |
+| 2. GSD Auto-Activation | 1/2 | In Progress|  |
 | 3. Desktop App Experience | 0/? | Not started | - |
 | 4. Dashboard GSD Integration | 0/? | Not started | - |
 

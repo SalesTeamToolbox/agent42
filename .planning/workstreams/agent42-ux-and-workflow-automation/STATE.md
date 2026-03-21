@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-memory-pipeline-03-PLAN.md
-last_updated: "2026-03-20T23:20:37.555Z"
+stopped_at: Completed 02-gsd-auto-activation-01-PLAN.md
+last_updated: "2026-03-21T01:14:31.540Z"
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 5
+  completed_plans: 4
 ---
 
 # State: Agent42 UX & Workflow Automation
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Agent42 must always be able to run agents reliably, with GSD as the default methodology when installed
-**Current focus:** Phase 01 — memory-pipeline
+**Current focus:** Phase 2 — gsd-auto-activation
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 2 (gsd-auto-activation) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -49,6 +49,7 @@ Plan: Not started
 | Phase 01-memory-pipeline P01 | 3 | 2 tasks | 2 files |
 | Phase 01-memory-pipeline P02 | 15 | 2 tasks | 2 files |
 | Phase 01 P03 | 14min | 1 tasks | 2 files |
+| Phase 02-gsd-auto-activation P01 | 6 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -63,6 +64,9 @@ Plan: Not started
 - [Phase 01-memory-pipeline]: Log metadata only (keyword count, result count, method, latency) — never query text or content in memory.recall logger
 - [Phase 01-memory-pipeline]: --health outputs structured JSON with memory_pipeline section covering Qdrant, search service, file existence, hook registration, and 24h stats
 - [Phase 01-memory-pipeline]: Subprocess-based hook testing validates full stdin/stderr pipeline as Claude Code invokes hooks, with all remote service URLs overridden to unreachable ports for isolated graceful degradation testing
+- [Phase 02-gsd-auto-activation]: always: true skill is primary GSD activation mechanism — no LLM call, pure behavioral instruction injection
+- [Phase 02-gsd-auto-activation]: CLAUDE.md Development Methodology section inserted before Common Pitfalls — append-only, no existing content rewritten
+- [Phase 02-gsd-auto-activation]: Skill includes .planning/active-workstream check (D-13) to avoid double-activating inside running GSD sessions
 
 ### Known State
 
@@ -81,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-20T23:07:45.624Z
-Stopped at: Completed 01-memory-pipeline-03-PLAN.md
+Last session: 2026-03-21T01:14:31.534Z
+Stopped at: Completed 02-gsd-auto-activation-01-PLAN.md
 Resume file: None

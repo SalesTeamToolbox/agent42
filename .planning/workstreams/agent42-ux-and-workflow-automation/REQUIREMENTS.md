@@ -21,8 +21,8 @@
 
 ### GSD Auto-Activation
 
-- [ ] **GSD-01**: Always-on skill instructs Claude to use GSD methodology for multi-step coding/planning tasks
-- [ ] **GSD-02**: CLAUDE.md section establishes GSD as the default process when Agent42 is installed
+- [x] **GSD-01**: Always-on skill instructs Claude to use GSD methodology for multi-step coding/planning tasks
+- [x] **GSD-02**: CLAUDE.md section establishes GSD as the default process when Agent42 is installed
 - [ ] **GSD-03**: Context-loader hook detects coding/planning task prompts and nudges toward GSD workflow
 - [ ] **GSD-04**: Auto-activation is smart — skips GSD for trivial/single-step tasks (quick questions, simple edits)
 
@@ -60,8 +60,8 @@
 | MEM-02 | Phase 1 | Complete |
 | MEM-03 | Phase 1 | Complete |
 | MEM-04 | Phase 1 | Complete |
-| GSD-01 | Phase 2 | Pending |
-| GSD-02 | Phase 2 | Pending |
+| GSD-01 | Phase 2 | Complete |
+| GSD-02 | Phase 2 | Complete |
 | GSD-03 | Phase 2 | Pending |
 | GSD-04 | Phase 2 | Pending |
 | APP-01 | Phase 3 | Pending |
