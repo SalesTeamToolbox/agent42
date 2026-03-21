@@ -7,10 +7,10 @@
 
 ### Desktop App Experience
 
-- [ ] **APP-01**: User can install Agent42 as a PWA from the browser (manifest.json with icons, theme, display: standalone)
+- [x] **APP-01**: User can install Agent42 as a PWA from the browser (manifest.json with icons, theme, display: standalone)
 - [ ] **APP-02**: User can run `setup.sh create-shortcut` to create a platform-specific desktop shortcut (Windows .lnk, macOS .app, Linux .desktop)
 - [ ] **APP-03**: Desktop shortcut opens Agent42 in chromeless app mode (no address bar, tabs, or browser UI)
-- [ ] **APP-04**: PWA displays correct Agent42 branding (name, icon, theme color) in OS taskbar and app switcher
+- [x] **APP-04**: PWA displays correct Agent42 branding (name, icon, theme color) in OS taskbar and app switcher
 
 ### Memory Pipeline
 
@@ -64,10 +64,10 @@
 | GSD-02 | Phase 2 | Complete |
 | GSD-03 | Phase 2 | Complete |
 | GSD-04 | Phase 2 | Complete |
-| APP-01 | Phase 3 | Pending |
+| APP-01 | Phase 3 | Complete |
 | APP-02 | Phase 3 | Pending |
 | APP-03 | Phase 3 | Pending |
-| APP-04 | Phase 3 | Pending |
+| APP-04 | Phase 3 | Complete |
 | DASH-01 | Phase 4 | Pending |
 | DASH-02 | Phase 4 | Pending |
 

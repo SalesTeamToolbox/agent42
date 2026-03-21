@@ -65,7 +65,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Plan list:**
 
-- [ ] 03-01-PLAN.md — PWA manifest, icon generation, and index.html wiring (APP-01, APP-04)
+- [x] 03-01-PLAN.md — PWA manifest, icon generation, and index.html wiring (APP-01, APP-04)
 - [ ] 03-02-PLAN.md — Desktop shortcut command in setup.sh (APP-02, APP-03)
 
 ### Phase 4: Dashboard GSD Integration
