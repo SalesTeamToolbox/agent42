@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 03-desktop-app-experience-01-PLAN.md
-last_updated: "2026-03-21T02:45:46.073Z"
+stopped_at: Completed 03-desktop-app-experience-02-PLAN.md
+last_updated: "2026-03-21T02:54:03.986Z"
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # State: Agent42 UX & Workflow Automation
@@ -52,6 +52,7 @@ Plan: 2 of 2
 | Phase 02-gsd-auto-activation P01 | 6 | 3 tasks | 3 files |
 | Phase 02-gsd-auto-activation P02 | 7min | 2 tasks | 2 files |
 | Phase 03-desktop-app-experience P01 | 7min | 2 tasks | 6 files |
+| Phase 03 P02 | 4 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,7 @@ Plan: 2 of 2
 - [Phase 02-gsd-auto-activation]: Active-workstream suppression reads file content (not just exists) — empty file means no active session, nudge fires
 - [Phase 03-desktop-app-experience]: Pillow geometry fallback replicates robot-face when Cairo DLL unavailable on Windows
 - [Phase 03-desktop-app-experience]: Icons committed to repo (D-09) — not gitignored, available without running generate script
+- [Phase 03]: Use PowerShell [Environment]::GetFolderPath('Desktop') instead of cmd.exe echo for Windows Desktop path — handles OneDrive-redirected Desktops correctly
 
 ### Known State
 
@@ -91,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T02:45:46.070Z
-Stopped at: Completed 03-desktop-app-experience-01-PLAN.md
+Last session: 2026-03-21T02:54:03.979Z
+Stopped at: Completed 03-desktop-app-experience-02-PLAN.md
 Resume file: None
