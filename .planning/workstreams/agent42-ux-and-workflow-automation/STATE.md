@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-memory-pipeline-03-PLAN.md
-last_updated: "2026-03-20T23:20:37.555Z"
+stopped_at: Completed 03-desktop-app-experience-02-PLAN.md
+last_updated: "2026-03-21T05:26:53.740Z"
 progress:
   total_phases: 4
-  completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  completed_phases: 3
+  total_plans: 8
+  completed_plans: 7
 ---
 
 # State: Agent42 UX & Workflow Automation
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Agent42 must always be able to run agents reliably, with GSD as the default methodology when installed
-**Current focus:** Phase 01 — memory-pipeline
+**Current focus:** Phase 04 — dashboard-gsd-integration
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 04 (dashboard-gsd-integration) — EXECUTING
+Plan: 1 of 1
 
 ## Performance Metrics
 
@@ -49,6 +49,10 @@ Plan: Not started
 | Phase 01-memory-pipeline P01 | 3 | 2 tasks | 2 files |
 | Phase 01-memory-pipeline P02 | 15 | 2 tasks | 2 files |
 | Phase 01 P03 | 14min | 1 tasks | 2 files |
+| Phase 02-gsd-auto-activation P01 | 6 | 3 tasks | 3 files |
+| Phase 02-gsd-auto-activation P02 | 7min | 2 tasks | 2 files |
+| Phase 03-desktop-app-experience P01 | 7min | 2 tasks | 6 files |
+| Phase 03 P02 | 4 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -63,6 +67,14 @@ Plan: Not started
 - [Phase 01-memory-pipeline]: Log metadata only (keyword count, result count, method, latency) — never query text or content in memory.recall logger
 - [Phase 01-memory-pipeline]: --health outputs structured JSON with memory_pipeline section covering Qdrant, search service, file existence, hook registration, and 24h stats
 - [Phase 01-memory-pipeline]: Subprocess-based hook testing validates full stdin/stderr pipeline as Claude Code invokes hooks, with all remote service URLs overridden to unreachable ports for isolated graceful degradation testing
+- [Phase 02-gsd-auto-activation]: always: true skill is primary GSD activation mechanism — no LLM call, pure behavioral instruction injection
+- [Phase 02-gsd-auto-activation]: CLAUDE.md Development Methodology section inserted before Common Pitfalls — append-only, no existing content rewritten
+- [Phase 02-gsd-auto-activation]: Skill includes .planning/active-workstream check (D-13) to avoid double-activating inside running GSD sessions
+- [Phase 02-gsd-auto-activation]: GSD work type uses files=[] and section=None — no lessons/references to load; discard before lessons loop prevents None-section KeyError
+- [Phase 02-gsd-auto-activation]: Active-workstream suppression reads file content (not just exists) — empty file means no active session, nudge fires
+- [Phase 03-desktop-app-experience]: Pillow geometry fallback replicates robot-face when Cairo DLL unavailable on Windows
+- [Phase 03-desktop-app-experience]: Icons committed to repo (D-09) — not gitignored, available without running generate script
+- [Phase 03]: Use PowerShell [Environment]::GetFolderPath('Desktop') instead of cmd.exe echo for Windows Desktop path — handles OneDrive-redirected Desktops correctly
 
 ### Known State
 
@@ -81,6 +93,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-20T23:07:45.624Z
-Stopped at: Completed 01-memory-pipeline-03-PLAN.md
+Last session: 2026-03-21T02:54:03.979Z
+Stopped at: Completed 03-desktop-app-experience-02-PLAN.md
 Resume file: None
