@@ -61,7 +61,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User can run `setup.sh create-shortcut` and get a platform-appropriate desktop shortcut (Windows .lnk, macOS .app, Linux .desktop)
   3. Opening the shortcut launches Agent42 in chromeless mode — no address bar, tab bar, or browser chrome visible
   4. The installed PWA shows correct Agent42 branding (name, icon, theme color) in OS taskbar and app switcher
-**Plans**: TBD
+**Plans:** 2 plans
+
+**Plan list:**
+
+- [ ] 03-01-PLAN.md — PWA manifest, icon generation, and index.html wiring (APP-01, APP-04)
+- [ ] 03-02-PLAN.md — Desktop shortcut command in setup.sh (APP-02, APP-03)
 
 ### Phase 4: Dashboard GSD Integration
 **Goal**: Agent42 dashboard status bar shows active GSD workstream and phase in real-time
@@ -80,8 +85,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Memory Pipeline | 3/3 | Complete |  |
-| 2. GSD Auto-Activation | 1/2 | Complete    | 2026-03-21 |
-| 3. Desktop App Experience | 0/? | Not started | - |
+| 2. GSD Auto-Activation | 2/2 | Complete    | 2026-03-21 |
+| 3. Desktop App Experience | 0/2 | In Progress | - |
 | 4. Dashboard GSD Integration | 0/? | Not started | - |
 
 ---
