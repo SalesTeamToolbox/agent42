@@ -26,7 +26,7 @@ Plans:
 - [x] 01-01-PLAN.md — App skeleton: FastAPI, config, database, models, Agent42 registration
 - [x] 01-02-PLAN.md — Authentication: register, login, JWT sessions, password reset
 - [x] 01-03-PLAN.md — Printful catalog sync: API client, pricing engine, product endpoints
-- [ ] 01-04-PLAN.md — Frontend: product grid, product detail, auth modal, brand styling
+- [x] 01-04-PLAN.md — Frontend: product grid, product detail, auth modal, brand styling
 
 **Success Criteria:**
   1. Customer can sign up, log in, and stay logged in across refresh
