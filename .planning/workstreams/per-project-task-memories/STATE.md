@@ -1,9 +1,15 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
+milestone: v1.4
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-18T00:23:49.590Z"
+status: Ready to execute
+stopped_at: Completed 22-01 (Learnings retrieval API endpoint)
+last_updated: "2026-03-22T19:14:19.225Z"
+progress:
+  total_phases: 4
+  completed_phases: 2
+  total_plans: 6
+  completed_plans: 5
 ---
 
 # Project State
@@ -13,20 +19,17 @@ last_updated: "2026-03-18T00:23:49.590Z"
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
-**Current focus:** v1.4 Per-Project/Task Memories — Phase 21: Effectiveness Tracking and Learning Extraction
+**Current focus:** Phase 22 — Proactive Context Injection
 
 ## Current Position
 
-Phase: 21 of 23 (Effectiveness Tracking and Learning Extraction)
-Plan: 2 of 2 in current phase (both plans complete — phase 21 done)
-Status: Phase 21 complete — ready for phase 22 (proactive injection)
-Last activity: 2026-03-17 - Completed 21-02: Learning extraction pipeline (Stop hook + quarantine)
-
-Progress: [#####░░░░░] 75%
+Phase: 22 (Proactive Context Injection) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 3
 - Average duration: 11 min
 - Total execution time: ~0.5 hours
@@ -39,6 +42,7 @@ Progress: [#####░░░░░] 75%
 | 21. Tracking and Learning | 2 | 47 min | 24 min |
 | 22. Proactive Injection | 0 | — | — |
 | 23. Recommendations Engine | 0 | — | — |
+| Phase 22 P01 | 8 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -63,6 +67,9 @@ Progress: [#####░░░░░] 75%
 - instructor.Mode.JSON used for broad model compatibility — Gemini Flash via OpenRouter may not support function calling mode
 - Task context bridge file at .agent42/current-task.json — written by begin_task, removed by end_task, read by Stop hook subprocess
 - _maybe_promote_quarantined defined as inner function within create_app to access memory_store closure
+- [Phase 22]: query falls back to task_type string when no user prompt provided — enables semantic relevance without requiring caller to pass query
+- [Phase 22]: top_k * 3 fetched from semantic_search so post-hoc filtering has sufficient candidates
+- [Phase 22]: Token count approximated as whitespace-split word count — consistent with rest of codebase
 
 ### Key Architecture Constraints (from research)
 
@@ -89,6 +96,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-17
-Stopped at: Completed 21-02 (Learning extraction pipeline — Stop hook + quarantine)
-Resume file: .planning/workstreams/per-project-task-memories/phases/21-effectiveness-tracking-and-learning-extraction/21-02-SUMMARY.md
+Last session: 2026-03-22T19:14:19.221Z
+Stopped at: Completed 22-01 (Learnings retrieval API endpoint)
+Resume file: None
