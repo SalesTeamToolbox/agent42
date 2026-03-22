@@ -41,6 +41,32 @@ Agent42 must always be able to run agents reliably, with tiered provider routing
 
 ### Active
 
+## Current Milestone: v1.4 Performance-Based Rewards System
+
+**Goal:** Create a tiered rewards system where agents earn better resources and capabilities through demonstrated business success. Bronze/Silver/Gold tiers with admin controls, performance-based resource allocation, and integration with existing effectiveness tracking.
+
+**Core value:** Agents that consistently deliver value get better tools to deliver more value — creating a self-reinforcing quality loop tied to measurable outcomes.
+
+**Target features:**
+
+- Reward tier configuration via environment variables (rewards_enabled, tier thresholds, tier resource limits)
+- Performance score calculation from existing effectiveness tracking data
+- Tier determination logic (Bronze/Silver/Gold) based on composite performance scores
+- Resource allocation per tier (model access, API rate limits, concurrent task capacity)
+- Agent Manager integration — dynamic capability limits based on current tier
+- Dynamic model routing — higher-tier agents get access to better models
+- Dashboard toggle to enable/disable rewards system globally
+- Dashboard tier management and performance metrics display
+- Dashboard reward tier override controls for admin intervention
+- Full test coverage (unit, integration, dashboard)
+
+**Constraints:**
+
+- Opt-in via REWARDS_ENABLED=false default — zero impact on existing deployments
+- Must use existing effectiveness tracking data, not new data collection
+- Tier lookups must be cached/fast, not computed per-request
+- Follows existing Agent42 patterns (frozen dataclass config, async I/O, graceful degradation)
+
 ## Current Milestone: v1.3 Agent LLM Control
 
 **Goal:** Restructure model routing around L1/L2 tiers with StrongWall.ai as primary workhorse, add per-agent routing configuration in the dashboard, and modernize the fallback chain
