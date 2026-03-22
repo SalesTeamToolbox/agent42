@@ -2,7 +2,7 @@
 
 ## What This Is
 
-An AI agent platform that operates across 9 LLM providers with tiered routing (L1 workhorse, L2 premium, free fallback), per-agent model configuration, and graceful degradation. StrongWall.ai (Kimi K2.5, unlimited) serves as L1 workhorse; Gemini and OpenRouter paid models as L2 premium; Cerebras, Groq, Codestral as free fallback tier.
+An AI agent platform that operates across 9 LLM providers with tiered routing (L1 workhorse, L2 premium, free fallback), per-agent model configuration, and graceful degradation. Features intelligent memory (ONNX + Qdrant with auto-sync from Claude Code), task-aware learning (effectiveness tracking + proactive injection), and native desktop app experience (PWA + GSD auto-activation).
 
 ## Core Value
 
@@ -39,13 +39,73 @@ Agent42 must always be able to run agents reliably, with tiered provider routing
 - ✓ 4 specialized subagents: test-coverage-auditor, dependency-health, migration-impact, deploy-verifier — v1.2
 - ✓ jcodemunch deep integration: context-loader guidance + drift detection + GSD workflow pre-fetch — v1.2
 
+- ✓ Task metadata in Qdrant payloads (task_id, task_type via contextvars lifecycle) — v1.4
+- ✓ Task-type-filtered retrieval across search_with_lifecycle, EmbeddingStore, MemoryStore — v1.4
+- ✓ Async effectiveness tracking (fire-and-forget SQLite, zero hot-path latency) — v1.4
+- ✓ Post-task learning extraction with quarantine (instructor + Pydantic, 3+ observations threshold) — v1.4
+- ✓ Proactive context injection (UserPromptSubmit hook, top-3 learnings, score > 0.80, 500 token cap) — v1.4
+- ✓ Recommendations engine (top-3 tools/skills by success_rate, 5+ observation minimum) — v1.4
+
+- ✓ PostToolUse auto-sync of Claude Code memory writes to Qdrant (ONNX embeddings, UUID5 dedup) — v1.5
+- ✓ Intelligent learning extraction from conversations (decisions, feedback, patterns via instructor) — v1.5
+- ✓ CLAUDE.md auto-generation directing Claude to prefer agent42_memory for reads/writes — v1.5
+- ✓ Memory dedup consolidation worker (cosine similarity, auto-trigger, dashboard endpoint) — v1.5
+
+- ✓ Memory pipeline visibility (recall/learn hooks produce visible stderr feedback) — v1.6
+- ✓ GSD auto-activation (always-on skill + CLAUDE.md methodology + context-loader nudge) — v1.6
+- ✓ PWA manifest + cross-platform desktop shortcuts (Windows .lnk, macOS .app, Linux .desktop) — v1.6
+- ✓ Dashboard GSD integration (sidebar workstream/phase via WebSocket heartbeat) — v1.6
+
 ### Active
 
-## Current Milestone: v1.4 Performance-Based Rewards System
+## Current Milestone: v1.3 Agent LLM Control
+
+**Goal:** Restructure model routing around L1/L2 tiers with StrongWall.ai as primary workhorse, add per-agent routing configuration in the dashboard, and modernize the fallback chain
+
+**Target features:**
+- StrongWall.ai provider integration (Kimi K2.5, unlimited API, OpenAI-compatible)
+- L1 (workhorse) / L2 (premium) tier architecture in model routing
+- Per-agent routing override (primary, critic, fallback) in dashboard
+- Global default LLM settings in Settings page with per-agent overrides on Agents page
+- OpenRouter paid models as L2 option when balance present
+- Hybrid streaming: simulated streaming for chat, non-streaming for background tasks
+- Fallback chain: StrongWall -> Free tier (Cerebras/Groq) -> L2 premium (Gemini/OR paid)
+
+## Current Milestone: v2.0 Custom Claude Code UI
+
+**Goal:** Build a VS Code Claude Code extension-style chat interface inside the Agent42 IDE, replacing the raw xterm terminal with a rich, web-native experience.
+
+**Connection model:** Smart hybrid — interactive chat uses CC subscription (free via `claude` CLI), autonomous agent tasks use Agent42's tiered routing (Gemini L1 → free fallback → L2 premium). StrongWall.ai deprecated (causes disconnects).
+
+**Status:** Phases 1-4 complete, Phases 5-6 remaining (PTY streaming + chat UX polish)
+
+**Target features:**
+- Chat message bubbles (user/assistant, avatars, timestamps, copy buttons)
+- Markdown rendering (headers, lists, syntax-highlighted code blocks, links)
+- Tool use cards (file reads, writes, commands — expandable/collapsible with status)
+- Rich input box (multi-line, paragraph breaks, Shift+Enter, slash commands)
+- Diff viewer (side-by-side/inline code changes, accept/reject buttons)
+- Session history (browse/resume past conversations via Agent42 memory)
+- Multi-agent view (multiple CC instances in tabs or side-by-side panels)
+- Flexible layout (CC as editor tab OR dedicated side panel, user chooses)
+
+## Current Milestone: v3.0 GSD & jcodemunch Integration
+
+**Goal:** Unify Agent42's developer tooling into a zero-friction platform — one-command setup that configures Claude Code, MCP, hooks, and jcodemunch; conflict-resistant memory sync across nodes; and a unified context engine that merges code intelligence with semantic memory and GSD workflow state.
+
+**Status:** Phase 1 complete, Phases 2-4 remaining (Windows setup, memory sync, context engine)
+
+**Target features:**
+- One-command setup (Linux + Windows) — generates .mcp.json, registers hooks, indexes repo with jcodemunch, validates health
+- CLAUDE.md template generation with Agent42 conventions baked in
+- Conflict-resistant memory sync: UUID+timestamp entries, entry-union merge (replaces mtime-wins)
+- ContextAssemblerTool + jcodemunch path — code symbol search merged into unified context
+- Per-project memory namespace wired into MemoryTool (ProjectMemoryStore already exists, needs wiring)
+- GSD workstream state surfaced in context engine
+
+## Planned: Performance-Based Rewards System
 
 **Goal:** Create a tiered rewards system where agents earn better resources and capabilities through demonstrated business success. Bronze/Silver/Gold tiers with admin controls, performance-based resource allocation, and integration with existing effectiveness tracking.
-
-**Core value:** Agents that consistently deliver value get better tools to deliver more value — creating a self-reinforcing quality loop tied to measurable outcomes.
 
 **Target features:**
 
@@ -67,82 +127,6 @@ Agent42 must always be able to run agents reliably, with tiered provider routing
 - Tier lookups must be cached/fast, not computed per-request
 - Follows existing Agent42 patterns (frozen dataclass config, async I/O, graceful degradation)
 
-## Current Milestone: v1.3 Agent LLM Control
-
-**Goal:** Restructure model routing around L1/L2 tiers with StrongWall.ai as primary workhorse, add per-agent routing configuration in the dashboard, and modernize the fallback chain
-
-**Target features:**
-- StrongWall.ai provider integration (Kimi K2.5, unlimited API, OpenAI-compatible)
-- L1 (workhorse) / L2 (premium) tier architecture in model routing
-- Per-agent routing override (primary, critic, fallback) in dashboard
-- Global default LLM settings in Settings page with per-agent overrides on Agents page
-- OpenRouter paid models as L2 option when balance present
-- Hybrid streaming: simulated streaming for chat, non-streaming for background tasks
-- Fallback chain: StrongWall -> Free tier (Cerebras/Groq) -> L2 premium (Gemini/OR paid)
-
-## Current Milestone: v1.0 Agent42 UX & Workflow Automation
-
-**Goal:** Make Agent42 feel like a native app, fix the memory pipeline visibility, and make GSD the default methodology when Agent42 is installed — so coding tasks automatically use structured planning and execution.
-
-**Target features:**
-- PWA manifest + desktop shortcut for app-like browser experience (no address bar)
-- Memory hook pipeline debug — fix recall/learn hooks not showing updates in VS Code chat stream
-- GSD auto-activation: always-on skill + CLAUDE.md integration + context-loader enhancement
-- When Agent42 is installed, GSD becomes the default process for multi-step coding tasks
-- CC credential sync to VPS (setup.sh sync-auth + SessionStart hook) — SHIPPED
-
-## Current Milestone: v2.0 Custom Claude Code UI
-
-**Goal:** Build a VS Code Claude Code extension-style chat interface inside the Agent42 IDE, replacing the raw xterm terminal with a rich, web-native experience.
-
-**Connection model:** Smart hybrid — interactive chat uses CC subscription (free via `claude` CLI), autonomous agent tasks use Agent42's tiered routing (Gemini L1 → free fallback → L2 premium). StrongWall.ai deprecated (causes disconnects).
-
-**Target features:**
-- Chat message bubbles (user/assistant, avatars, timestamps, copy buttons)
-- Markdown rendering (headers, lists, syntax-highlighted code blocks, links)
-- Tool use cards (file reads, writes, commands — expandable/collapsible with status)
-- Rich input box (multi-line, paragraph breaks, Shift+Enter, slash commands)
-- Diff viewer (side-by-side/inline code changes, accept/reject buttons)
-- Session history (browse/resume past conversations via Agent42 memory)
-- Multi-agent view (multiple CC instances in tabs or side-by-side panels)
-- Flexible layout (CC as editor tab OR dedicated side panel, user chooses)
-
-## Current Milestone: v3.0 GSD & jcodemunch Integration
-
-**Goal:** Unify Agent42's developer tooling into a zero-friction platform — one-command setup that configures Claude Code, MCP, hooks, and jcodemunch; conflict-resistant memory sync across nodes; and a unified context engine that merges code intelligence with semantic memory and GSD workflow state.
-
-**Target features:**
-- One-command setup (Linux + Windows) — generates .mcp.json, registers hooks, indexes repo with jcodemunch, validates health
-- CLAUDE.md template generation with Agent42 conventions baked in
-- Conflict-resistant memory sync: UUID+timestamp entries, entry-union merge (replaces mtime-wins)
-- ContextAssemblerTool + jcodemunch path — code symbol search merged into unified context
-- Per-project memory namespace wired into MemoryTool (ProjectMemoryStore already exists, needs wiring)
-- GSD workstream state surfaced in context engine
-
-## Current Milestone: v1.0 Intelligent Memory Bridge
-
-**Goal:** Bridge Claude Code's flat-file memory with Agent42's Qdrant-backed semantic memory so that when Agent42 is installed, its enhanced memory becomes the primary system automatically — no user intervention needed.
-
-**Target features:**
-- PostToolUse hook that auto-syncs Claude Code memory writes to Agent42 Qdrant
-- Enhanced Stop hook with intelligent learning extraction (patterns, decisions, feedback, project context)
-- CLAUDE.md instructions that make Claude prefer Agent42 memory for reads and writes
-- Memory dedup across both systems (Claude Code flat files + Agent42 Qdrant)
-- Bidirectional awareness: Claude Code auto-memory still works, but everything flows to Qdrant
-
-## Deferred: v2.1 Per-Project/Task Memories
-
-**Goal:** Add task-level memory scoping, tool/skill effectiveness tracking, automated post-task learning extraction, and proactive recommendations to make Agent42 learn from experience
-
-**Target features:**
-- Task-level metadata on memory entries (task_id, task_type fields in Qdrant payloads)
-- Tool/skill effectiveness tracking (success/failure, duration, task type correlation)
-- Automated post-task learning extraction (hook-based, no user action needed)
-- Task-type-aware memory retrieval ("show me learnings from past Flask builds")
-- MCP tool usage pattern tracking (which tools Claude Code calls, outcomes)
-- Proactive context injection (auto-surface relevant learnings when new tasks start)
-- Recommendations engine (suggest tools/skills based on historical effectiveness)
-
 ### Out of Scope
 
 - Cloudflare Workers AI — too-low limits for agentic workloads
@@ -152,9 +136,10 @@ Agent42 must always be able to run agents reliably, with tiered provider routing
 
 ## Context
 
-Shipped v1.0 with 69,819 lines Python across 8 LLM providers.
-Tech stack: Python 3.11+, FastAPI, AsyncOpenAI, aiofiles, pytest.
-1,956 tests passing (90+ new provider/routing tests in v1.0).
+Shipped v1.6 with 6 milestones completed (v1.0, v1.1, v1.2, v1.4, v1.5, v1.6).
+Tech stack: Python 3.11+, FastAPI, AsyncOpenAI, aiofiles, pytest, ONNX Runtime, Qdrant.
+Memory system: ONNX embeddings + Qdrant + Redis, with auto-sync from Claude Code, task-aware retrieval, proactive injection, and recommendations engine.
+Desktop experience: PWA manifest + shortcuts, GSD auto-activation, dashboard with live workstream status.
 
 **Current routing:**
 - Cerebras primary for coding/debugging/app_create (fastest inference)
@@ -164,7 +149,7 @@ Tech stack: Python 3.11+, FastAPI, AsyncOpenAI, aiofiles, pytest.
 - Provider-diverse round-robin fallback prevents single-provider exhaustion
 - CHEAP-tier failover: SambaNova + Together AI when free models exhausted
 
-**Known concerns (from v1.0):**
+**Known concerns:**
 - SambaNova streaming tool call `index` bug — needs real API verification
 - Together AI Llama 4 Scout serverless availability unverified
 - Mistral La Plateforme actual RPM unverified (2 vs ~60 RPM)
@@ -199,11 +184,18 @@ Tech stack: Python 3.11+, FastAPI, AsyncOpenAI, aiofiles, pytest.
 | Inline templates in skills | Self-contained SKILL.md with templates, no external template files | ✓ Good — skills work without file dependencies |
 | Plain markdown agent definitions | No frontmatter, matches security-reviewer.md pattern for consistency | ✓ Good — uniform agent format across project |
 | jcodemunch guidance per work-type | context-loader detects work type and emits relevant symbol guidance | ✓ Good — reduces blind exploration tokens |
-
+| Fire-and-forget effectiveness tracking | asyncio.create_task() in ToolRegistry.execute() — zero hot-path latency | ✓ Good — tracking never slows tools |
+| Quarantine for new learnings | Confidence capped at 0.6 until 3+ observations support a pattern | ✓ Good — prevents memory poisoning from single sessions |
+| instructor + Pydantic for extraction | Structured learning extraction from conversations, model-agnostic | ✓ Good — reliable schema-enforced output |
+| UUID5 file-path dedup for CC sync | Same CC memory file always maps to same Qdrant point ID | ✓ Good — edits overwrite, never duplicate |
+| CLAUDE.md marker injection | Idempotent `<!-- AGENT42_MEMORY_START -->` markers prevent duplicating instructions | ✓ Good — re-runs of setup.sh are safe |
+| Cosine dedup consolidation | Sliding-window similarity check with auto-trigger on threshold | ✓ Good — Qdrant stays clean without manual curation |
+| Always-on GSD skill | `always: true` frontmatter loads for every task type | ✓ Good — GSD methodology is pervasive |
+| PWA over Electron | manifest.json + --app mode achieves chromeless without build tooling | ✓ Good — zero new dependencies |
 | StrongWall.ai as L1 workhorse | $16/mo unlimited Kimi K2.5 beats unreliable free OR models for coding | -- Pending |
 | L1/L2 tier architecture | Cleaner than free/cheap/paid mix; user-configurable per agent | -- Pending |
 | Gemini as default L2 | Reliable premium provider, already integrated | -- Pending |
 | Non-streaming accepted for L1 | StrongWall doesn't stream; simulate for chat, accept for background | -- Pending |
 
 ---
-*Last updated: 2026-03-21 after v1.2 Claude Code Automation Enhancements milestone completion*
+*Last updated: 2026-03-22 after v1.4, v1.5, v1.6 milestone completion*

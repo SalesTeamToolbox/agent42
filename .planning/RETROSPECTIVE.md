@@ -89,6 +89,128 @@
 
 ---
 
+## Milestone: v1.4 — Per-Project/Task Memories
+
+**Shipped:** 2026-03-22
+**Phases:** 4 (20-23) | **Plans:** 8 | **Timeline:** 6 days (2026-03-17 → 2026-03-22)
+
+### What Was Built
+- Task metadata foundation: TaskType enum, begin_task/end_task lifecycle via contextvars, Qdrant payload indexes
+- Async effectiveness tracking: fire-and-forget SQLite EffectivenessStore with zero hot-path latency
+- Post-task learning extraction: Stop hook with instructor/Pydantic extraction, quarantine period (3+ observations)
+- Proactive context injection: UserPromptSubmit hook infers task type, injects top-3 past learnings (score > 0.80, 500 token cap)
+- Recommendations engine: GET /api/recommendations/retrieve, tools/skills ranked by success_rate with minimum sample threshold
+
+### What Worked
+- **Fire-and-forget pattern** — asyncio.create_task() in ToolRegistry.execute() keeps tracking invisible to tools; no latency impact
+- **Quarantine before trust** — Confidence capped at 0.6 until 3+ observations prevents one bad session from poisoning memory
+- **TDD red-green cycle** — All 8 plans used test-first approach; test failures caught contract mismatches early
+- **Session-once guard** — proactive-inject.py only fires on first prompt per session, preventing re-injection noise
+
+### What Was Inefficient
+- **REQUIREMENTS.md checkboxes not updated** — 9/20 checkboxes still unchecked despite phases completing; traceability table lags behind actual work
+- **Phase 20 split into 2 plans unnecessarily** — Schema + lifecycle could have been one plan; split added overhead with minimal parallelization benefit
+- **instructor dependency added in Plan 01 but used in Plan 02** — Dependency install should match the plan that first uses it
+
+### Patterns Established
+- **contextvars for cross-cutting context** — Task context propagates through async call stack without parameter threading
+- **File bridge for cross-process state** — .agent42/current-task.json bridges main process state to hook subprocesses
+- **Score-gated injection** — Similarity threshold (0.80) + token cap (500) prevents context bloat from low-quality matches
+- **Keyword-based task type inference** — Hook infers task type from prompt keywords; multi-word phrases checked before single keywords
+
+### Key Lessons
+1. **Update REQUIREMENTS.md checkboxes when SUMMARY.md is written** — Checkbox lag creates false "incomplete" signals during milestone completion
+2. **Fire-and-forget must wrap all exceptions** — EffectivenessStore.record() needs blanket try/except; one tracking failure must never crash a tool
+3. **instructor Mode.JSON for broad model compatibility** — Function calling mode isn't supported by all providers; JSON mode works everywhere
+4. **Session guard files need project-scoped paths** — MD5 of project_dir gives stable session ID without requiring CC to pass one
+
+### Cost Observations
+- Model mix: balanced profile
+- Sessions: ~5 sessions across 6 days
+- Notable: Phases 22-23 (injection + recommendations) completed in single session each — well-defined API contracts from earlier phases
+
+---
+
+## Milestone: v1.5 — Intelligent Memory Bridge
+
+**Shipped:** 2026-03-22
+**Phases:** 4 (01-04) | **Plans:** 8 | **Timeline:** 2 days (2026-03-18 → 2026-03-19)
+
+### What Was Built
+- PostToolUse auto-sync hook: intercepts CC memory file writes, ONNX-embeds, upserts to Qdrant with UUID5 dedup
+- Intelligent learning Stop hook: extracts decisions, feedback, deployment patterns via instructor + Pydantic
+- CLAUDE.md integration: setup.sh auto-generates memory instructions with marker-based idempotent injection
+- Memory quality: cosine dedup consolidation worker, auto-trigger on threshold, dashboard endpoints for status and manual trigger
+
+### What Worked
+- **UUID5 file-path dedup** — Same CC memory file always maps to same Qdrant point ID; edits overwrite, never duplicate
+- **Marker-based injection** — `<!-- AGENT42_MEMORY_START -->` markers in CLAUDE.md make setup.sh re-runs idempotent
+- **Detached subprocess pattern** — Hooks spawn workers that run after hook exits; no timeout issues
+- **Fast execution** — 4 phases in 2 days; each phase had clear contract boundaries
+
+### What Was Inefficient
+- **LEARN-01 through LEARN-05 checkboxes not updated** — Same pattern as v1.4; phases completed but REQUIREMENTS.md not kept current
+- **QUAL-02 (confidence scores in search) partially implemented** — Search output shows scores but format inconsistent with plan spec
+
+### Patterns Established
+- **Background worker subprocess** — Hook entry point (lightweight) spawns detached worker (heavy ONNX/Qdrant operations)
+- **KNOWLEDGE collection in Qdrant** — Separate collection for extracted learnings; distinct from MEMORY/HISTORY
+- **Consolidation auto-trigger** — entries_since counter fires background consolidation at threshold; no cron needed
+- **Setup helper functions** — scripts/setup_helpers.py provides composable CLI subcommands for setup.sh
+
+### Key Lessons
+1. **Hooks must be lightweight** — Heavy operations (ONNX embedding, Qdrant upsert) in detached subprocess; hook itself returns immediately
+2. **Silent failure is mandatory for augmentation hooks** — CC's Write tool must never fail because Agent42 Qdrant is down
+3. **Consolidation needs a status file** — .agent42/consolidation-status.json tracks last_run/scanned/removed; dashboard reads it for display
+4. **instructor extraction schema is fragile** — Noisy conversations produce noisy learnings; quarantine is essential
+
+### Cost Observations
+- Model mix: balanced profile
+- Sessions: ~3 sessions across 2 days
+- Notable: Fastest milestone completion — 4 phases in 2 days, each with clear input/output contracts
+
+---
+
+## Milestone: v1.6 — UX & Workflow Automation
+
+**Shipped:** 2026-03-22
+**Phases:** 4 (01-04) | **Plans:** 8 | **Timeline:** 2 days (2026-03-20 → 2026-03-21)
+
+### What Was Built
+- Memory pipeline fix: recall hook limited to 3 memories/2000 chars, learn hook deduplicates against HISTORY.md
+- Memory observability: structured logging, /api/memory/stats endpoint, --health memory_pipeline diagnostics
+- GSD auto-activation: always-on skill, CLAUDE.md methodology section, context-loader hook with smart skip logic
+- Desktop app: PWA manifest, icon generation (cairosvg/Pillow fallback), cross-platform shortcuts
+- Dashboard GSD: sidebar workstream/phase indicator via WebSocket heartbeat
+
+### What Worked
+- **Always-on skill mechanism** — `always: true` frontmatter guarantees GSD instructions in every Claude session
+- **Smart skip logic** — Context-loader only nudges for multi-step tasks; trivial prompts pass through unchanged
+- **PWA over Electron** — manifest.json + --app mode achieves chromeless experience with zero new dependencies
+- **UAT via Playwright** — Phase 3 PWA verified through automated browser testing, not manual clicks
+
+### What Was Inefficient
+- **DASH-01/02 checkboxes not updated** — Phase 4 completed but dashboard requirements left unchecked
+- **Icon generation fallback chain** — cairosvg needs Cairo DLL (absent on Windows); Pillow fallback works but produces less crisp icons
+- **Workstream had only 6 tagged commits** — Many feature commits weren't tagged with workstream name, making stats gathering harder
+
+### Patterns Established
+- **Always-on skills for cross-cutting behavior** — Use `always: true` for behaviors that should apply to every task type
+- **Context-loader work-type detection** — Keyword matching in prompts to inject relevant guidance without LLM calls
+- **Cross-platform shortcut generation** — Windows .lnk (PowerShell COM), macOS .app bundle, Linux .desktop file
+
+### Key Lessons
+1. **Tag all feature commits with workstream name** — Enables accurate milestone stats without manual commit archaeology
+2. **PWA manifest display: standalone is sufficient** — No need for service worker complexity in v1; install prompt works with manifest alone
+3. **Keyword-based detection beats LLM classification for hooks** — Zero latency, deterministic, and easy to extend
+
+### Cost Observations
+- Model mix: balanced profile
+- Sessions: ~3 sessions across 2 days
+- Notable: Phase 3 (PWA) verified via Playwright UAT in automated pipeline — first milestone to use automated visual verification
+
+---
+
 ## Cross-Milestone Trends
 
 ### Process Evolution
@@ -97,6 +219,9 @@
 |-----------|---------|--------|------------|
 | v1.0 | 68 | 6 | Established provider registration pattern; research-first approach |
 | v1.2 | ~15 | 6 | Established toolchain pattern: MCP + hooks + skills + subagents |
+| v1.4 | 12 | 4 | Task-aware memory with fire-and-forget tracking; TDD red-green throughout |
+| v1.5 | 27 | 4 | CC-to-Qdrant memory bridge; detached subprocess pattern for hooks |
+| v1.6 | ~20 | 4 | PWA + GSD auto-activation; first Playwright-verified milestone |
 
 ### Cumulative Quality
 
@@ -104,9 +229,15 @@
 |-----------|-------|-----------|---------------|
 | v1.0 | 1,956 | 90+ | 77 |
 | v1.2 | ~1,960 | ~5 (drift detection) | ~20 (.claude/ files) |
+| v1.4 | ~1,980 | ~20 (effectiveness, injection, recommendations) | ~15 |
+| v1.5 | ~2,010 | ~30 (sync, learning, consolidation) | ~12 |
+| v1.6 | ~2,040 | ~30 (hooks, PWA, GSD) | ~15 |
 
 ### Top Lessons (Verified Across Milestones)
 
 1. Exact case-sensitive model ID matching is critical for pricing lookups — mismatch is silent
 2. Research phase pays for itself by surfacing provider quirks before code
 3. Run `complete-milestone` immediately after a workstream finishes — stale REQUIREMENTS.md causes confusion in the next session
+4. Update REQUIREMENTS.md checkboxes when writing SUMMARY.md — checkbox lag creates false "incomplete" signals (verified v1.4, v1.5, v1.6)
+5. Fire-and-forget with blanket try/except is the only safe pattern for observability hooks — one tracking failure must never crash a tool (verified v1.4, v1.5)
+6. Tag all feature commits with workstream name for accurate milestone stats (verified v1.6)
