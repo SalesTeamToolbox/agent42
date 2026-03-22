@@ -1,5 +1,77 @@
 # Milestones
 
+## v1.6 UX & Workflow Automation (Shipped: 2026-03-22)
+
+**Phases completed:** 4 phases (01-04), 8 plans
+**Timeline:** 2 days (2026-03-20 → 2026-03-21)
+**Workstream:** agent42-ux-and-workflow-automation
+
+**Key accomplishments:**
+
+1. Memory pipeline fix — recall hook limited to 3 memories/2000 chars with silent no-match, learn hook deduplicates against last 10 HISTORY.md entries (>80% keyword overlap)
+2. Memory pipeline observability — structured logging on /api/memory/search, /api/memory/stats endpoint, --health extended with memory_pipeline diagnostics
+3. GSD auto-activation — always-on `gsd-auto-activate` skill + CLAUDE.md methodology section + context-loader hook GSD detection with smart skip logic
+4. Desktop app experience — PWA manifest with standalone display, PNG icon generation (cairosvg/Pillow fallback), cross-platform desktop shortcuts (Windows .lnk, macOS .app, Linux .desktop)
+5. Dashboard GSD integration — sidebar shows active workstream name and current phase via WebSocket heartbeat with graceful degradation
+
+**Delivered:** Agent42 operates as a native desktop app with PWA + shortcuts, memory hooks produce visible feedback, GSD activates automatically for multi-step tasks, and dashboard shows live workstream status.
+
+**Archives:**
+
+- [v1.6-ROADMAP.md](milestones/v1.6-ROADMAP.md)
+- [v1.6-REQUIREMENTS.md](milestones/v1.6-REQUIREMENTS.md)
+
+---
+
+## v1.5 Intelligent Memory Bridge (Shipped: 2026-03-22)
+
+**Phases completed:** 4 phases (01-04), 8 plans
+**Timeline:** 2 days (2026-03-18 → 2026-03-19)
+**Workstream:** intelligent-memory-bridge
+
+**Key accomplishments:**
+
+1. Auto-sync PostToolUse hook intercepts Claude Code memory file writes and upserts to Qdrant via ONNX embeddings with UUID5 file-path dedup
+2. Hook activation — cc-memory-sync.py registered with 5s timeout, MemoryTool.reindex_cc action for manual catch-up scanning
+3. Intelligent learning Stop hook — knowledge-learn.py extracts decisions, feedback, deployment patterns from conversations via instructor + Pydantic, stores in KNOWLEDGE collection
+4. CLAUDE.md integration — setup.sh auto-generates memory instructions directing Claude to prefer agent42_memory search/store over flat-file memory
+5. Memory quality — cosine dedup consolidation worker with auto-trigger on threshold count, dashboard /api/consolidate/trigger endpoint, search results include confidence scores
+
+**Delivered:** Claude Code's flat-file memory is automatically bridged to Agent42's Qdrant-backed semantic memory — every write syncs, sessions extract learnings, and dedup keeps the store clean.
+
+**Archives:**
+
+- [v1.5-ROADMAP.md](milestones/v1.5-ROADMAP.md)
+- [v1.5-REQUIREMENTS.md](milestones/v1.5-REQUIREMENTS.md)
+
+---
+
+## v1.4 Per-Project/Task Memories (Shipped: 2026-03-22)
+
+**Phases completed:** 4 phases (20-23), 8 plans
+**Timeline:** 6 days (2026-03-17 → 2026-03-22)
+**Workstream:** per-project-task-memories
+
+**Key accomplishments:**
+
+1. Task metadata foundation — TaskType enum, begin_task/end_task lifecycle via contextvars, task_id/task_type injected into Qdrant payloads with KEYWORD payload indexes
+2. Task-type-filtered retrieval — search_with_lifecycle(), EmbeddingStore.search(), and MemoryStore.build_context_semantic() all accept task_type_filter
+3. Async effectiveness tracking — fire-and-forget SQLite EffectivenessStore records tool_name, task_type, success, duration_ms per invocation with zero hot-path latency
+4. Post-task learning extraction — Stop hook auto-extracts task summary via instructor + Pydantic with quarantine period (confidence capped at 0.6 until 3+ observations)
+5. Proactive context injection — UserPromptSubmit hook infers task type from keywords, injects top-3 past learnings (score > 0.80, 500 token cap, session-once guard)
+6. Recommendations engine — GET /api/recommendations/retrieve suggests top-3 tools/skills by success_rate with minimum sample threshold (5+ observations)
+
+**Delivered:** Agent42 learns from experience — every task builds effectiveness data, past learnings auto-surface for new tasks, and tool/skill recommendations improve over time.
+
+**Known gaps:** TMETA-01 through TMETA-04 and LEARN-01 through LEARN-05 checkboxes not updated in REQUIREMENTS.md (phases completed per SUMMARY files).
+
+**Archives:**
+
+- [v1.4-ROADMAP.md](milestones/v1.4-ROADMAP.md)
+- [v1.4-REQUIREMENTS.md](milestones/v1.4-REQUIREMENTS.md)
+
+---
+
 ## v1.2 Claude Code Automation Enhancements (Shipped: 2026-03-07)
 
 **Phases completed:** 6 phases (11-16), 8 plans
