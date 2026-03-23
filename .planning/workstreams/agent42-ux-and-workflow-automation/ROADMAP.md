@@ -12,7 +12,7 @@ Fix the memory pipeline so Claude's recall and learn hooks produce visible feedb
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Memory Pipeline** - Fix recall and learn hooks so memory operations are visible in VS Code chat stream
+- [x] **Phase 1: Memory Pipeline** - Fix recall and learn hooks so memory operations are visible in VS Code chat stream
 - [x] **Phase 2: GSD Auto-Activation** - Make GSD the default methodology for multi-step coding tasks when Agent42 is installed (completed 2026-03-21)
 - [x] **Phase 3: Desktop App Experience** - PWA manifest and desktop shortcut so Agent42 opens as a chromeless app (completed 2026-03-21)
 - [x] **Phase 4: Dashboard GSD Integration** - Status bar shows active workstream and current phase via WebSocket (completed 2026-03-21)

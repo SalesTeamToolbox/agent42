@@ -78,7 +78,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Plans**: 1 plan
 
-- [ ] 03-01-PLAN.md — `resolve_model()` tier upgrade, `_get_multiplier()` + `ToolRateLimiter.check()` tier param, `ToolRegistry.execute()` tier propagation, `AgentManager._get_tier_semaphore()` + `get_effective_limits()`, start_agent semaphore wiring, and TestResourceEnforcement tests
+- [x] 03-01-PLAN.md — `resolve_model()` tier upgrade, `_get_multiplier()` + `ToolRateLimiter.check()` tier param, `ToolRegistry.execute()` tier propagation, `AgentManager._get_tier_semaphore()` + `get_effective_limits()`, start_agent semaphore wiring, and TestResourceEnforcement tests
 
 ### Phase 4: Dashboard
 
@@ -99,8 +99,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Plans**: TBD
 
-- [ ] 04-01: Rewards REST API with router-level auth and 401 tests
-- [ ] 04-02: Dashboard UI — tier badges, metrics panel, toggle, override UI, and WebSocket events
+- [x] 04-01: Rewards REST API with router-level auth and 401 tests
+- [x] 04-02: Dashboard UI — tier badges, metrics panel, toggle, override UI, and WebSocket events
 
 ## Progress
 
@@ -112,4 +112,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation           | 2/2            | Complete    | 2026-03-22 |
 | 2. Tier Assignment      | 1/2 | In Progress|  |
 | 3. Resource Enforcement | 0/1            | Not started | -          |
-| 4. Dashboard            | 0/2            | Not started | -          |
+| 4. Dashboard            | 1/2 | In Progress|  |

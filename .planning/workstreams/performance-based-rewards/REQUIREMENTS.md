@@ -30,31 +30,31 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Resource Enforcement
 
-- [ ] **RSRC-01**: Per-tier model routing — higher-tier agents get access to better model classes via `resolve_model()` tier context
-- [ ] **RSRC-02**: Per-tier rate limit multipliers applied through existing `ToolRateLimiter` extension (not a parallel limiter)
-- [ ] **RSRC-03**: Per-tier concurrent task capacity enforced via `asyncio.Semaphore` swap-on-promotion pattern
-- [ ] **RSRC-04**: Agent Manager applies effective tier limits at task dispatch — reads from `AgentConfig.effective_tier()`
+- [x] **RSRC-01**: Per-tier model routing — higher-tier agents get access to better model classes via `resolve_model()` tier context
+- [x] **RSRC-02**: Per-tier rate limit multipliers applied through existing `ToolRateLimiter` extension (not a parallel limiter)
+- [x] **RSRC-03**: Per-tier concurrent task capacity enforced via `asyncio.Semaphore` swap-on-promotion pattern
+- [x] **RSRC-04**: Agent Manager applies effective tier limits at task dispatch — reads from `AgentConfig.effective_tier()`
 
 ### Admin Controls
 
 - [x] **ADMN-01**: Admin can override any agent's tier via dashboard — override stored separately, not clobbered by recalculation
-- [ ] **ADMN-02**: Admin can toggle rewards system on/off via dashboard without server restart
+- [x] **ADMN-02**: Admin can toggle rewards system on/off via dashboard without server restart
 - [x] **ADMN-03**: Background recalculation runs on schedule (default every 15 minutes) and skips overridden agents
 
 ### Dashboard
 
-- [ ] **DASH-01**: Tier badge displayed on each agent card (Bronze/Silver/Gold/Provisional)
-- [ ] **DASH-02**: Performance metrics panel per agent showing score, tier, task count, success rate
+- [x] **DASH-01**: Tier badge displayed on each agent card (Bronze/Silver/Gold/Provisional)
+- [x] **DASH-02**: Performance metrics panel per agent showing score, tier, task count, success rate
 - [ ] **DASH-03**: Rewards system toggle switch with confirmation dialog in settings
-- [ ] **DASH-04**: Admin tier override UI with optional expiry date
-- [ ] **DASH-05**: Real-time tier updates via WebSocket `tier_update` events
+- [x] **DASH-04**: Admin tier override UI with optional expiry date
+- [x] **DASH-05**: Real-time tier updates via WebSocket `tier_update` events
 
 ### Testing
 
 - [ ] **TEST-01**: Unit tests for score calculation logic (composite weights, edge cases, zero data)
 - [x] **TEST-02**: Unit tests for tier determination (threshold boundaries, provisional tier, override precedence)
-- [ ] **TEST-03**: Integration tests for Agent Manager tier enforcement (model routing, rate limits, concurrency)
-- [ ] **TEST-04**: Dashboard API tests including 401 auth verification for all rewards endpoints
+- [x] **TEST-03**: Integration tests for Agent Manager tier enforcement (model routing, rate limits, concurrency)
+- [x] **TEST-04**: Dashboard API tests including 401 auth verification for all rewards endpoints
 - [x] **TEST-05**: Graceful degradation tests — rewards disabled produces identical behavior to pre-feature baseline
 
 ## v2 Requirements
@@ -108,22 +108,22 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TIER-03 | Phase 2 | Complete |
 | TIER-04 | Phase 1 | Pending |
 | TIER-05 | Phase 1 | Pending |
-| RSRC-01 | Phase 3 | Pending |
-| RSRC-02 | Phase 3 | Pending |
-| RSRC-03 | Phase 3 | Pending |
-| RSRC-04 | Phase 3 | Pending |
+| RSRC-01 | Phase 3 | Complete |
+| RSRC-02 | Phase 3 | Complete |
+| RSRC-03 | Phase 3 | Complete |
+| RSRC-04 | Phase 3 | Complete |
 | ADMN-01 | Phase 2 | Complete |
-| ADMN-02 | Phase 4 | Pending |
+| ADMN-02 | Phase 4 | Complete |
 | ADMN-03 | Phase 2 | Complete |
-| DASH-01 | Phase 4 | Pending |
-| DASH-02 | Phase 4 | Pending |
+| DASH-01 | Phase 4 | Complete |
+| DASH-02 | Phase 4 | Complete |
 | DASH-03 | Phase 4 | Pending |
-| DASH-04 | Phase 4 | Pending |
-| DASH-05 | Phase 4 | Pending |
+| DASH-04 | Phase 4 | Complete |
+| DASH-05 | Phase 4 | Complete |
 | TEST-01 | Phase 1 | Pending |
 | TEST-02 | Phase 2 | Complete |
-| TEST-03 | Phase 3 | Pending |
-| TEST-04 | Phase 4 | Pending |
+| TEST-03 | Phase 3 | Complete |
+| TEST-04 | Phase 4 | Complete |
 | TEST-05 | Phase 1 | Complete |
 
 **Coverage:**
