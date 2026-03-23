@@ -76,9 +76,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 3. Concurrent task capacity is enforced per tier via semaphore — a Bronze agent cannot exceed its cap regardless of queue depth
 4. Disabling rewards (REWARDS_ENABLED=false) produces routing and rate-limit behavior identical to the pre-rewards baseline
 
-**Plans**: TBD
+**Plans**: 1 plan
 
-- [ ] 03-01: TierLimits, AgentManager integration, model routing tier-awareness, and ToolRateLimiter extension
+- [ ] 03-01-PLAN.md — `resolve_model()` tier upgrade, `_get_multiplier()` + `ToolRateLimiter.check()` tier param, `ToolRegistry.execute()` tier propagation, `AgentManager._get_tier_semaphore()` + `get_effective_limits()`, start_agent semaphore wiring, and TestResourceEnforcement tests
 
 ### Phase 4: Dashboard
 
