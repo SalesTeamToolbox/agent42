@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Phase 3 context gathered (assumptions mode)
-last_updated: "2026-03-22T23:35:53.056Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 03-resource-enforcement-03-01-PLAN.md
+last_updated: "2026-03-23T00:20:38.861Z"
 progress:
   total_phases: 4
-  completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  completed_phases: 3
+  total_plans: 5
+  completed_plans: 5
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** Agents that consistently deliver value get better tools to deliver more value — a self-reinforcing quality loop tied to measurable outcomes.
-**Current focus:** Phase 02 — Tier Assignment
+**Current focus:** Phase 03 — Resource Enforcement
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
+Phase: 03 (Resource Enforcement) — EXECUTING
+Plan: 1 of 1
 
 ## Performance Metrics
 
@@ -50,6 +50,7 @@ Plan: Not started
 | Phase 01-foundation P02 | 11m | 2 tasks | 3 files |
 | Phase 02-tier-assignment P01 | 8 | 2 tasks | 3 files |
 | Phase 02-tier-assignment P02 | 13 | 2 tasks | 4 files |
+| Phase 03-resource-enforcement P01 | 25 | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,10 @@ Recent decisions affecting current work:
 - [Phase 02-tier-assignment]: TierRecalcLoop stop() is synchronous matching HeartbeatService pattern
 - [Phase 02-tier-assignment]: AgentManager instantiated in Agent42.__init__() and shared to create_app() via agent_manager kwarg for TierRecalcLoop access
 - [Phase 02-tier-assignment]: create_app() uses agent_manager or AgentManager() fallback for backward compatibility in headless/test usage
+- [Phase 03-resource-enforcement]: resolve_model() gets optional tier param that upgrades task_category via _TIER_CATEGORY_UPGRADE; provisional and empty fall through unchanged
+- [Phase 03-resource-enforcement]: Module-level settings import in agent_manager.py (not deferred) to allow test monkeypatching
+- [Phase 03-resource-enforcement]: Semaphore created lazily in _get_tier_semaphore() (async context), never in __init__ — avoids RuntimeError outside event loop (Pitfall 1)
+- [Phase 03-resource-enforcement]: asyncio.wait_for(timeout=0.0) used for non-blocking semaphore acquire (not sem._value which is CPython implementation detail — Pitfall 4)
 
 ### Pending Todos
 
@@ -86,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T23:35:53.053Z
-Stopped at: Phase 3 context gathered (assumptions mode)
-Resume file: .planning/workstreams/performance-based-rewards/phases/03-resource-enforcement/03-CONTEXT.md
+Last session: 2026-03-23T00:20:38.857Z
+Stopped at: Completed 03-resource-enforcement-03-01-PLAN.md
+Resume file: None

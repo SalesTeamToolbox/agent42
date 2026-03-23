@@ -78,7 +78,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Plans**: 1 plan
 
-- [ ] 03-01-PLAN.md — `resolve_model()` tier upgrade, `_get_multiplier()` + `ToolRateLimiter.check()` tier param, `ToolRegistry.execute()` tier propagation, `AgentManager._get_tier_semaphore()` + `get_effective_limits()`, start_agent semaphore wiring, and TestResourceEnforcement tests
+- [x] 03-01-PLAN.md — `resolve_model()` tier upgrade, `_get_multiplier()` + `ToolRateLimiter.check()` tier param, `ToolRegistry.execute()` tier propagation, `AgentManager._get_tier_semaphore()` + `get_effective_limits()`, start_agent semaphore wiring, and TestResourceEnforcement tests
 
 ### Phase 4: Dashboard
 
