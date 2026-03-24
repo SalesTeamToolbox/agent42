@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.1
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Phase 2 context gathered (auto mode)
-last_updated: "2026-03-24T16:16:48.028Z"
+status: Ready to execute
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-24T17:24:20.933Z"
 progress:
   total_phases: 3
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 5
+  completed_plans: 3
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-23)
 
 **Core value:** Agent42 must always be able to run agents reliably — multi-workspace extends this to running agents scoped to specific projects.
-**Current focus:** Phase 01 — registry-namespacing
+**Current focus:** Phase 02 — ide-surface-integration
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 02 (ide-surface-integration) — EXECUTING
+Plan: 2 of 3
 
 ## Performance Metrics
 
@@ -47,6 +47,7 @@ Plan: Not started
 
 *Updated after each plan completion*
 | Phase 01 P01 | 914 | 2 tasks | 4 files |
+| Phase 02 P01 | 19m | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -63,6 +64,9 @@ Recent decisions affecting current work:
 - [01-02]: Workspace URI scheme = "workspace://", storage key prefix = "ws\_{id}\_"; cc\_hist\_{sessionId} stays un-prefixed (session UUIDs already globally unique)
 - [Phase 01]: Kept module-level workspace variable inside create_app() for CC chat bridge backward compatibility; IDE endpoints use _resolve_workspace()
 - [Phase 01]: Used asyncio.run() in test fixtures (Python 3.14 Windows does not create implicit event loop)
+- [Phase 02]: workspace_path local var used in WS handlers to avoid shadowing module-level workspace; _chat_via_cc left using module-level workspace (no workspace context in scope)
+- [Phase 02]: Legacy CC sessions (no workspace_id field) always included in workspace_id filter — backward compat for pre-Phase-2 sessions
+- [Phase 02]: _activeWorkspaceId defaults to '' so workspace_id params are conditionally omitted — preserves existing behavior until Plan 03 populates it
 
 ### Pending Todos
 
@@ -74,6 +78,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T16:16:48.019Z
-Stopped at: Phase 2 context gathered (auto mode)
-Resume file: .planning/workstreams/multi-project-workspace/phases/02-ide-surface-integration/02-CONTEXT.md
+Last session: 2026-03-24T17:24:20.929Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None
