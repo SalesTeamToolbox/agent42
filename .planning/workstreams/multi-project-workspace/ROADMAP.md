@@ -31,8 +31,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — WorkspaceRegistry module (persistence, CRUD, default seeding), /api/workspaces endpoints, workspace_id param on IDE endpoints, agent42.py wiring
-- [ ] 01-02-PLAN.md — Monaco URI namespace convention (workspace_id prefix) and localStorage/sessionStorage key namespace schema (definition-only, no behavior change)
+- [x] 01-01-PLAN.md — WorkspaceRegistry module (persistence, CRUD, default seeding), /api/workspaces endpoints, workspace_id param on IDE endpoints, agent42.py wiring
+- [x] 01-02-PLAN.md — Monaco URI namespace convention (workspace_id prefix) and localStorage/sessionStorage key namespace schema (definition-only, no behavior change)
 
 ### Phase 2: IDE Surface Integration
 **Goal**: Switching the active workspace tab instantly re-roots the file explorer, swaps editor tabs, shows that workspace's CC sessions, and connects terminals — all scoped to the active workspace's root path — with the workspace tab bar visible and functional
