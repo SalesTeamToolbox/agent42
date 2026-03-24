@@ -12,7 +12,7 @@ This roadmap adds tabbed workspace support to the Agent42 IDE page so each tab s
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Registry & Namespacing** - Server-side WorkspaceRegistry, CRUD API, default seeding, ID-based path resolution, and client-side storage/URI namespace conventions
+- [x] **Phase 1: Registry & Namespacing** - Server-side WorkspaceRegistry, CRUD API, default seeding, ID-based path resolution, and client-side storage/URI namespace conventions (completed 2026-03-24)
 - [ ] **Phase 2: IDE Surface Integration** - Thread workspace_id into file explorer, editor tabs, CC sessions, and terminals; render workspace tab bar
 - [ ] **Phase 3: Workspace Management** - Add, remove, and rename workspaces with validation and guards
 
@@ -28,7 +28,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. No raw filesystem path is accepted from the client in any API call — all calls use a workspace ID that the server resolves to a path
   4. Monaco model URIs include a workspace_id prefix so two workspaces can open the same filename without collision
   5. localStorage and sessionStorage keys for CC history, session IDs, and panel state are namespaced by workspace_id
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — WorkspaceRegistry module (persistence, CRUD, default seeding), /api/workspaces endpoints, workspace_id param on IDE endpoints, agent42.py wiring
@@ -72,6 +72,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Registry & Namespacing | 0/2 | Planned | - |
+| 1. Registry & Namespacing | 0/2 | Complete    | 2026-03-24 |
 | 2. IDE Surface Integration | 0/3 | Not started | - |
 | 3. Workspace Management | 0/1 | Not started | - |
