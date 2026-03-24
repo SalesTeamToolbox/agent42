@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Registry & Namespacing | 2/2 | Complete    | 2026-03-24 |
-| 2. IDE Surface Integration | 3/3 | Complete   | 2026-03-24 |
+| 2. IDE Surface Integration | 3/3 | Complete    | 2026-03-24 |
 | 3. Workspace Management | 0/1 | Not started | - |
