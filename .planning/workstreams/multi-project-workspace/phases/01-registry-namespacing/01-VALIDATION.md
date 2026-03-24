@@ -41,9 +41,9 @@ created: 2026-03-23
 | 01-01-01 | 01 | 1 | FOUND-01 | unit | `pytest tests/test_workspace_registry.py -k "test_default_seed"` | ❌ W0 | ⬜ pending |
 | 01-01-02 | 01 | 1 | FOUND-02 | unit | `pytest tests/test_workspace_registry.py -k "test_crud"` | ❌ W0 | ⬜ pending |
 | 01-01-03 | 01 | 1 | FOUND-04 | unit | `pytest tests/test_workspace_registry.py -k "test_path_validation"` | ❌ W0 | ⬜ pending |
-| 01-01-04 | 01 | 1 | FOUND-06 | integration | `pytest tests/test_workspace_api.py -k "test_workspace_endpoints"` | ❌ W0 | ⬜ pending |
-| 01-02-01 | 02 | 1 | ISOL-06 | unit | `pytest tests/test_workspace_namespace.py -k "test_monaco_uri"` | ❌ W0 | ⬜ pending |
-| 01-02-02 | 02 | 1 | ISOL-07 | unit | `pytest tests/test_workspace_namespace.py -k "test_storage_keys"` | ❌ W0 | ⬜ pending |
+| 01-01-04 | 01 | 1 | FOUND-06 | integration | `pytest tests/test_workspace_registry.py -k "test_workspace_endpoints"` | ❌ W0 | ⬜ pending |
+| 01-02-01 | 02 | 1 | ISOL-06 | manual-only | — | — | ⬜ pending |
+| 01-02-02 | 02 | 1 | ISOL-07 | manual-only | — | — | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -52,8 +52,6 @@ created: 2026-03-23
 ## Wave 0 Requirements
 
 - [ ] `tests/test_workspace_registry.py` — stubs for FOUND-01, FOUND-02, FOUND-04, FOUND-06
-- [ ] `tests/test_workspace_namespace.py` — stubs for ISOL-06, ISOL-07
-- [ ] `tests/test_workspace_api.py` — stubs for workspace CRUD API endpoints
 
 *Existing pytest infrastructure covers framework needs.*
 
@@ -64,6 +62,8 @@ created: 2026-03-23
 | Behavior | Requirement | Why Manual | Test Instructions |
 |----------|-------------|------------|-------------------|
 | Zero behavior change for single-workspace users | FOUND-01 | Requires visual inspection of IDE page | Start Agent42, verify file explorer and CC chat work identically to pre-workspace state |
+| Monaco URI namespace convention defined | ISOL-06 | Definition-only — no runtime behavior in Phase 1 | Verify `makeWorkspaceUri()` function exists in app.js with correct `workspace://` prefix pattern |
+| localStorage key namespace helpers defined | ISOL-07 | Definition-only — no runtime behavior in Phase 1 | Verify `wsKey()` function exists in app.js with workspace_id prefix pattern |
 
 ---
 
