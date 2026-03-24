@@ -28,11 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. No raw filesystem path is accepted from the client in any API call — all calls use a workspace ID that the server resolves to a path
   4. Monaco model URIs include a workspace_id prefix so two workspaces can open the same filename without collision
   5. localStorage and sessionStorage keys for CC history, session IDs, and panel state are namespaced by workspace_id
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 01-01: WorkspaceRegistry (persistence, CRUD, default seeding) and `/api/workspaces` endpoints with path validation
-- [ ] 01-02: Monaco URI namespace convention (workspace_id prefix) and localStorage/sessionStorage key namespace schema
+- [ ] 01-01-PLAN.md — WorkspaceRegistry module (persistence, CRUD, default seeding), /api/workspaces endpoints, workspace_id param on IDE endpoints, agent42.py wiring
+- [ ] 01-02-PLAN.md — Monaco URI namespace convention (workspace_id prefix) and localStorage/sessionStorage key namespace schema (definition-only, no behavior change)
 
 ### Phase 2: IDE Surface Integration
 **Goal**: Switching the active workspace tab instantly re-roots the file explorer, swaps editor tabs, shows that workspace's CC sessions, and connects terminals — all scoped to the active workspace's root path — with the workspace tab bar visible and functional
@@ -72,6 +72,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Registry & Namespacing | 0/2 | Not started | - |
+| 1. Registry & Namespacing | 0/2 | Planned | - |
 | 2. IDE Surface Integration | 0/3 | Not started | - |
 | 3. Workspace Management | 0/1 | Not started | - |
