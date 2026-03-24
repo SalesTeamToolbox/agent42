@@ -45,12 +45,12 @@ Plans:
   4. CC sessions started in a workspace have their subprocess cwd set to that workspace's root; session history is filtered per workspace
   5. Terminals opened in a workspace start with cwd set to that workspace's root; switching tabs hides/shows the correct terminal sessions
   6. Workspace tab state (open tabs, active workspace) persists across page reloads via localStorage with stale-while-revalidate against the server
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 02-01: workspace_id param on `/api/ide/tree`, `/api/ide/file`, `/ws/terminal`, `/ws/cc-chat`; file explorer and terminal session scoping
-- [ ] 02-02: Editor tab state partitioned by workspace_id; Monaco view state save/restore on tab switch; CC session workspace filtering
-- [ ] 02-03: Workspace tab bar UI (render, active indicator, tab switch handler); localStorage persistence with stale-while-revalidate
+- [ ] 02-01-PLAN.md — Backend workspace_id wiring (terminal_ws, cc_chat_ws, cc_sessions filter) + frontend state promotion and workspace_id threading on all fetch/WS URLs
+- [ ] 02-02-PLAN.md — Monaco view state save/restore, makeWorkspaceUri migration in ideOpenFile, CC session sidebar workspace filter, wsKey-based session storage
+- [ ] 02-03-PLAN.md — Workspace tab bar UI (render, active indicator, switchWorkspace orchestrator), initWorkspaceTabs with stale-while-revalidate localStorage persistence
 
 ### Phase 3: Workspace Management
 **Goal**: Users can add a new workspace by path or Agent42 app, remove any workspace that is not the last one, and rename a workspace inline — with guards that prevent data loss
@@ -72,6 +72,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Registry & Namespacing | 0/2 | Complete    | 2026-03-24 |
-| 2. IDE Surface Integration | 0/3 | Not started | - |
+| 1. Registry & Namespacing | 2/2 | Complete    | 2026-03-24 |
+| 2. IDE Surface Integration | 0/3 | Planned | - |
 | 3. Workspace Management | 0/1 | Not started | - |
