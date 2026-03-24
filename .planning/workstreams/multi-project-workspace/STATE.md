@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.1
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 02-02-PLAN.md
-last_updated: "2026-03-24T17:38:40.920Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 02-03-PLAN.md
+last_updated: "2026-03-24T17:58:11.568Z"
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
 ---
 
 # Project State
@@ -49,6 +49,7 @@ Plan: 3 of 3
 | Phase 01 P01 | 914 | 2 tasks | 4 files |
 | Phase 02 P01 | 19m | 2 tasks | 3 files |
 | Phase 02-ide-surface-integration P02 | 10m | 2 tasks | 1 files |
+| Phase 02-ide-surface-integration P03 | 8m | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,9 @@ Recent decisions affecting current work:
 - [Phase 02]: _activeWorkspaceId defaults to '' so workspace_id params are conditionally omitted — preserves existing behavior until Plan 03 populates it
 - [Phase 02-ide-surface-integration]: makeWorkspaceUri fallback is 'default' when _activeWorkspaceId is empty — backward compat before Plan 03 sets active workspace
 - [Phase 02-ide-surface-integration]: Per-workspace ccTabCount in _wsTabState replaces global _ccTabCounter===1 session-resume guard — each workspace independently decides whether to resume
+- [Phase 02-ide-surface-integration]: Tab bar hidden when only 1 workspace exists — no UI clutter for single-project users
+- [Phase 02-ide-surface-integration]: switchWorkspace saves Monaco view state before swapping — cursor/scroll preserved across workspace switches
+- [Phase 02-ide-surface-integration]: _ideTreeCache cleared and _ideExpandedDirs reset on workspace switch — prevents cross-workspace file tree bleed
 
 ### Pending Todos
 
@@ -81,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T17:38:40.915Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-03-24T17:58:11.563Z
+Stopped at: Completed 02-03-PLAN.md
 Resume file: None

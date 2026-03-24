@@ -13,7 +13,7 @@ This roadmap adds tabbed workspace support to the Agent42 IDE page so each tab s
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Registry & Namespacing** - Server-side WorkspaceRegistry, CRUD API, default seeding, ID-based path resolution, and client-side storage/URI namespace conventions (completed 2026-03-24)
-- [ ] **Phase 2: IDE Surface Integration** - Thread workspace_id into file explorer, editor tabs, CC sessions, and terminals; render workspace tab bar
+- [x] **Phase 2: IDE Surface Integration** - Thread workspace_id into file explorer, editor tabs, CC sessions, and terminals; render workspace tab bar (completed 2026-03-24)
 - [ ] **Phase 3: Workspace Management** - Add, remove, and rename workspaces with validation and guards
 
 ## Phase Details
@@ -45,12 +45,12 @@ Plans:
   4. CC sessions started in a workspace have their subprocess cwd set to that workspace's root; session history is filtered per workspace
   5. Terminals opened in a workspace start with cwd set to that workspace's root; switching tabs hides/shows the correct terminal sessions
   6. Workspace tab state (open tabs, active workspace) persists across page reloads via localStorage with stale-while-revalidate against the server
-**Plans:** 1/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 02-01-PLAN.md — Backend workspace_id wiring (terminal_ws, cc_chat_ws, cc_sessions filter) + frontend state promotion and workspace_id threading on all fetch/WS URLs
 - [x] 02-02-PLAN.md — Monaco view state save/restore, makeWorkspaceUri migration in ideOpenFile, CC session sidebar workspace filter, wsKey-based session storage
-- [ ] 02-03-PLAN.md — Workspace tab bar UI (render, active indicator, switchWorkspace orchestrator), initWorkspaceTabs with stale-while-revalidate localStorage persistence
+- [x] 02-03-PLAN.md — Workspace tab bar UI (render, active indicator, switchWorkspace orchestrator), initWorkspaceTabs with stale-while-revalidate localStorage persistence
 
 ### Phase 3: Workspace Management
 **Goal**: Users can add a new workspace by path or Agent42 app, remove any workspace that is not the last one, and rename a workspace inline — with guards that prevent data loss
@@ -73,5 +73,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Registry & Namespacing | 2/2 | Complete    | 2026-03-24 |
-| 2. IDE Surface Integration | 1/3 | In Progress|  |
+| 2. IDE Surface Integration | 3/3 | Complete   | 2026-03-24 |
 | 3. Workspace Management | 0/1 | Not started | - |
