@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.1
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-24T17:24:20.933Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-24T17:38:40.920Z"
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 5
-  completed_plans: 3
+  completed_plans: 4
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-23)
 ## Current Position
 
 Phase: 02 (ide-surface-integration) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ## Performance Metrics
 
@@ -48,6 +48,7 @@ Plan: 2 of 3
 *Updated after each plan completion*
 | Phase 01 P01 | 914 | 2 tasks | 4 files |
 | Phase 02 P01 | 19m | 2 tasks | 3 files |
+| Phase 02-ide-surface-integration P02 | 10m | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -67,6 +68,8 @@ Recent decisions affecting current work:
 - [Phase 02]: workspace_path local var used in WS handlers to avoid shadowing module-level workspace; _chat_via_cc left using module-level workspace (no workspace context in scope)
 - [Phase 02]: Legacy CC sessions (no workspace_id field) always included in workspace_id filter — backward compat for pre-Phase-2 sessions
 - [Phase 02]: _activeWorkspaceId defaults to '' so workspace_id params are conditionally omitted — preserves existing behavior until Plan 03 populates it
+- [Phase 02-ide-surface-integration]: makeWorkspaceUri fallback is 'default' when _activeWorkspaceId is empty — backward compat before Plan 03 sets active workspace
+- [Phase 02-ide-surface-integration]: Per-workspace ccTabCount in _wsTabState replaces global _ccTabCounter===1 session-resume guard — each workspace independently decides whether to resume
 
 ### Pending Todos
 
@@ -78,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T17:24:20.929Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-24T17:38:40.915Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None

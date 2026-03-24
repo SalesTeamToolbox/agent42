@@ -49,7 +49,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Backend workspace_id wiring (terminal_ws, cc_chat_ws, cc_sessions filter) + frontend state promotion and workspace_id threading on all fetch/WS URLs
-- [ ] 02-02-PLAN.md — Monaco view state save/restore, makeWorkspaceUri migration in ideOpenFile, CC session sidebar workspace filter, wsKey-based session storage
+- [x] 02-02-PLAN.md — Monaco view state save/restore, makeWorkspaceUri migration in ideOpenFile, CC session sidebar workspace filter, wsKey-based session storage
 - [ ] 02-03-PLAN.md — Workspace tab bar UI (render, active indicator, switchWorkspace orchestrator), initWorkspaceTabs with stale-while-revalidate localStorage persistence
 
 ### Phase 3: Workspace Management
