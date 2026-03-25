@@ -58,7 +58,23 @@ Agent42 must always be able to run agents reliably, with tiered provider routing
 
 ### Active
 
-## Current Milestone: v1.3 Agent LLM Control
+## Complete: v2.1 Multi-Project Workspace (3/3 phases complete)
+
+**Goal:** Add tabbed workspace support where each tab scopes to a project folder with its own file explorer, editor, CC sessions, and terminal — like multiple VS Code windows in one dashboard.
+
+**Status:** All 3 phases complete (Registry & Namespacing, IDE Surface Integration, Workspace Management). Users can add/remove/rename workspace tabs with full isolation across file explorer, editor, CC sessions, and terminals.
+
+**Target features:**
+- Workspace tab bar at the top of the Workspace page
+- Each workspace tab has its own file explorer rooted at that project folder
+- CC sessions scoped per workspace (cwd set to project root)
+- Monaco editor tabs scoped per workspace
+- Terminal sessions scoped per workspace (cwd set to project root)
+- Workspace management: add/remove/rename project workspaces
+- Persist workspace configuration across reloads
+- Support Agent42 internal apps (apps/ subdirectory) as workspace targets
+
+## Previous Milestone: v1.3 Agent LLM Control
 
 **Goal:** Restructure model routing around L1/L2 tiers with StrongWall.ai as primary workhorse, add per-agent routing configuration in the dashboard, and modernize the fallback chain
 
@@ -197,5 +213,42 @@ Desktop experience: PWA manifest + shortcuts, GSD auto-activation, dashboard wit
 | Gemini as default L2 | Reliable premium provider, already integrated | -- Pending |
 | Non-streaming accepted for L1 | StrongWall doesn't stream; simulate for chat, accept for background | -- Pending |
 
+## Future Milestones (Backlog)
+
+### 999.1 Project-Workspace-Task Integration
+**Vision:** Connect Projects to Workspaces and Sandboxes. Mission Control becomes the project-scoped command center.
+
+**Key features:**
+- Projects are the top-level entity: each project optionally links to a Workspace (code folder) and/or Sandbox (runtime)
+- Tasks tracked in kanban per-project — both programmatic (coding, debugging, deployment) and non-programmatic (research, design, outreach, reports)
+- Agents and teams assigned to project tasks
+- Recurring and one-off projects/tasks supported
+- Mission Control shows project-scoped view: what's happening across workspaces, agents, and tasks for THAT project
+
+**Architecture sketch:**
+```
+Project (top-level entity)
+  ├── Workspace (code folder — optional, only for dev projects)
+  ├── Tasks (kanban items — tracked in Mission Control)
+  │   ├── Programmatic tasks (coding, debugging, deployment)
+  │   └── Non-programmatic (research, design, outreach, reports)
+  ├── Agents (assigned to tasks — can be teams)
+  └── Sandbox (runtime — optional, for projects that produce services)
+```
+
+**Why:** A project like "Customer Acquisition Campaign" has no workspace but has agent tasks (research leads, draft emails, analyze responses). A project like "Agent42 v2.1" has a workspace, code tasks, and a sandbox for testing. This makes the platform useful for non-developers too.
+
+### 999.2 Cross-Node Monitoring
+**Vision:** Local dashboard queries remote Agent42 VPS API to show unified app status, health, and logs across nodes.
+
+**Key features:**
+- "Remote Nodes" panel in dashboard — add VPS endpoints, see app status across all nodes
+- Extend `node_sync` SSH connectivity to poll remote AppManager state
+- Unified health view: local + remote apps in one dashboard
+- Remote log streaming via WebSocket relay
+- Alert on remote app crashes (push notification to local dashboard)
+
+**Why:** Running MHG or other sandboxed apps on the VPS requires checking the VPS dashboard separately. This unifies local dev and remote production into one view.
+
 ---
-*Last updated: 2026-03-22 after Rewards System Phase 1 (Foundation) completion*
+*Last updated: 2026-03-24 after Multi-Project Workspace Phase 3 (Workspace Management) completion — milestone v2.1 complete*
