@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 03-02-PLAN.md — entry-level union merge in NodeSyncTool
-last_updated: "2026-03-25T04:21:59.553Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 03-03-PLAN.md — Project namespace factory wiring in MemoryTool + mcp_server.py
+last_updated: "2026-03-25T04:23:21.559Z"
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
 ---
 
 # Project State
@@ -49,6 +49,7 @@ Updated after each plan completion.
 | Phase 02 P02 | 9 | 2 tasks | 3 files |
 | Phase 03-memory-sync P03-01 | 12 | 1 tasks | 3 files |
 | Phase 03-memory-sync P02 | 20 | 1 tasks | 2 files |
+| Phase 03 P03 | 20 | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,9 @@ Updated after each plan completion.
 - [Phase 03-02]: _merge() fetches remote MEMORY.md via SSH cat for in-memory entry-level UUID diff — not stat/mtime
 - [Phase 03-02]: _resolve_entry_conflict() uses lexicographic ISO timestamp comparison — correct for UTC Z-suffix format
 - [Phase 03-02]: Conflict history note inline in winner bullet: '> [prev: TS] OLD_TEXT'
+- [Phase 03-03]: _get_store() centralized routing: single method used by store/recall/search for consistent project dispatch
+- [Phase 03-03]: log action stays global-only intentionally: event log is cross-project by design
+- [Phase 03-03]: factory fallback to memory_store on creation failure: graceful degradation preserved
 
 ### Pending Todos
 
@@ -91,6 +95,6 @@ Pre-existing: tests/test_auth_flow.py::TestAuthIntegration::test_protected_endpo
 
 ## Session Continuity
 
-Last session: 2026-03-25T04:21:59.549Z
-Stopped at: Completed 03-02-PLAN.md — entry-level union merge in NodeSyncTool
+Last session: 2026-03-25T04:23:21.554Z
+Stopped at: Completed 03-03-PLAN.md — Project namespace factory wiring in MemoryTool + mcp_server.py
 Resume file: None
