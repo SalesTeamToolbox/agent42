@@ -6,8 +6,8 @@ Build a fully autonomous AI-run gym apparel e-commerce platform as an Agent42 ap
 
 ## Phases
 
-- [ ] **Phase 1: Store Foundation** — FastAPI app, auth, Printful catalog sync, product browsing UI
-- [ ] **Phase 2: Design Studio** — AI generation (Flux + Ideogram), canvas editor, mockup preview
+- [x] **Phase 1: Store Foundation** — FastAPI app, auth, Printful catalog sync, product browsing UI
+- [x] **Phase 2: Design Studio** — AI generation (Flux + Ideogram), canvas editor, mockup preview (completed 2026-03-25)
 - [ ] **Phase 3: Checkout & Fulfillment** — Stripe payments, Printful order creation, order tracking
 - [x] **Phase 4: Agent Infrastructure** — Webhook receivers, Redis report bus, scheduler, escalation (completed 2026-03-21)
 - [ ] **Phase 5: Order & Finance Agents** — Fulfillment loop, P&L tracking, daily reports
@@ -20,7 +20,7 @@ Build a fully autonomous AI-run gym apparel e-commerce platform as an Agent42 ap
 **Goal**: Working storefront — customers can browse gym wear products with real Printful catalog data
 **Depends on**: Nothing (first phase)
 **Requirements**: AUTH-01–04, CAT-01–04
-**Plans:** 3/4 plans executed
+**Plans:** 4 plans
 
 Plans:
 - [x] 01-01-PLAN.md — App skeleton: FastAPI, config, database, models, Agent42 registration
@@ -38,12 +38,19 @@ Plans:
 **Goal**: Customer types a prompt -> AI generates design -> they place it on a product -> see a realistic mockup
 **Depends on**: Phase 1 (needs product catalog)
 **Requirements**: DES-01–09
+**Plans:** 3 plans
+
+Plans:
+- [x] 02-01-PLAN.md — Backend AI pipeline: fal.ai config, Flux/Ideogram generation, BiRefNet bg removal, ESRGAN upscale
+- [x] 02-02-PLAN.md — Frontend canvas: Fabric.js editor, upload handler, canvas controls, dark theme styling
+- [x] 02-03-PLAN.md — Wiring: mockup/save/upload API endpoints, pipeline integration, static file serving
+
 **Success Criteria:**
   1. Customer types "angry gorilla lifting weights" -> Flux 1.1 generates a graphic in <15s
   2. Prompt with slogans ("NO DAYS OFF") routes to Ideogram v3 with legible text in image
   3. Background is automatically removed and image upscaled to print-ready resolution
   4. Fabric.js canvas lets customer place, resize, rotate design on product
-  5. Dynamic Mockups API returns photorealistic product photo with design applied
+  5. Printful Mockup Generator returns photorealistic product photo with design applied
   6. Customer can upload their own design as alternative to AI generation
 
 ### Phase 3: Checkout & Fulfillment
@@ -104,8 +111,8 @@ Plans:
 
 | Phase | Plans | Status | Completed |
 |-------|-------|--------|-----------|
-| 1. Store Foundation | 3/4 | In Progress|  |
-| 2. Design Studio | TBD | Not started | — |
+| 1. Store Foundation | 4/4 | Complete |  |
+| 2. Design Studio | 3/3 | Complete | 2026-03-25 |
 | 3. Checkout & Fulfillment | TBD | Not started | — |
 | 4. Agent Infrastructure | 2/2 | Complete   | 2026-03-21 |
 | 5. Order & Finance Agents | TBD | Not started | — |

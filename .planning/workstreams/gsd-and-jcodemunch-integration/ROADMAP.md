@@ -7,17 +7,19 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
 ## Phases
 
 **Phase Numbering:**
+
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Setup Foundation** - One-command Linux/VPS setup that generates .mcp.json, registers hooks, indexes repo, and validates health
-- [ ] **Phase 2: Windows + CLAUDE.md** - Windows Git Bash support and CLAUDE.md template generation with Agent42 conventions
-- [ ] **Phase 3: Memory Sync** - Conflict-resistant memory sync with UUID+timestamp entries, entry-union merge, and per-project namespaces
-- [ ] **Phase 4: Context Engine** - Unified context engine merging jcodemunch code symbols, GSD workstream state, and effectiveness-ranked tools/skills
+- [x] **Phase 2: Windows + CLAUDE.md** - Windows Git Bash support and CLAUDE.md template generation with Agent42 conventions (completed 2026-03-25)
+- [x] **Phase 3: Memory Sync** - Conflict-resistant memory sync with UUID+timestamp entries, entry-union merge, and per-project namespaces (completed 2026-03-25)
+- [x] **Phase 4: Context Engine** - Unified context engine merging jcodemunch code symbols, GSD workstream state, and effectiveness-ranked tools/skills (completed 2026-03-25)
 
 ## Phase Details
 
 ### Phase 1: Setup Foundation
+
 **Goal**: Users can run a single command on Linux/VPS and have a fully configured Agent42 + Claude Code environment with working MCP, hooks, and jcodemunch index
 **Depends on**: Nothing (first phase)
 **Requirements**: SETUP-01, SETUP-02, SETUP-03, SETUP-04, SETUP-05
@@ -34,6 +36,7 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
 - [x] 01-03-PLAN.md — jcodemunch indexer + setup.sh integration + tests (Wave 2)
 
 ### Phase 2: Windows + CLAUDE.md
+
 **Goal**: Users on Windows with Git Bash can run the same setup command without errors, and any user can generate a project CLAUDE.md pre-loaded with Agent42 conventions and pitfall patterns
 **Depends on**: Phase 1
 **Requirements**: SETUP-06, SETUP-07
@@ -41,9 +44,13 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
   1. User on Windows runs `bash setup.sh` in Git Bash without path errors, CRLF failures, or Python venv activation errors — setup completes successfully
   2. User runs the CLAUDE.md generation command and receives a CLAUDE.md file containing Agent42 hook protocol, memory system description, and at least the current pitfall patterns from CLAUDE.md
   3. Generated CLAUDE.md is project-aware (references the correct project name, repo identifier, and active workstream)
-**Plans**: TBD
+**Plans**: 2 plans
+
+- [x] 02-01-PLAN.md — Windows Git Bash compatibility: platform detection, venv paths, .gitattributes (Wave 1)
+- [x] 02-02-PLAN.md — CLAUDE.md template generation: generate-claude-md subcommand + project-aware template (Wave 2)
 
 ### Phase 3: Memory Sync
+
 **Goal**: Memory entries carry stable identifiers so sync across nodes produces a lossless union of all entries, and MemoryTool isolates memories by project namespace when a project parameter is provided
 **Depends on**: Phase 1
 **Requirements**: MEM-01, MEM-02, MEM-03
@@ -52,27 +59,37 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
   2. User runs `node_sync merge` after independent edits on two nodes and all entries from both nodes appear in the merged result — no entry from either node is silently lost
   3. User calls MemoryTool with `project="myproject"` and memories are stored in and retrieved from a project-scoped namespace, not the global store
   4. User calls MemoryTool without a project parameter and existing global store behavior is unchanged (backward compatible)
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [x] 03-01-PLAN.md — UUID injection + frontmatter + auto-migration + embedding tag stripping (Wave 1)
+- [x] 03-02-PLAN.md — Entry-level union merge in NodeSyncTool (Wave 2)
+- [x] 03-03-PLAN.md — Project namespace factory wiring in MemoryTool + mcp_server.py (Wave 2)
 
 ### Phase 4: Context Engine
-**Goal**: A single `agent42_context` call returns a unified response that merges code symbols from jcodemunch, the active GSD workstream phase plan, and effectiveness-ranked tools/skills — all within a single token budget
+
+**Goal**: A single `agent42_unified_context` call returns a unified response that merges code symbols from jcodemunch, the active GSD workstream phase plan, and effectiveness-ranked tools/skills — all within a single token budget
 **Depends on**: Phase 3
 **Requirements**: CTX-01, CTX-02, CTX-03
 **Success Criteria** (what must be TRUE):
-  1. User calls `agent42_context` with a code-related query and receives jcodemunch symbol search results merged with semantic memory results in a single response, with no duplicate content between sources
-  2. User calls `agent42_context` while a GSD workstream is active and the response includes the current phase goal and open plan items when the query topic matches current work context
-  3. User calls `agent42_context` and tools/skills that performed well on the current task type appear ranked above tools/skills with no effectiveness history for that task type
-  4. `agent42_context` degrades gracefully — when jcodemunch is unavailable, the response omits code symbols but still returns memory and GSD context without error
-**Plans**: TBD
+  1. User calls `agent42_unified_context` with a code-related query and receives jcodemunch symbol search results merged with semantic memory results in a single response, with no duplicate content between sources
+  2. User calls `agent42_unified_context` while a GSD workstream is active and the response includes the current phase goal and open plan items when the query topic matches current work context
+  3. User calls `agent42_unified_context` and tools/skills that performed well on the current task type appear ranked above tools/skills with no effectiveness history for that task type
+  4. `agent42_unified_context` degrades gracefully — when jcodemunch is unavailable, the response omits code symbols but still returns memory and GSD context without error
+**Plans**: 2 plans
+
+Plans:
+- [x] 04-01-PLAN.md — UnifiedContextTool core implementation with 6-source assembly + test scaffold (Wave 1)
+- [x] 04-02-PLAN.md — MCP server registration + EffectivenessStore injection + integration tests (Wave 2)
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Setup Foundation | 3/3 | Complete | 2026-03-18 |
-| 2. Windows + CLAUDE.md | 0/TBD | Not started | - |
-| 3. Memory Sync | 0/TBD | Not started | - |
-| 4. Context Engine | 0/TBD | Not started | - |
+| 2. Windows + CLAUDE.md | 2/2 | Complete   | 2026-03-25 |
+| 3. Memory Sync | 3/3 | Complete   | 2026-03-25 |
+| 4. Context Engine | 2/2 | Complete | 2026-03-25 |

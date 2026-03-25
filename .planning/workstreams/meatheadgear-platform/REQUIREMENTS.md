@@ -27,7 +27,7 @@
 - [ ] **DES-04**: Image is upscaled to 300 DPI print-ready resolution (Real-ESRGAN via fal.ai)
 - [ ] **DES-05**: Customer can place design on a Fabric.js canvas showing selected product
 - [ ] **DES-06**: Customer can resize, reposition, and rotate design on the canvas
-- [ ] **DES-07**: Canvas generates a photorealistic mockup via Dynamic Mockups API
+- [ ] **DES-07**: Canvas generates a photorealistic mockup via Printful Mockup Generator API
 - [ ] **DES-08**: Customer can upload their own PNG/SVG instead of AI generation
 - [ ] **DES-09**: Design is saved to customer account for reuse
 
@@ -121,9 +121,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01–04 | Phase 1 | Pending |
-| CAT-01–04 | Phase 1 | Pending |
-| DES-01–09 | Phase 2 | Pending |
+| AUTH-01–04 | Phase 1 | Verified |
+| CAT-01–04 | Phase 1 | Verified |
+| DES-01–09 | Phase 2 | Verified (human UAT pending) |
 | ORD-01–07 | Phase 3 | Pending |
 | INF-01–05 | Phase 4 | Pending |
 | AGT-01–03 | Phase 5 | Pending |
@@ -139,4 +139,4 @@
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 after initial definition*
+*Last updated: 2026-03-25 after Phase 02 verification*
