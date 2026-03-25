@@ -13,7 +13,7 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
 
 - [x] **Phase 1: Setup Foundation** - One-command Linux/VPS setup that generates .mcp.json, registers hooks, indexes repo, and validates health
 - [x] **Phase 2: Windows + CLAUDE.md** - Windows Git Bash support and CLAUDE.md template generation with Agent42 conventions (completed 2026-03-25)
-- [ ] **Phase 3: Memory Sync** - Conflict-resistant memory sync with UUID+timestamp entries, entry-union merge, and per-project namespaces
+- [x] **Phase 3: Memory Sync** - Conflict-resistant memory sync with UUID+timestamp entries, entry-union merge, and per-project namespaces (completed 2026-03-25)
 - [ ] **Phase 4: Context Engine** - Unified context engine merging jcodemunch code symbols, GSD workstream state, and effectiveness-ranked tools/skills
 
 ## Phase Details
@@ -63,8 +63,8 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
 
 Plans:
 - [x] 03-01-PLAN.md — UUID injection + frontmatter + auto-migration + embedding tag stripping (Wave 1)
-- [ ] 03-02-PLAN.md — Entry-level union merge in NodeSyncTool (Wave 2)
-- [ ] 03-03-PLAN.md — Project namespace factory wiring in MemoryTool + mcp_server.py (Wave 2)
+- [x] 03-02-PLAN.md — Entry-level union merge in NodeSyncTool (Wave 2)
+- [x] 03-03-PLAN.md — Project namespace factory wiring in MemoryTool + mcp_server.py (Wave 2)
 
 ### Phase 4: Context Engine
 
@@ -87,5 +87,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Setup Foundation | 3/3 | Complete | 2026-03-18 |
 | 2. Windows + CLAUDE.md | 2/2 | Complete   | 2026-03-25 |
-| 3. Memory Sync | 1/3 | In Progress|  |
+| 3. Memory Sync | 3/3 | Complete   | 2026-03-25 |
 | 4. Context Engine | 0/TBD | Not started | - |

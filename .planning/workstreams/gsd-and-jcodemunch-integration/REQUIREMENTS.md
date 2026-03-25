@@ -17,8 +17,8 @@
 
 ### Memory
 
-- [ ] **MEM-01**: MEMORY.md entries include a UUID and ISO timestamp so sync can identify individual entries across nodes
-- [ ] **MEM-02**: User can run `node_sync merge` and have divergent entries union-merged without silent data loss (replaces mtime-wins)
+- [x] **MEM-01**: MEMORY.md entries include a UUID and ISO timestamp so sync can identify individual entries across nodes
+- [x] **MEM-02**: User can run `node_sync merge` and have divergent entries union-merged without silent data loss (replaces mtime-wins)
 - [ ] **MEM-03**: User can call MemoryTool with a `project` parameter and have memories stored/retrieved in a project-scoped namespace
 
 ### Context
@@ -56,8 +56,8 @@
 | SETUP-05 | Phase 1 | Helpers done (01-02), setup.sh integration pending (01-03) |
 | SETUP-06 | Phase 2 | Complete |
 | SETUP-07 | Phase 2 | Complete |
-| MEM-01 | Phase 3 | Pending |
-| MEM-02 | Phase 3 | Pending |
+| MEM-01 | Phase 3 | Complete |
+| MEM-02 | Phase 3 | Complete |
 | MEM-03 | Phase 3 | Pending |
 | CTX-01 | Phase 4 | Pending |
 | CTX-02 | Phase 4 | Pending |

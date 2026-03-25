@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 03-01-PLAN.md — UUID injection + frontmatter + migration + embedding tag stripping
-last_updated: "2026-03-25T03:55:59.237Z"
+stopped_at: Completed 03-02-PLAN.md — entry-level union merge in NodeSyncTool
+last_updated: "2026-03-25T04:21:59.553Z"
 progress:
   total_phases: 4
   completed_phases: 2
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -25,7 +25,7 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 ## Current Position
 
 Phase: 03 (memory-sync) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 
 ## Performance Metrics
 
@@ -48,6 +48,7 @@ Updated after each plan completion.
 | Phase 02-windows-claude-md P01 | 15 | 2 tasks | 4 files |
 | Phase 02 P02 | 9 | 2 tasks | 3 files |
 | Phase 03-memory-sync P03-01 | 12 | 1 tasks | 3 files |
+| Phase 03-memory-sync P02 | 20 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,9 @@ Updated after each plan completion.
 - [Phase 03-01]: UUID5 namespace reused from memory_tool.py (a42a42a4) for cross-module determinism
 - [Phase 03-01]: reindex_memory() uses raw file read to avoid triggering migration inside update_memory -> _schedule_reindex cycle
 - [Phase 03-01]: _ensure_uuid_frontmatter() recovers file_id from disk when new content has no frontmatter, ensuring stable identity across full-replace writes
+- [Phase 03-02]: _merge() fetches remote MEMORY.md via SSH cat for in-memory entry-level UUID diff — not stat/mtime
+- [Phase 03-02]: _resolve_entry_conflict() uses lexicographic ISO timestamp comparison — correct for UTC Z-suffix format
+- [Phase 03-02]: Conflict history note inline in winner bullet: '> [prev: TS] OLD_TEXT'
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ Pre-existing: tests/test_auth_flow.py::TestAuthIntegration::test_protected_endpo
 
 ## Session Continuity
 
-Last session: 2026-03-25T03:55:59.233Z
-Stopped at: Completed 03-01-PLAN.md — UUID injection + frontmatter + migration + embedding tag stripping
+Last session: 2026-03-25T04:21:59.549Z
+Stopped at: Completed 03-02-PLAN.md — entry-level union merge in NodeSyncTool
 Resume file: None
