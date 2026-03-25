@@ -68,15 +68,19 @@ Plans:
 
 ### Phase 4: Context Engine
 
-**Goal**: A single `agent42_context` call returns a unified response that merges code symbols from jcodemunch, the active GSD workstream phase plan, and effectiveness-ranked tools/skills — all within a single token budget
+**Goal**: A single `agent42_unified_context` call returns a unified response that merges code symbols from jcodemunch, the active GSD workstream phase plan, and effectiveness-ranked tools/skills — all within a single token budget
 **Depends on**: Phase 3
 **Requirements**: CTX-01, CTX-02, CTX-03
 **Success Criteria** (what must be TRUE):
-  1. User calls `agent42_context` with a code-related query and receives jcodemunch symbol search results merged with semantic memory results in a single response, with no duplicate content between sources
-  2. User calls `agent42_context` while a GSD workstream is active and the response includes the current phase goal and open plan items when the query topic matches current work context
-  3. User calls `agent42_context` and tools/skills that performed well on the current task type appear ranked above tools/skills with no effectiveness history for that task type
-  4. `agent42_context` degrades gracefully — when jcodemunch is unavailable, the response omits code symbols but still returns memory and GSD context without error
-**Plans**: TBD
+  1. User calls `agent42_unified_context` with a code-related query and receives jcodemunch symbol search results merged with semantic memory results in a single response, with no duplicate content between sources
+  2. User calls `agent42_unified_context` while a GSD workstream is active and the response includes the current phase goal and open plan items when the query topic matches current work context
+  3. User calls `agent42_unified_context` and tools/skills that performed well on the current task type appear ranked above tools/skills with no effectiveness history for that task type
+  4. `agent42_unified_context` degrades gracefully — when jcodemunch is unavailable, the response omits code symbols but still returns memory and GSD context without error
+**Plans**: 2 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — UnifiedContextTool core implementation with 6-source assembly + test scaffold (Wave 1)
+- [ ] 04-02-PLAN.md — MCP server registration + EffectivenessStore injection + integration tests (Wave 2)
 
 ## Progress
 
@@ -88,4 +92,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | 1. Setup Foundation | 3/3 | Complete | 2026-03-18 |
 | 2. Windows + CLAUDE.md | 2/2 | Complete   | 2026-03-25 |
 | 3. Memory Sync | 3/3 | Complete   | 2026-03-25 |
-| 4. Context Engine | 0/TBD | Not started | - |
+| 4. Context Engine | 0/2 | Planning complete | - |
