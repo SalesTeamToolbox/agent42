@@ -38,8 +38,8 @@
 - [x] **ORD-03**: On successful payment, order automatically created in Printful
 - [x] **ORD-04**: Customer receives order confirmation email via Resend
 - [x] **ORD-05**: Customer can view order status (processing → printed → shipped → delivered)
-- [ ] **ORD-06**: Printful fulfillment webhooks update order status in real-time
-- [ ] **ORD-07**: Customer receives shipping confirmation email with tracking number
+- [x] **ORD-06**: Printful fulfillment webhooks update order status in real-time
+- [x] **ORD-07**: Customer receives shipping confirmation email with tracking number
 
 ### Agent Infrastructure
 
@@ -126,7 +126,7 @@
 | DES-01–09 | Phase 2 | Verified (human UAT pending) |
 | ORD-01–04 | Phase 3 Plan 01 | Backend implemented |
 | ORD-05 | Phase 3 Plan 03 | Implemented — 7-color status badges + tracking link UI |
-| ORD-06–07 | Phase 3 | Pending |
+| ORD-06–07 | Phase 3 Plan 02 | Implemented — Printful webhook receiver with idempotency, tracking persistence, shipping email |
 | INF-01–05 | Phase 4 | Pending |
 | AGT-01–03 | Phase 5 | Pending |
 | AGT-04–06 | Phase 5 | Pending |
@@ -141,4 +141,4 @@
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-25 after Phase 03 Plan 01 completion*
+*Last updated: 2026-03-25 after Phase 03 Plan 02 completion (all Phase 03 plans complete)*
