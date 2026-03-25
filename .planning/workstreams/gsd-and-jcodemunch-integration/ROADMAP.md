@@ -79,8 +79,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — UnifiedContextTool core implementation with 6-source assembly + test scaffold (Wave 1)
-- [ ] 04-02-PLAN.md — MCP server registration + EffectivenessStore injection + integration tests (Wave 2)
+- [x] 04-01-PLAN.md — UnifiedContextTool core implementation with 6-source assembly + test scaffold (Wave 1)
+- [x] 04-02-PLAN.md — MCP server registration + EffectivenessStore injection + integration tests (Wave 2)
 
 ## Progress
 

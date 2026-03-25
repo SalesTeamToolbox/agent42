@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: milestone
-status: Ready to plan
-stopped_at: Phase 4 planned (2 plans, 2 waves)
-last_updated: "2026-03-25T16:13:59.933Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-25T21:18:18.527Z"
 progress:
   total_phases: 4
   completed_phases: 3
@@ -20,12 +20,12 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
 
-**Current focus:** Phase 03 — memory-sync
+**Current focus:** Phase 04 — Context Engine
 
 ## Current Position
 
-Phase: 4
-Plan: Not started
+Phase: 04 (Context Engine) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
@@ -50,6 +50,9 @@ Updated after each plan completion.
 | Phase 03-memory-sync P03-01 | 12 | 1 tasks | 3 files |
 | Phase 03-memory-sync P02 | 20 | 1 tasks | 2 files |
 | Phase 03 P03 | 20 | 1 tasks | 3 files |
+| Phase 02-design-studio P02 | 25m | 2 tasks | 3 files |
+| Phase 02 P01 | 18 | 3 tasks | 5 files |
+| Phase 04 P04-02 | 12 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -84,6 +87,14 @@ Updated after each plan completion.
 - [Phase 03-03]: _get_store() centralized routing: single method used by store/recall/search for consistent project dispatch
 - [Phase 03-03]: log action stays global-only intentionally: event log is cross-project by design
 - [Phase 03-03]: factory fallback to memory_store on creation failure: graceful degradation preserved
+- [Phase 02-design-studio]: Use fabric.FabricImage.fromURL (not fabric.Image) — Fabric v6 renamed the class
+- [Phase 02-design-studio]: Upload handler uses raw fetch() not authFetch() to avoid Content-Type override breaking multipart boundary
+- [Phase 02-design-studio]: Uploaded designs placed using backend image_url (not FileReader data URL) to link design_id for save/mockup ops
+- [Phase 02]: fal.ai single vendor replaces OpenAI/Ideogram/Recraft direct APIs and Claid.ai
+- [Phase 02]: fal_client.subscribe() wrapped in asyncio.to_thread() — SDK is synchronous, must not block event loop
+- [Phase 02]: on_queue_update callback (not with_logs=False) per D-19 for queue progress
+- [Phase 04]: EffectivenessStore instantiated in _build_registry() with workspace/.agent42/effectiveness.db path — same pattern as memory backend initialization
+- [Phase 04]: skill_loader=None intentional in UnifiedContextTool registration — gets patched later in _create_server(), same as ContextAssemblerTool
 
 ### Pending Todos
 
@@ -95,6 +106,6 @@ Pre-existing: tests/test_auth_flow.py::TestAuthIntegration::test_protected_endpo
 
 ## Session Continuity
 
-Last session: 2026-03-25T16:13:59.923Z
-Stopped at: Phase 4 planned (2 plans, 2 waves)
-Resume file: .planning/phases/04-context-engine/04-01-PLAN.md
+Last session: 2026-03-25T21:18:18.518Z
+Stopped at: Completed 04-02-PLAN.md
+Resume file: None
