@@ -59,7 +59,12 @@ This milestone unifies Agent42's developer tooling into a zero-friction platform
   2. User runs `node_sync merge` after independent edits on two nodes and all entries from both nodes appear in the merged result — no entry from either node is silently lost
   3. User calls MemoryTool with `project="myproject"` and memories are stored in and retrieved from a project-scoped namespace, not the global store
   4. User calls MemoryTool without a project parameter and existing global store behavior is unchanged (backward compatible)
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — UUID injection + frontmatter + auto-migration + embedding tag stripping (Wave 1)
+- [ ] 03-02-PLAN.md — Entry-level union merge in NodeSyncTool (Wave 2)
+- [ ] 03-03-PLAN.md — Project namespace factory wiring in MemoryTool + mcp_server.py (Wave 1)
 
 ### Phase 4: Context Engine
 
@@ -82,5 +87,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Setup Foundation | 3/3 | Complete | 2026-03-18 |
 | 2. Windows + CLAUDE.md | 2/2 | Complete   | 2026-03-25 |
-| 3. Memory Sync | 0/TBD | Not started | - |
+| 3. Memory Sync | 0/3 | Planning complete | - |
 | 4. Context Engine | 0/TBD | Not started | - |
