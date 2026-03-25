@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: v1.0 milestone complete
-stopped_at: Phase 2 plans created (3 plans, 2 waves) — ready to execute
-last_updated: "2026-03-25T01:51:09.476Z"
+status: in-progress
+stopped_at: Completed 02-design-studio-02-02-PLAN.md
+last_updated: "2026-03-25T07:00:00.000Z"
 progress:
   total_phases: 7
   completed_phases: 1
-  total_plans: 7
-  completed_plans: 4
+  total_plans: 9
+  completed_plans: 6
 ---
 
 # State: MeatheadGear Platform
@@ -23,12 +23,12 @@ See: .planning/workstreams/meatheadgear-platform/PROJECT.md (updated 2026-03-20)
 
 ## Current Position
 
-Phase: 02 (design-studio) — PLANNED
-Plan: 0 of 3 (ready to execute)
+Phase: 02 (design-studio) — IN PROGRESS
+Plan: 3 of 3 (02-01 and 02-02 complete, 02-03 remaining)
 
 ## Performance Metrics
 
-**Velocity:** No plans completed yet.
+**Velocity:** 02-01 (fal.ai backend rewrite), 02-02 (Fabric.js canvas + upload + progress UI) complete. 02-03 (design API endpoints) remaining.
 
 ## Accumulated Context
 
@@ -50,6 +50,9 @@ Plan: 0 of 3 (ready to execute)
 - [Phase 01]: Background sync launched non-blocking via asyncio.create_task() in lifespan — server starts immediately
 - [Phase 01-store-foundation]: Use bcrypt directly (not passlib) — passlib incompatible with bcrypt>=4.0/5.x
 - [Phase 01-store-foundation]: Resend email integration stubbed in reset-request endpoint — token logged to console until Resend API key is available
+- [Phase 02-design-studio]: Use fabric.FabricImage.fromURL (not fabric.Image) — Fabric v6 renamed the class
+- [Phase 02-design-studio]: Upload handler uses raw fetch() not authFetch() to avoid Content-Type override breaking multipart boundary
+- [Phase 02-design-studio]: Uploaded designs placed using backend image_url (not FileReader data URL) to link design_id for save/mockup ops
 
 ### Known State
 
@@ -73,6 +76,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-25T01:51:09.472Z
-Stopped at: Phase 2 context gathered (assumptions mode)
-Resume file: .planning/workstreams/meatheadgear-platform/phases/02-design-studio/02-CONTEXT.md
+Last session: 2026-03-25T07:00:00.000Z
+Stopped at: Completed 02-design-studio-02-02-PLAN.md
+Resume file: .planning/workstreams/meatheadgear-platform/phases/02-design-studio/02-03-PLAN.md
