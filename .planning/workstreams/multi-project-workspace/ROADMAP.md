@@ -15,8 +15,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Registry & Namespacing** - Server-side WorkspaceRegistry, CRUD API, default seeding, ID-based path resolution, and client-side storage/URI namespace conventions (completed 2026-03-24)
 - [x] **Phase 2: IDE Surface Integration** - Thread workspace_id into file explorer, editor tabs, CC sessions, and terminals; render workspace tab bar (completed 2026-03-24)
 - [x] **Phase 3: Workspace Management** - Add, remove, and rename workspaces with validation and guards (completed 2026-03-24)
-- [ ] **Phase 4: Fix Workspace ID API Wiring** - Fix workspace_id body/query mismatch on file save and missing workspace_id on search (gap closure)
-- [ ] **Phase 5: Fix Frontend State Isolation** - Migrate remaining bare localStorage keys to wsKey() and fix stale unsaved-files guard (gap closure)
+- [x] **Phase 4: Fix Workspace ID API Wiring** - Fix workspace_id body/query mismatch on file save and missing workspace_id on search (gap closure) (completed 2026-03-26)
+- [x] **Phase 5: Fix Frontend State Isolation** - Migrate remaining bare localStorage keys to wsKey() and fix stale unsaved-files guard (gap closure) (completed 2026-03-26)
 
 ## Phase Details
 
@@ -81,7 +81,7 @@ Plans:
 
 Plans:
 
-- [ ] 04-01-PLAN.md — Fix workspace_id wiring on file save and search endpoints
+- [x] 04-01-PLAN.md — Fix workspace_id wiring on file save and search endpoints
 
 ### Phase 5: Fix Frontend State Isolation
 
@@ -97,7 +97,7 @@ Plans:
 
 Plans:
 
-- [ ] 05-01-PLAN.md — Migrate bare localStorage keys to wsKey() and fix unsaved guard state sync
+- [x] 05-01-PLAN.md — Migrate bare localStorage keys to wsKey() and fix unsaved guard state sync
 
 ## Progress
 
@@ -109,5 +109,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Registry & Namespacing | 2/2 | Complete | 2026-03-24 |
 | 2. IDE Surface Integration | 3/3 | Complete | 2026-03-24 |
 | 3. Workspace Management | 1/1 | Complete | 2026-03-24 |
-| 4. Fix Workspace ID API Wiring | 0/1 | Pending | — |
-| 5. Fix Frontend State Isolation | 0/1 | Pending | — |
+| 4. Fix Workspace ID API Wiring | 1/1 | Complete   | 2026-03-26 |
+| 5. Fix Frontend State Isolation | 1/1 | Complete | 2026-03-26 |
