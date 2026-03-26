@@ -97,7 +97,7 @@ Plans:
 
 Plans:
 
-- [ ] 05-01-PLAN.md — Migrate bare localStorage keys to wsKey() and fix unsaved guard state sync
+- [x] 05-01-PLAN.md — Migrate bare localStorage keys to wsKey() and fix unsaved guard state sync
 
 ## Progress
 

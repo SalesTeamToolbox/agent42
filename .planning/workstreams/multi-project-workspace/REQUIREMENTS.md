@@ -1,6 +1,6 @@
 # Requirements: Multi-Project Workspace (v2.1)
 
-**Coverage:** 13/16 satisfied | 3/16 partial (gap closure pending)
+**Coverage:** 16/16 satisfied
 
 ## Requirements
 
@@ -21,12 +21,12 @@
 - [x] **ISOL-04**: CC sessions scoped — subprocess cwd set to workspace root `[Phase 2]`
 - [x] **ISOL-05**: Terminals scoped — cwd set to workspace root, switching hides/shows correct sessions `[Phase 2]`
 - [x] **ISOL-06**: Monaco model URIs include workspace_id prefix to prevent filename collision `[Phase 1]`
-- [ ] **ISOL-07**: All localStorage/sessionStorage keys namespaced by workspace_id via wsKey() `[Phase 1 | Gap closure: Phase 5]`
+- [x] **ISOL-07**: All localStorage/sessionStorage keys namespaced by workspace_id via wsKey() `[Phase 1 | Gap closure: Phase 5]`
 
 ### Management (MGMT)
 
 - [x] **MGMT-01**: Add workspace modal with path input, app dropdown, and server-side validation `[Phase 3]`
-- [ ] **MGMT-02**: Remove workspace shows confirmation guard when workspace has unsaved files `[Phase 3 | Gap closure: Phase 5]`
+- [x] **MGMT-02**: Remove workspace shows confirmation guard when workspace has unsaved files `[Phase 3 | Gap closure: Phase 5]`
 - [x] **MGMT-03**: Inline rename with Enter to save and immediate tab bar update `[Phase 3]`
 
 ## Traceability
@@ -45,9 +45,9 @@
 | ISOL-04 | must | 2 | Satisfied | Phase 2 VERIFICATION.md |
 | ISOL-05 | must | 2 | Satisfied | Phase 2 VERIFICATION.md |
 | ISOL-06 | must | 1 | Satisfied | Phase 1 VERIFICATION.md |
-| ISOL-07 | should | 1, **5** | Partial | Audit: cc_panel_width, cc_panel_session_id bare keys |
+| ISOL-07 | should | 1, **5** | Satisfied | Phase 5 VERIFICATION.md |
 | MGMT-01 | must | 3 | Satisfied | Phase 3 VERIFICATION.md |
-| MGMT-02 | must | 3, **5** | Partial | Audit: stale _wsTabState in unsaved guard |
+| MGMT-02 | must | 3, **5** | Satisfied | Phase 5 VERIFICATION.md |
 | MGMT-03 | must | 3 | Satisfied | Phase 3 VERIFICATION.md |
 
 **Bold phase numbers** = gap closure phases from v2.1 audit.
