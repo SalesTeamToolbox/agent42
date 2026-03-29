@@ -58,11 +58,13 @@ class SidecarOrchestrator:
         agent_manager: Any = None,
         effectiveness_store: Any = None,
         reward_system: Any = None,
+        memory_bridge: Any = None,
     ):
         self.memory_store = memory_store
         self.agent_manager = agent_manager
         self.effectiveness_store = effectiveness_store
         self.reward_system = reward_system
+        self.memory_bridge = memory_bridge
         self._http: httpx.AsyncClient | None = None
 
     async def _get_http_client(self) -> httpx.AsyncClient:
@@ -89,13 +91,44 @@ class SidecarOrchestrator:
                 ctx.wake_reason,
             )
 
-            # Phase 24: Minimal execution stub.
-            # Full AgentRuntime integration comes in later phases.
-            # For now, log the execution and produce a summary result.
+            # Step 1: Memory recall with hard timeout (MEM-01, MEM-02, per D-01, D-02)
+            recalled_memories: list[dict] = []
+            if self.memory_bridge and ctx.agent_id:
+                try:
+                    recalled_memories = await asyncio.wait_for(
+                        self.memory_bridge.recall(
+                            query=ctx.context.get("taskDescription", "") or ctx.task_id,
+                            agent_id=ctx.agent_id,
+                            company_id=ctx.company_id,
+                            top_k=5,
+                        ),
+                        timeout=0.2,  # 200ms hard limit (MEM-02)
+                    )
+                    logger.info(
+                        "Recalled %d memories for agent %s in run %s",
+                        len(recalled_memories),
+                        ctx.agent_id,
+                        run_id,
+                    )
+                except asyncio.TimeoutError:
+                    logger.warning(
+                        "Memory recall timed out for run %s — proceeding without memories",
+                        run_id,
+                    )
+                except Exception as exc:
+                    logger.warning(
+                        "Memory recall failed for run %s: %s — proceeding without memories",
+                        run_id,
+                        exc,
+                    )
+
+            # Step 2: Agent execution stub (Phase 24 — full AgentRuntime wired later)
+            # recalled_memories stored in context for when AgentRuntime is wired (D-04)
             result = {
                 "summary": f"Executed task for agent {ctx.agent_id}",
                 "wakeReason": ctx.wake_reason,
                 "taskId": ctx.task_id,
+                "recalledMemories": len(recalled_memories),
             }
             usage = {
                 "inputTokens": 0,
@@ -111,8 +144,20 @@ class SidecarOrchestrator:
             error = str(exc)
 
         finally:
-            # POST callback to Paperclip (D-07)
+            # Step 3: POST callback to Paperclip — never delayed by learn_async (D-05)
             await self._post_callback(run_id, status, result, usage, error)
+
+            # Step 4: Fire-and-forget learning extraction AFTER callback (MEM-03, D-05)
+            if self.memory_bridge and ctx.agent_id and result.get("summary"):
+                asyncio.create_task(
+                    self.memory_bridge.learn_async(
+                        summary=result.get("summary", ""),
+                        agent_id=ctx.agent_id,
+                        company_id=ctx.company_id,
+                        task_type=ctx.context.get("taskType", ""),
+                    )
+                )
+
             unregister_run(run_id)
 
     async def _post_callback(
