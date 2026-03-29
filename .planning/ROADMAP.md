@@ -236,7 +236,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | Phase | Milestone | Plans Complete | Status | Completed |
 | ------- | ----------- | ---------------- | -------- | ----------- |
 | 24. Sidecar Mode | v4.0 | 3/3 | Complete | 2026-03-29 |
-| 25. Memory Bridge | v4.0 | 2/2 | Complete   | 2026-03-29 |
+| 25. Memory Bridge | v4.0 | 2/2 | Complete    | 2026-03-29 |
 | 26. Tiered Routing Bridge | v4.0 | 0/TBD | Not started | - |
 | 27. Paperclip Adapter | v4.0 | 0/TBD | Not started | - |
 | 28. Paperclip Plugin | v4.0 | 0/TBD | Not started | - |
