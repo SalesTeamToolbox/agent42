@@ -2,17 +2,17 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-26)
+See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
-**Current focus:** GSD & jcodemunch Integration (active workstream) — Phase 4 Context Engine next
+**Current focus:** v4.0 Paperclip Integration — Agent42 as plugin+adapter for Paperclip
 
 ## Current Position
 
-Phase: Between milestones
+Phase: Not started (defining requirements)
 Plan: —
-Status: rewards-v1.0 milestone completed; GSD integration workstream active
-Last activity: 2026-03-27 — Completed quick task 260326-vny: Optimize hook pipeline — 92% token reduction
+Status: Defining requirements
+Last activity: 2026-03-28 — Milestone v4.0 started
 
 ## Completed Milestones
 
@@ -22,8 +22,8 @@ Last activity: 2026-03-27 — Completed quick task 260326-vny: Optimize hook pip
 
 ## Active Workstreams
 
-- **gsd-and-jcodemunch-integration** — Phases 1-3 complete, Phase 4 (Context Engine) next
-- **custom-claude-code-ui** — Phases 1-4 complete, Phases 5-6 remaining
+- **gsd-and-jcodemunch-integration** — Phases 1-3 complete, Phase 4 (Context Engine) next — PAUSED for v4.0
+- **custom-claude-code-ui** — Phases 1-4 complete, Phases 5-6 remaining — PAUSED for v4.0
 
 ## Accumulated Context
 
@@ -38,7 +38,7 @@ None.
 
 ### Blockers/Concerns
 
-None active. Previous rewards blockers (agent_id schema, Provisional tier default) resolved in rewards-v1.0.
+None active.
 
 ### Quick Tasks Completed
 
@@ -51,6 +51,6 @@ None active. Previous rewards blockers (agent_id schema, Provisional tier defaul
 
 ## Session Continuity
 
-Last session: 2026-03-25
-Stopped at: rewards-v1.0 milestone completion workflow
+Last session: 2026-03-28
+Stopped at: v4.0 Paperclip Integration milestone initialization
 Resume file: None
