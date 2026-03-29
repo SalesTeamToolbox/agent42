@@ -5,14 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
-**Current focus:** v4.0 Paperclip Integration — Agent42 as plugin+adapter for Paperclip
+**Current focus:** v4.0 Paperclip Integration — Phase 24: Sidecar Mode
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-03-28 — Milestone v4.0 started
+Phase: 24 of 31 (Sidecar Mode)
+Plan: 0 of TBD in current phase
+Status: Ready to plan
+Last activity: 2026-03-28 — Roadmap created for v4.0 Paperclip Integration (8 phases, 41 requirements)
+
+Progress: [░░░░░░░░░░] 0%
 
 ## Completed Milestones
 
@@ -30,7 +32,11 @@ Last activity: 2026-03-28 — Milestone v4.0 started
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
-See workstream-specific STATE.md files for per-workstream decisions.
+
+- Phase 24: Sidecar as `--sidecar` CLI flag — additive, existing `python agent42.py` behavior unchanged
+- Phase 24: No TypeScript rewrite — thin TS wrapper over Python FastAPI sidecar
+- Phase 25/26: Phases 25 and 26 can run in parallel after Phase 24 completes
+- Phase 27: Adapter depends on Phases 24+25+26 all complete before end-to-end testing
 
 ### Pending Todos
 
@@ -38,7 +44,10 @@ None.
 
 ### Blockers/Concerns
 
-None active.
+- Phase 29: Plugin SDK `executeTool` handler signatures need verification — SDK released 2026-03-18 (10 days old). Run `/gsd:research-phase` before planning Phase 29.
+- Phase 29: `heartbeatRunEvents` access from plugin worker context not documented — research required before planning.
+- Phase 30: `heartbeat.started` event existence unconfirmed (RFC #206 only) — verify before planning Phase 30.
+- Phase 30: Paperclip comment threading write API access unconfirmed for wave strategy — verify before planning.
 
 ### Quick Tasks Completed
 
@@ -52,5 +61,5 @@ None active.
 ## Session Continuity
 
 Last session: 2026-03-28
-Stopped at: v4.0 Paperclip Integration milestone initialization
+Stopped at: v4.0 roadmap created — 8 phases (24-31), 41/41 requirements mapped. Ready to plan Phase 24.
 Resume file: None

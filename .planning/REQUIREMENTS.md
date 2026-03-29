@@ -90,7 +90,7 @@ Deferred to future release. Tracked but not in current roadmap.
 ## Out of Scope
 
 | Feature | Reason |
-|---------|--------|
+| ------- | ------ |
 | TypeScript rewrite of Agent42 sidecar | Agent42's value (ONNX, Qdrant, asyncio) is Python-native; rewriting wastes months |
 | Agent42 plugin managing Paperclip budgets | Budget authority belongs to Paperclip; dual accounting creates drift |
 | Full Agent42 dashboard embedded via iframe | Maintenance liability; use native Paperclip UI slots instead |
@@ -101,48 +101,48 @@ Deferred to future release. Tracked but not in current roadmap.
 ## Traceability
 
 | Requirement | Phase | Status |
-|-------------|-------|--------|
-| SIDE-01 | Phase 1 | Pending |
-| SIDE-02 | Phase 1 | Pending |
-| SIDE-03 | Phase 1 | Pending |
-| SIDE-04 | Phase 1 | Pending |
-| SIDE-05 | Phase 1 | Pending |
-| SIDE-06 | Phase 1 | Pending |
-| SIDE-07 | Phase 1 | Pending |
-| SIDE-08 | Phase 1 | Pending |
-| SIDE-09 | Phase 1 | Pending |
-| MEM-01 | Phase 2 | Pending |
-| MEM-02 | Phase 2 | Pending |
-| MEM-03 | Phase 2 | Pending |
-| MEM-04 | Phase 2 | Pending |
-| MEM-05 | Phase 2 | Pending |
-| ROUTE-01 | Phase 3 | Pending |
-| ROUTE-02 | Phase 3 | Pending |
-| ROUTE-03 | Phase 3 | Pending |
-| ROUTE-04 | Phase 3 | Pending |
-| ADAPT-01 | Phase 4 | Pending |
-| ADAPT-02 | Phase 4 | Pending |
-| ADAPT-03 | Phase 4 | Pending |
-| ADAPT-04 | Phase 4 | Pending |
-| ADAPT-05 | Phase 4 | Pending |
-| PLUG-01 | Phase 5 | Pending |
-| PLUG-02 | Phase 5 | Pending |
-| PLUG-03 | Phase 5 | Pending |
-| PLUG-04 | Phase 5 | Pending |
-| PLUG-05 | Phase 5 | Pending |
-| PLUG-06 | Phase 5 | Pending |
-| PLUG-07 | Phase 5 | Pending |
-| UI-01 | Phase 6 | Pending |
-| UI-02 | Phase 6 | Pending |
-| UI-03 | Phase 6 | Pending |
-| UI-04 | Phase 6 | Pending |
-| LEARN-01 | Phase 6 | Pending |
-| LEARN-02 | Phase 6 | Pending |
-| ADV-01 | Phase 7 | Pending |
-| ADV-02 | Phase 7 | Pending |
-| ADV-03 | Phase 7 | Pending |
-| ADV-04 | Phase 8 | Pending |
-| ADV-05 | Phase 8 | Pending |
+| ----------- | ----- | ------ |
+| SIDE-01 | Phase 24 | Pending |
+| SIDE-02 | Phase 24 | Pending |
+| SIDE-03 | Phase 24 | Pending |
+| SIDE-04 | Phase 24 | Pending |
+| SIDE-05 | Phase 24 | Pending |
+| SIDE-06 | Phase 24 | Pending |
+| SIDE-07 | Phase 24 | Pending |
+| SIDE-08 | Phase 24 | Pending |
+| SIDE-09 | Phase 24 | Pending |
+| MEM-01 | Phase 25 | Pending |
+| MEM-02 | Phase 25 | Pending |
+| MEM-03 | Phase 25 | Pending |
+| MEM-04 | Phase 25 | Pending |
+| MEM-05 | Phase 25 | Pending |
+| ROUTE-01 | Phase 26 | Pending |
+| ROUTE-02 | Phase 26 | Pending |
+| ROUTE-03 | Phase 26 | Pending |
+| ROUTE-04 | Phase 26 | Pending |
+| ADAPT-01 | Phase 27 | Pending |
+| ADAPT-02 | Phase 27 | Pending |
+| ADAPT-03 | Phase 27 | Pending |
+| ADAPT-04 | Phase 27 | Pending |
+| ADAPT-05 | Phase 27 | Pending |
+| PLUG-01 | Phase 28 | Pending |
+| PLUG-02 | Phase 28 | Pending |
+| PLUG-03 | Phase 28 | Pending |
+| PLUG-04 | Phase 28 | Pending |
+| PLUG-05 | Phase 28 | Pending |
+| PLUG-06 | Phase 28 | Pending |
+| PLUG-07 | Phase 28 | Pending |
+| UI-01 | Phase 29 | Pending |
+| UI-02 | Phase 29 | Pending |
+| UI-03 | Phase 29 | Pending |
+| UI-04 | Phase 29 | Pending |
+| LEARN-01 | Phase 29 | Pending |
+| LEARN-02 | Phase 29 | Pending |
+| ADV-01 | Phase 30 | Pending |
+| ADV-02 | Phase 30 | Pending |
+| ADV-03 | Phase 30 | Pending |
+| ADV-04 | Phase 31 | Pending |
+| ADV-05 | Phase 31 | Pending |
 
 **Coverage:**
 
@@ -151,5 +151,6 @@ Deferred to future release. Tracked but not in current roadmap.
 - Unmapped: 0 ✓
 
 ---
+
 *Requirements defined: 2026-03-28*
-*Last updated: 2026-03-28 after initial definition*
+*Last updated: 2026-03-28 — traceability updated with milestone phase numbers (24-31)*
