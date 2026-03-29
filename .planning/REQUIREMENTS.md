@@ -1,86 +1,155 @@
-# Requirements: Agent42 v2.1 Multi-Project Workspace
+# Requirements: Agent42 v4.0 Paperclip Integration
 
-**Defined:** 2026-03-23
-**Core Value:** Agent42 must always be able to run agents reliably — multi-workspace extends this to running agents scoped to specific projects.
+**Defined:** 2026-03-28
+**Core Value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
 
-## v2.1 Requirements
+## v1 Requirements
 
 Requirements for this milestone. Each maps to roadmap phases.
 
-### Foundation
+### Sidecar Mode
 
-- [x] **FOUND-01**: Server-side WorkspaceRegistry persists workspace configs (ID, name, root_path) in `.agent42/workspaces.json`
-- [x] **FOUND-02**: `/api/workspaces` CRUD endpoints (list, create, update, delete) with path validation against filesystem
-- [x] **FOUND-03**: Workspace tab bar renders above editor tab bar with active workspace indicator
-- [x] **FOUND-04**: Default workspace auto-seeded from `AGENT42_WORKSPACE` on first load — zero behavior change for existing users
-- [x] **FOUND-05**: Workspace configuration persists across page reloads via localStorage (stale-while-revalidate against server)
-- [ ] **FOUND-06**: Workspace IDs used in all API calls — server resolves ID to path, never accepts raw paths from client
+- [ ] **SIDE-01**: Agent42 starts in sidecar mode via `--sidecar` flag, exposing adapter-friendly endpoints without dashboard UI
+- [ ] **SIDE-02**: Sidecar accepts heartbeat execution requests via `POST /sidecar/execute` with Paperclip's AdapterExecutionContext payload
+- [ ] **SIDE-03**: Sidecar returns 202 Accepted for long-running tasks and POSTs results to Paperclip's callback endpoint when done
+- [ ] **SIDE-04**: Sidecar exposes `GET /sidecar/health` returning memory, provider, and Qdrant connectivity status
+- [ ] **SIDE-05**: Sidecar validates Bearer token auth on all endpoints (reuses existing JWT middleware)
+- [ ] **SIDE-06**: Sidecar deduplicates execution requests by `runId` to prevent duplicate work on retries
+- [ ] **SIDE-07**: Sidecar produces structured JSON logging (no ANSI codes, no spinners) suitable for log aggregation
+- [ ] **SIDE-08**: Core services (MemoryStore, QdrantStore, AgentRuntime, EffectivenessStore) start identically in sidecar and dashboard modes
+- [ ] **SIDE-09**: Config extends with PAPERCLIP_SIDECAR_PORT, PAPERCLIP_API_URL, SIDECAR_ENABLED settings
 
-### Isolation
+### Memory Bridge
 
-- [x] **ISOL-01**: File explorer re-roots to active workspace folder on tab switch via `workspace_id` param on `/api/ide/tree`
-- [x] **ISOL-02**: Editor tabs partitioned by `workspace_id` — each workspace has independent open files, saved/restored on switch
-- [x] **ISOL-03**: Monaco view state (cursor, scroll, selection) saved per workspace tab and restored on switch
-- [x] **ISOL-04**: CC sessions scoped per workspace — subprocess `cwd` set to workspace root, session history filtered by workspace
-- [x] **ISOL-05**: Terminal sessions scoped per workspace — PTY spawned with `cwd` = workspace root, terminals hidden/shown on switch
-- [x] **ISOL-06**: Monaco model URIs prefixed with workspace ID to prevent cross-workspace file collisions
-- [ ] **ISOL-07**: localStorage/sessionStorage keys namespaced by workspace ID (CC history, session IDs, panel state)
+- [ ] **MEM-01**: MemoryBridge.recall() retrieves top-K relevant memories for an agent+task before execution starts
+- [ ] **MEM-02**: Memory recall has a 200ms hard timeout — returns empty list on timeout, never blocks execution
+- [ ] **MEM-03**: MemoryBridge.learn_async() extracts learnings from agent transcripts via fire-and-forget after execution
+- [ ] **MEM-04**: Sidecar exposes `POST /memory/recall` and `POST /memory/store` endpoints for plugin access
+- [ ] **MEM-05**: Memory scope supports agent-level and company-level isolation (agent_id vs company_id partitioning)
 
-### Management
+### Tiered Routing Bridge
 
-- [x] **MGMT-01**: Add workspace modal — manual path input with filesystem validation + dropdown for Agent42 internal apps
-- [ ] **MGMT-02**: Remove workspace — close button with unsaved-files guard, cannot remove last workspace
-- [x] **MGMT-03**: Rename workspace — click workspace tab name to edit inline
+- [ ] **ROUTE-01**: TieredRoutingBridge maps Paperclip agent roles (engineer/researcher/writer/analyst) to Agent42 task categories
+- [ ] **ROUTE-02**: Routing bridge queries RewardSystem for agent tier and upgrades model selection accordingly
+- [ ] **ROUTE-03**: AdapterConfig.preferredProvider overrides default provider selection when set
+- [ ] **ROUTE-04**: Routing bridge reports costUsd, usage tokens, model, and provider in callback response for Paperclip budget tracking
 
-## v2.2 Requirements
+### Paperclip Adapter
+
+- [ ] **ADAPT-01**: TypeScript adapter package implements Paperclip's ServerAdapterModule interface (execute, testEnvironment)
+- [ ] **ADAPT-02**: Adapter POSTs to Agent42 sidecar and handles both synchronous and async (202+callback) response patterns
+- [ ] **ADAPT-03**: Adapter maps wakeReason (heartbeat/task_assigned/manual) to appropriate execution behavior
+- [ ] **ADAPT-04**: Adapter preserves Agent42 agent ID in adapterConfig.agentId for memory and effectiveness continuity
+- [ ] **ADAPT-05**: Adapter includes sessionCodec for cross-heartbeat state persistence
+
+### Paperclip Plugin
+
+- [ ] **PLUG-01**: Plugin package has valid manifest.json with apiVersion 1, capability declarations, and instance config schema
+- [ ] **PLUG-02**: Plugin registers `memory_recall` agent tool — agents query semantically relevant memories by providing query, agentId, taskType
+- [ ] **PLUG-03**: Plugin registers `memory_store` agent tool — agents persist learnings with content, agentId, tags
+- [ ] **PLUG-04**: Plugin registers `route_task` agent tool — agents get optimal provider+model recommendation for a task type and quality target
+- [ ] **PLUG-05**: Plugin registers `tool_effectiveness` agent tool — agents query top tools by success rate for their task type
+- [ ] **PLUG-06**: Plugin exposes `mcp_tool_proxy` tool — agents invoke any Agent42 MCP tool through the plugin
+- [ ] **PLUG-07**: Plugin implements health(), initialize(config), and onShutdown() lifecycle handlers
+
+### Plugin UI
+
+- [ ] **UI-01**: Agent effectiveness detailTab on Paperclip agent pages shows tier badge, success rates by task type, model routing history
+- [ ] **UI-02**: Provider health dashboardWidget shows Agent42 provider availability at a glance
+- [ ] **UI-03**: Memory browser detailTab on run pages shows which memories were injected and which learnings were extracted
+- [ ] **UI-04**: Routing decisions dashboardWidget shows token spend distribution across providers over last 24h
+
+### Learning Extraction
+
+- [ ] **LEARN-01**: extract_learnings job runs hourly, fetches recent Paperclip run transcripts, extracts structured learnings, stores in Qdrant
+- [ ] **LEARN-02**: Extracted learnings feed into memory_recall results for future agent executions
+
+### Advanced Features
+
+- [ ] **ADV-01**: Automatic memory injection on heartbeat — plugin subscribes to heartbeat event and prepends relevant context to agent prompt
+- [ ] **ADV-02**: TeamTool fan-out strategy — tasks tagged strategy:fan-out spawn parallel sub-agents and aggregate results
+- [ ] **ADV-03**: TeamTool wave strategy — sequential wave execution mapped to single Paperclip ticket lifecycle
+- [ ] **ADV-04**: Migration CLI imports existing Agent42 agents into Paperclip company structure preserving agent IDs
+- [ ] **ADV-05**: Docker Compose config runs Paperclip + Agent42 sidecar + Qdrant + PostgreSQL with health checks and configurable ports
+
+## v2 Requirements
 
 Deferred to future release. Tracked but not in current roadmap.
 
-### Enhanced UX
+### Scaling & Multi-Tenant
 
-- **EUX-01**: Git branch indicator per workspace tab
-- **EUX-02**: Workspace-scoped search (search within active workspace only)
-- **EUX-03**: Drag-and-drop workspace tab reordering
-- **EUX-04**: Workspace color coding / custom icons
-- **EUX-05**: CC warm pool keyed by (user, workspace_id) for faster first response per workspace
+- **SCALE-01**: Multi-company Qdrant partitioning (company_id filter on all collections)
+- **SCALE-02**: Multiple sidecar instances behind nginx proxy for high-agent-count deployments
+- **SCALE-03**: Plugin per-company config via plugin_state keyed by companyId
+
+### Marketplace
+
+- **MARKET-01**: Publish Agent42 plugin to ClipMart marketplace
+- **MARKET-02**: Pre-built company templates featuring Agent42-powered agents
 
 ## Out of Scope
 
 | Feature | Reason |
-| ------- | ------ |
-| Cross-workspace search | High complexity, unclear UX value — search within active workspace is sufficient |
-| Shared editor tabs across workspaces | Violates isolation contract, causes state contamination bugs |
-| Conflating Agent42 Projects (Kanban) with workspaces | Different concepts — Projects are task management, workspaces are filesystem scope |
-| Multiple Monaco editor instances | 80MB RAM each — use model swapping instead |
-| Global cross-workspace file tree | VS Code multi-root model — wrong for Agent42's context-switching model |
+|---------|--------|
+| TypeScript rewrite of Agent42 sidecar | Agent42's value (ONNX, Qdrant, asyncio) is Python-native; rewriting wastes months |
+| Agent42 plugin managing Paperclip budgets | Budget authority belongs to Paperclip; dual accounting creates drift |
+| Full Agent42 dashboard embedded via iframe | Maintenance liability; use native Paperclip UI slots instead |
+| Plugin storing full conversation transcripts | Transcripts live in Paperclip's DB; duplicating creates bloat and consistency issues |
+| Agent42 reading Paperclip's PostgreSQL directly | Creates tight schema coupling; trust the AdapterExecutionContext payload |
+| Per-company plugin instances | Plugins are installation-global by design; use per-company config in plugin_state |
 
 ## Traceability
 
-| Requirement | Phase | Phase Name | Status |
-| ----------- | ----- | ---------- | ------ |
-| FOUND-01 | Phase 1 | Registry & Namespacing | Satisfied |
-| FOUND-02 | Phase 1 | Registry & Namespacing | Satisfied |
-| FOUND-04 | Phase 1 | Registry & Namespacing | Satisfied |
-| FOUND-06 | Phase 4 | Fix Workspace ID API Wiring | Pending |
-| ISOL-06 | Phase 1 | Registry & Namespacing | Satisfied |
-| ISOL-07 | Phase 5 | Fix Frontend State Isolation | Pending |
-| FOUND-03 | Phase 2 | IDE Surface Integration | Satisfied |
-| FOUND-05 | Phase 2 | IDE Surface Integration | Satisfied |
-| ISOL-01 | Phase 2 | IDE Surface Integration | Satisfied |
-| ISOL-02 | Phase 2 | IDE Surface Integration | Satisfied |
-| ISOL-03 | Phase 2 | IDE Surface Integration | Satisfied |
-| ISOL-04 | Phase 2 | IDE Surface Integration | Satisfied |
-| ISOL-05 | Phase 2 | IDE Surface Integration | Satisfied |
-| MGMT-01 | Phase 3 | Workspace Management | Satisfied |
-| MGMT-02 | Phase 5 | Fix Frontend State Isolation | Pending |
-| MGMT-03 | Phase 3 | Workspace Management | Satisfied |
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| SIDE-01 | Phase 1 | Pending |
+| SIDE-02 | Phase 1 | Pending |
+| SIDE-03 | Phase 1 | Pending |
+| SIDE-04 | Phase 1 | Pending |
+| SIDE-05 | Phase 1 | Pending |
+| SIDE-06 | Phase 1 | Pending |
+| SIDE-07 | Phase 1 | Pending |
+| SIDE-08 | Phase 1 | Pending |
+| SIDE-09 | Phase 1 | Pending |
+| MEM-01 | Phase 2 | Pending |
+| MEM-02 | Phase 2 | Pending |
+| MEM-03 | Phase 2 | Pending |
+| MEM-04 | Phase 2 | Pending |
+| MEM-05 | Phase 2 | Pending |
+| ROUTE-01 | Phase 3 | Pending |
+| ROUTE-02 | Phase 3 | Pending |
+| ROUTE-03 | Phase 3 | Pending |
+| ROUTE-04 | Phase 3 | Pending |
+| ADAPT-01 | Phase 4 | Pending |
+| ADAPT-02 | Phase 4 | Pending |
+| ADAPT-03 | Phase 4 | Pending |
+| ADAPT-04 | Phase 4 | Pending |
+| ADAPT-05 | Phase 4 | Pending |
+| PLUG-01 | Phase 5 | Pending |
+| PLUG-02 | Phase 5 | Pending |
+| PLUG-03 | Phase 5 | Pending |
+| PLUG-04 | Phase 5 | Pending |
+| PLUG-05 | Phase 5 | Pending |
+| PLUG-06 | Phase 5 | Pending |
+| PLUG-07 | Phase 5 | Pending |
+| UI-01 | Phase 6 | Pending |
+| UI-02 | Phase 6 | Pending |
+| UI-03 | Phase 6 | Pending |
+| UI-04 | Phase 6 | Pending |
+| LEARN-01 | Phase 6 | Pending |
+| LEARN-02 | Phase 6 | Pending |
+| ADV-01 | Phase 7 | Pending |
+| ADV-02 | Phase 7 | Pending |
+| ADV-03 | Phase 7 | Pending |
+| ADV-04 | Phase 8 | Pending |
+| ADV-05 | Phase 8 | Pending |
 
 **Coverage:**
-- v2.1 requirements: 16 total
-- Satisfied: 13 (checkboxed)
-- Pending (gap closure): 3 (FOUND-06 → Phase 4, ISOL-07 + MGMT-02 → Phase 5)
-- Unmapped: 0
+
+- v1 requirements: 41 total
+- Mapped to phases: 41
+- Unmapped: 0 ✓
 
 ---
-*Requirements defined: 2026-03-23*
-*Last updated: 2026-03-23 after roadmap creation*
+*Requirements defined: 2026-03-28*
+*Last updated: 2026-03-28 after initial definition*
