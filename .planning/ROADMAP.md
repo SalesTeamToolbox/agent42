@@ -63,7 +63,12 @@ Phases 1-4 complete, Phases 5-6 remaining (PTY streaming + chat UX polish).
 4. `GET /sidecar/health` returns memory, provider, and Qdrant connectivity status as structured JSON
 5. All sidecar endpoints reject requests without a valid Bearer token with 401
 
-**Plans**: TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 24-01-PLAN.md — Foundation: config fields, Pydantic models, JSON formatter
+- [ ] 24-02-PLAN.md — Sidecar server: app factory with routes, orchestrator
+- [ ] 24-03-PLAN.md — Integration: CLI wiring, Agent42 sidecar branch, tests
 
 ### Phase 25: Memory Bridge
 
@@ -226,7 +231,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 | ------- | ----------- | ---------------- | -------- | ----------- |
-| 24. Sidecar Mode | v4.0 | 0/TBD | Not started | - |
+| 24. Sidecar Mode | v4.0 | 0/3 | Planned | - |
 | 25. Memory Bridge | v4.0 | 0/TBD | Not started | - |
 | 26. Tiered Routing Bridge | v4.0 | 0/TBD | Not started | - |
 | 27. Paperclip Adapter | v4.0 | 0/TBD | Not started | - |
