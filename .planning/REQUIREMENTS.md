@@ -21,11 +21,11 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Memory Bridge
 
-- [ ] **MEM-01**: MemoryBridge.recall() retrieves top-K relevant memories for an agent+task before execution starts
-- [ ] **MEM-02**: Memory recall has a 200ms hard timeout — returns empty list on timeout, never blocks execution
-- [ ] **MEM-03**: MemoryBridge.learn_async() extracts learnings from agent transcripts via fire-and-forget after execution
-- [ ] **MEM-04**: Sidecar exposes `POST /memory/recall` and `POST /memory/store` endpoints for plugin access
-- [ ] **MEM-05**: Memory scope supports agent-level and company-level isolation (agent_id vs company_id partitioning)
+- [x] **MEM-01**: MemoryBridge.recall() retrieves top-K relevant memories for an agent+task before execution starts
+- [x] **MEM-02**: Memory recall has a 200ms hard timeout — returns empty list on timeout, never blocks execution
+- [x] **MEM-03**: MemoryBridge.learn_async() extracts learnings from agent transcripts via fire-and-forget after execution
+- [x] **MEM-04**: Sidecar exposes `POST /memory/recall` and `POST /memory/store` endpoints for plugin access
+- [x] **MEM-05**: Memory scope supports agent-level and company-level isolation (agent_id vs company_id partitioning)
 
 ### Tiered Routing Bridge
 
@@ -111,11 +111,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | SIDE-07 | Phase 24 | Complete — 24-01 |
 | SIDE-08 | Phase 24 | Complete — 24-03 |
 | SIDE-09 | Phase 24 | Complete — 24-01 |
-| MEM-01 | Phase 25 | Pending |
-| MEM-02 | Phase 25 | Pending |
-| MEM-03 | Phase 25 | Pending |
-| MEM-04 | Phase 25 | Pending |
-| MEM-05 | Phase 25 | Pending |
+| MEM-01 | Phase 25 | Complete |
+| MEM-02 | Phase 25 | Complete |
+| MEM-03 | Phase 25 | Complete |
+| MEM-04 | Phase 25 | Complete |
+| MEM-05 | Phase 25 | Complete |
 | ROUTE-01 | Phase 26 | Pending |
 | ROUTE-02 | Phase 26 | Pending |
 | ROUTE-03 | Phase 26 | Pending |
