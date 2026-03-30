@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Custom Claude Code UI
-status: Ready to execute
-stopped_at: Completed 26-01-PLAN.md — TieredRoutingBridge class and tests
-last_updated: "2026-03-30T03:17:26.225Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 26-02-PLAN.md — TieredRoutingBridge wired into SidecarOrchestrator
+last_updated: "2026-03-30T03:33:40.205Z"
 progress:
   total_phases: 8
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State
@@ -55,6 +55,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 25]: asyncio.wait_for timeout=0.2 enforced in both HTTP route and execute_async for consistent 200ms recall timeout (MEM-02)
 - [Phase 26-tiered-routing-bridge]: obs_count=0 passed to TierDeterminator — new sidecar agents start provisional, never prematurely Bronze (wire real obs_count in Phase 27)
 - [Phase 26-tiered-routing-bridge]: analyst->strategy mapping uses resolve_model general-fallback on synthetic (D-07): PROVIDER_MODELS['synthetic'] has no 'strategy' key, falls back to general silently
+- [Phase 26-tiered-routing-bridge]: agentRole key in ctx.context uses Paperclip camelCase convention — TODO phase-27 to verify against real payload
+- [Phase 26-tiered-routing-bridge]: TieredRoutingBridge constructed once in create_sidecar_app, shared across requests (D-11, D-14)
 
 ### Pending Todos
 
@@ -78,6 +80,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-30T03:17:26.221Z
-Stopped at: Completed 26-01-PLAN.md — TieredRoutingBridge class and tests
+Last session: 2026-03-30T03:33:40.201Z
+Stopped at: Completed 26-02-PLAN.md — TieredRoutingBridge wired into SidecarOrchestrator
 Resume file: None
