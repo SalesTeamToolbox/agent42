@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Custom Claude Code UI
-status: Ready to plan
-stopped_at: Phase 26 plans verified — ready to execute
-last_updated: "2026-03-30T03:03:21.288Z"
+status: Ready to execute
+stopped_at: Completed 26-01-PLAN.md — TieredRoutingBridge class and tests
+last_updated: "2026-03-30T03:17:26.225Z"
 progress:
   total_phases: 8
   completed_phases: 2
   total_plans: 7
-  completed_plans: 5
+  completed_plans: 6
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
-**Current focus:** Phase 25 — memory-bridge
+**Current focus:** Phase 26 — tiered-routing-bridge
 
 ## Current Position
 
-Phase: 26
-Plan: Not started
+Phase: 26 (tiered-routing-bridge) — EXECUTING
+Plan: 2 of 2
 
 ## Completed Milestones
 
@@ -53,6 +53,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 25]: MemoryBridge shared instance in create_sidecar_app() — one instance shared between HTTP routes and SidecarOrchestrator to prevent duplicate store connections
 - [Phase 25]: learn_async fired via asyncio.create_task AFTER _post_callback in execute_async finally block — callback never delayed by learning extraction (D-05)
 - [Phase 25]: asyncio.wait_for timeout=0.2 enforced in both HTTP route and execute_async for consistent 200ms recall timeout (MEM-02)
+- [Phase 26-tiered-routing-bridge]: obs_count=0 passed to TierDeterminator — new sidecar agents start provisional, never prematurely Bronze (wire real obs_count in Phase 27)
+- [Phase 26-tiered-routing-bridge]: analyst->strategy mapping uses resolve_model general-fallback on synthetic (D-07): PROVIDER_MODELS['synthetic'] has no 'strategy' key, falls back to general silently
 
 ### Pending Todos
 
@@ -76,6 +78,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-30T03:03:21.284Z
-Stopped at: Phase 26 plans verified — ready to execute
-Resume file: .planning/phases/26-tiered-routing-bridge/26-01-PLAN.md
+Last session: 2026-03-30T03:17:26.221Z
+Stopped at: Completed 26-01-PLAN.md — TieredRoutingBridge class and tests
+Resume file: None

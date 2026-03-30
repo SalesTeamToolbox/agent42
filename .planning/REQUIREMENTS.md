@@ -29,10 +29,10 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Tiered Routing Bridge
 
-- [ ] **ROUTE-01**: TieredRoutingBridge maps Paperclip agent roles (engineer/researcher/writer/analyst) to Agent42 task categories
-- [ ] **ROUTE-02**: Routing bridge queries RewardSystem for agent tier and upgrades model selection accordingly
-- [ ] **ROUTE-03**: AdapterConfig.preferredProvider overrides default provider selection when set
-- [ ] **ROUTE-04**: Routing bridge reports costUsd, usage tokens, model, and provider in callback response for Paperclip budget tracking
+- [x] **ROUTE-01**: TieredRoutingBridge maps Paperclip agent roles (engineer/researcher/writer/analyst) to Agent42 task categories
+- [x] **ROUTE-02**: Routing bridge queries RewardSystem for agent tier and upgrades model selection accordingly
+- [x] **ROUTE-03**: AdapterConfig.preferredProvider overrides default provider selection when set
+- [x] **ROUTE-04**: Routing bridge reports costUsd, usage tokens, model, and provider in callback response for Paperclip budget tracking
 
 ### Paperclip Adapter
 
@@ -116,10 +116,10 @@ Deferred to future release. Tracked but not in current roadmap.
 | MEM-03 | Phase 25 | Complete |
 | MEM-04 | Phase 25 | Complete |
 | MEM-05 | Phase 25 | Complete |
-| ROUTE-01 | Phase 26 | Pending |
-| ROUTE-02 | Phase 26 | Pending |
-| ROUTE-03 | Phase 26 | Pending |
-| ROUTE-04 | Phase 26 | Pending |
+| ROUTE-01 | Phase 26 | Complete |
+| ROUTE-02 | Phase 26 | Complete |
+| ROUTE-03 | Phase 26 | Complete |
+| ROUTE-04 | Phase 26 | Complete |
 | ADAPT-01 | Phase 27 | Pending |
 | ADAPT-02 | Phase 27 | Pending |
 | ADAPT-03 | Phase 27 | Pending |
