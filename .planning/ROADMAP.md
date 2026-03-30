@@ -118,7 +118,11 @@ Plans:
 3. A heartbeat with wakeReason "task_assigned" triggers a different execution path than "heartbeat" — observable in sidecar logs
 4. Agent memory and effectiveness data persist across multiple heartbeat sessions because the adapter preserves the Agent42 agent UUID
 
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 27-01-PLAN.md -- Package scaffold, types.ts contracts, Agent42Client HTTP client
+- [ ] 27-02-PLAN.md -- Adapter module (execute + testEnvironment), session codec, test suite
 
 ### Phase 28: Paperclip Plugin
 
@@ -242,7 +246,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 24. Sidecar Mode | v4.0 | 3/3 | Complete | 2026-03-29 |
 | 25. Memory Bridge | v4.0 | 2/2 | Complete    | 2026-03-29 |
 | 26. Tiered Routing Bridge | v4.0 | 2/2 | Complete   | 2026-03-30 |
-| 27. Paperclip Adapter | v4.0 | 0/TBD | Not started | - |
+| 27. Paperclip Adapter | v4.0 | 0/2 | Planning complete | - |
 | 28. Paperclip Plugin | v4.0 | 0/TBD | Not started | - |
 | 29. Plugin UI + Learning Extraction | v4.0 | 0/TBD | Not started | - |
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 0/TBD | Not started | - |
