@@ -255,4 +255,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-28 after v4.0 milestone start*
+*Last updated: 2026-03-30 — Phase 27 (Paperclip Adapter) complete: TypeScript adapter package with ServerAdapterModule, session codec, 58 tests*
