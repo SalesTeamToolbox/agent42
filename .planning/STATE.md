@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Custom Claude Code UI
-status: Ready to execute
-stopped_at: Completed 31-01-PLAN.md
-last_updated: "2026-03-31T23:00:25.424Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 31-02-PLAN.md
+last_updated: "2026-03-31T23:08:31.302Z"
 progress:
   total_phases: 8
-  completed_phases: 7
+  completed_phases: 8
   total_plans: 19
-  completed_plans: 18
+  completed_plans: 19
 ---
 
 # Project State
@@ -77,6 +77,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 31]: UUID5 namespace shared with qdrant_store.py for deterministic point ID regeneration
 - [Phase 31]: INSERT OR IGNORE for idempotent effectiveness row migration
 - [Phase 31]: ensure_target_collections reuses QdrantStore._ensure_collection via __new__ pattern
+- [Phase 31]: docker-compose.paperclip.yml is a NEW file alongside existing docker-compose.yml — standalone and Paperclip stacks stay independent (D-04)
+- [Phase 31]: Internal Docker URLs set in compose environment: blocks, NOT in .env — prevents container networking breakage (D-12)
 
 ### Pending Todos
 
@@ -100,6 +102,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-31T23:00:25.418Z
-Stopped at: Completed 31-01-PLAN.md
+Last session: 2026-03-31T23:08:31.298Z
+Stopped at: Completed 31-02-PLAN.md
 Resume file: None
