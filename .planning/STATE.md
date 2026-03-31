@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Custom Claude Code UI
-status: Ready to execute
-stopped_at: Completed 30-01-PLAN.md
-last_updated: "2026-03-31T21:37:26.929Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 30-02-PLAN.md
+last_updated: "2026-03-31T21:49:00.655Z"
 progress:
   total_phases: 8
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 17
-  completed_plans: 16
+  completed_plans: 17
 ---
 
 # Project State
@@ -72,6 +72,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 30-advanced-teamtool-auto-memory]: auto_memory defaults to True in AdapterConfig — opt-in disabling via autoMemory:false in adapter payload
 - [Phase 30-advanced-teamtool-auto-memory]: Strategy detection reads ctx.context.get('strategy', 'standard') — unknown values fall back to 'standard' with warning log
 - [Phase 30-advanced-teamtool-auto-memory]: memoryContext injected into ctx.context dict between routing and execution — allows AgentRuntime to access memories when wired (D-04)
+- [Phase 30-advanced-teamtool-auto-memory]: ctx.agents.invoke is fire-and-forget — fan-out subResults have status=invoked and empty output by SDK design
+- [Phase 30-advanced-teamtool-auto-memory]: Wave crash recovery reads ctx.state.get at run scope start and resumes from saved completedWaves index
 
 ### Pending Todos
 
@@ -95,6 +97,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-31T21:37:26.918Z
-Stopped at: Completed 30-01-PLAN.md
+Last session: 2026-03-31T21:49:00.646Z
+Stopped at: Completed 30-02-PLAN.md
 Resume file: None
