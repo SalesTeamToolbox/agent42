@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Custom Claude Code UI
-status: Ready to execute
-stopped_at: Completed 29-plugin-ui-learning-extraction 29-02-PLAN.md
-last_updated: "2026-03-31T17:28:45.883Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 29-plugin-ui-learning-extraction 29-03-PLAN.md
+last_updated: "2026-03-31T17:40:44.234Z"
 progress:
   total_phases: 8
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 15
-  completed_plans: 14
+  completed_plans: 15
 ---
 
 # Project State
@@ -67,6 +67,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 29-01]: drain_pending_transcripts strips internal SQLite id before returning — prevents leaking DB internals to callers
 - [Phase 29]: TestHarness.setup() does not exist in SDK — use plugin.definition.setup(harness.ctx) pattern matching existing worker.test.ts
 - [Phase 29]: routing-decisions handler calls client.getAgentSpend — spend data serves routing widget per plan spec
+- [Phase 29]: Exclude src/ui from tsc compilation — esbuild handles TSX, preventing rootDir conflict with NodeNext module
+- [Phase 29]: companyId passed as context.companyId ?? undefined to match PluginHostContext nullable string | null type
 
 ### Pending Todos
 
@@ -90,6 +92,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-31T17:28:45.879Z
-Stopped at: Completed 29-plugin-ui-learning-extraction 29-02-PLAN.md
+Last session: 2026-03-31T17:40:44.229Z
+Stopped at: Completed 29-plugin-ui-learning-extraction 29-03-PLAN.md
 Resume file: None
