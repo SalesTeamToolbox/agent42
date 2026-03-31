@@ -2,8 +2,8 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Custom Claude Code UI
-status: Phase complete — ready for verification
-stopped_at: Completed 31-02-PLAN.md
+status: Phase 31 complete — v4.0 milestone complete
+stopped_at: Phase 31 verified — all artifacts delivered
 last_updated: "2026-03-31T23:08:31.302Z"
 progress:
   total_phases: 8
@@ -23,14 +23,15 @@ See: .planning/PROJECT.md (updated 2026-03-28)
 
 ## Current Position
 
-Phase: 31 (advanced-migration-docker) — EXECUTING
-Plan: 2 of 2
+Phase: 31 (advanced-migration-docker) — COMPLETE
+Plan: 2 of 2 — all plans delivered
 
 ## Completed Milestones
 
 - v1.0, v1.1, v1.2, v1.4, v1.5, v1.6 — see MILESTONES.md
 - rewards-v1.0 Performance-Based Rewards — shipped 2026-03-25
 - v2.1 Multi-Project Workspace — shipped 2026-03-26 (5 phases, 16/16 reqs, 51 tests)
+- v4.0 Paperclip Integration — shipped 2026-03-31 (8 phases, 19/19 plans)
 
 ## Active Workstreams
 

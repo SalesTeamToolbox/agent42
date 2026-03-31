@@ -12,7 +12,7 @@
 - ✅ **v2.1 Multi-Project Workspace** — 3 phases (shipped 2026-03-24)
 - 🚧 **v2.0 Custom Claude Code UI** — Phases 1-4 complete, 5-6 remaining
 - 🚧 **v3.0 GSD & jcodemunch Integration** — Phase 1 complete, Phases 2-4 remaining
-- 🚧 **v4.0 Paperclip Integration** — Phases 24-31 (in progress)
+- ✅ **v4.0 Paperclip Integration** — Phases 24-31 (shipped 2026-03-31)
 
 ## Active Workstreams
 
@@ -33,20 +33,20 @@ See: `workstreams/custom-claude-code-ui/ROADMAP.md`
 
 Phases 1-4 complete, Phases 5-6 remaining (PTY streaming + chat UX polish).
 
-## 🚧 v4.0 Paperclip Integration (In Progress)
+## ✅ v4.0 Paperclip Integration (Shipped 2026-03-31)
 
 **Milestone Goal:** Integrate Agent42 with Paperclip as a plugin+adapter — Paperclip handles org management, scheduling, budgets, and governance; Agent42 contributes the intelligence layer (semantic memory, tiered routing, effectiveness tracking, MCP tools).
 
 ### Phases
 
 - [x] **Phase 24: Sidecar Mode** — Agent42 runs as a stripped FastAPI sidecar with adapter-friendly endpoints
-- [ ] **Phase 25: Memory Bridge** — MemoryBridge recalls and learns from Paperclip agent transcripts
-- [ ] **Phase 26: Tiered Routing Bridge** — Paperclip agent roles map to Agent42 provider/model selection
-- [ ] **Phase 27: Paperclip Adapter** — TypeScript adapter package implements Paperclip's ServerAdapterModule
-- [ ] **Phase 28: Paperclip Plugin** — Plugin package registers memory tools, MCP proxy, and lifecycle handlers
-- [ ] **Phase 29: Plugin UI + Learning Extraction** — Effectiveness panel, provider health widget, memory browser, hourly learning job
-- [ ] **Phase 30: Advanced — TeamTool + Auto Memory** — Fan-out/wave strategies and automatic memory injection on heartbeat
-- [ ] **Phase 31: Advanced — Migration + Docker** — Migration CLI and Docker Compose deployment
+- [x] **Phase 25: Memory Bridge** — MemoryBridge recalls and learns from Paperclip agent transcripts
+- [x] **Phase 26: Tiered Routing Bridge** — Paperclip agent roles map to Agent42 provider/model selection
+- [x] **Phase 27: Paperclip Adapter** — TypeScript adapter package implements Paperclip's ServerAdapterModule
+- [x] **Phase 28: Paperclip Plugin** — Plugin package registers memory tools, MCP proxy, and lifecycle handlers
+- [x] **Phase 29: Plugin UI + Learning Extraction** — Effectiveness panel, provider health widget, memory browser, hourly learning job
+- [x] **Phase 30: Advanced — TeamTool + Auto Memory** — Fan-out/wave strategies and automatic memory injection on heartbeat
+- [x] **Phase 31: Advanced — Migration + Docker** — Migration CLI and Docker Compose deployment
 
 ## Phase Details
 
@@ -282,4 +282,4 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | v2.1 Workspaces | 3 | 6 | Complete | 2026-03-24 |
 | v2.0 CC UI | 6 | - | In Progress | - |
 | v3.0 GSD Integration | 4 | 8+ | In Progress | - |
-| v4.0 Paperclip Integration | 8 | 19 | In Progress | - |
+| v4.0 Paperclip Integration | 8 | 19 | Complete | 2026-03-31 |
