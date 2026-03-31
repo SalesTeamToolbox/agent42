@@ -104,6 +104,7 @@ class SidecarOrchestrator:
                             agent_id=ctx.agent_id,
                             company_id=ctx.company_id,
                             top_k=5,
+                            run_id=run_id,
                         ),
                         timeout=0.2,  # 200ms hard limit (MEM-02)
                     )
@@ -153,6 +154,21 @@ class SidecarOrchestrator:
                         exc,
                     )
 
+            # Log routing decision for history queries (D-11)
+            if routing and self.effectiveness_store:
+                try:
+                    await self.effectiveness_store.log_routing_decision(
+                        run_id=run_id,
+                        agent_id=ctx.agent_id,
+                        company_id=ctx.company_id,
+                        provider=routing.provider,
+                        model=routing.model,
+                        tier=routing.tier,
+                        task_category=routing.task_category,
+                    )
+                except Exception as exc:
+                    logger.debug("Failed to log routing decision: %s", exc)
+
             # Step 2: Agent execution stub (Phase 24 — full AgentRuntime wired later)
             # recalled_memories stored in context for when AgentRuntime is wired (D-04)
             result = {
@@ -169,6 +185,21 @@ class SidecarOrchestrator:
                 "provider": routing.provider if routing else "",
             }
 
+            # Log spend for 24h aggregation (D-14)
+            if self.effectiveness_store:
+                try:
+                    await self.effectiveness_store.log_spend(
+                        agent_id=ctx.agent_id,
+                        company_id=ctx.company_id,
+                        provider=usage.get("provider", ""),
+                        model=usage.get("model", ""),
+                        input_tokens=usage.get("inputTokens", 0),
+                        output_tokens=usage.get("outputTokens", 0),
+                        cost_usd=usage.get("costUsd", 0.0),
+                    )
+                except Exception as exc:
+                    logger.debug("Failed to log spend: %s", exc)
+
         except Exception as exc:
             logger.error("Run %s failed: %s", run_id, exc, exc_info=True)
             status = "failed"
@@ -178,6 +209,19 @@ class SidecarOrchestrator:
             # Step 3: POST callback to Paperclip — never delayed by learn_async (D-05)
             await self._post_callback(run_id, status, result, usage, error)
 
+            # Capture transcript for deferred learning extraction (D-18)
+            if self.effectiveness_store and result.get("summary"):
+                try:
+                    await self.effectiveness_store.save_transcript(
+                        run_id=run_id,
+                        agent_id=ctx.agent_id,
+                        company_id=ctx.company_id,
+                        task_type=ctx.context.get("taskType", ""),
+                        summary=result.get("summary", ""),
+                    )
+                except Exception as exc:
+                    logger.debug("Failed to save transcript: %s", exc)
+
             # Step 4: Fire-and-forget learning extraction AFTER callback (MEM-03, D-05)
             if self.memory_bridge and ctx.agent_id and result.get("summary"):
                 asyncio.create_task(
@@ -186,6 +230,7 @@ class SidecarOrchestrator:
                         agent_id=ctx.agent_id,
                         company_id=ctx.company_id,
                         task_type=ctx.context.get("taskType", ""),
+                        run_id=run_id,
                     )
                 )
 
