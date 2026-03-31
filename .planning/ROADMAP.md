@@ -174,7 +174,11 @@ Plans:
 2. A task using the wave strategy executes sub-agents sequentially, with each wave's output available as input to the next wave within the same Paperclip ticket lifecycle
 3. On heartbeat start, relevant memories are automatically prepended to the agent prompt without the agent needing to call `memory_recall` — observable in the run transcript context
 
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [x] 30-01-PLAN.md — Strategy detection, fan-out/wave execution, memory auto-injection
+- [x] 30-02-PLAN.md — team_execute tool, event handler, manifest capability
 
 ### Phase 31: Advanced — Migration + Docker
 
@@ -187,7 +191,11 @@ Plans:
 2. Running `docker compose up` starts Paperclip, Agent42 sidecar, Qdrant, and PostgreSQL with health checks — all services reach healthy status without manual intervention
 3. Agent42 sidecar in Docker Compose can be reached by the Paperclip container and processes a test heartbeat execution successfully
 
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 31-01-PLAN.md — Migration CLI: Qdrant scroll-and-upsert with company_id remapping, SQLite bulk copy, tests
+- [ ] 31-02-PLAN.md — Docker Compose: 5-service topology with health checks, .env.paperclip.example template
 
 ## Completed Workstreams
 
@@ -260,7 +268,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 28. Paperclip Plugin | v4.0 | 3/3 | Complete   | 2026-03-31 |
 | 29. Plugin UI + Learning Extraction | v4.0 | 3/3 | Complete    | 2026-03-31 |
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 2/2 | Complete    | 2026-03-31 |
-| 31. Advanced — Migration + Docker | v4.0 | 0/TBD | Not started | - |
+| 31. Advanced — Migration + Docker | v4.0 | 0/2 | Planning complete | - |
 
 | Milestone | Phases | Plans | Status | Shipped |
 | ----------- | -------- | ------- | -------- | --------- |
@@ -274,4 +282,4 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | v2.1 Workspaces | 3 | 6 | Complete | 2026-03-24 |
 | v2.0 CC UI | 6 | - | In Progress | - |
 | v3.0 GSD Integration | 4 | 8+ | In Progress | - |
-| v4.0 Paperclip Integration | 8 | TBD | In Progress | - |
+| v4.0 Paperclip Integration | 8 | 19 | In Progress | - |
