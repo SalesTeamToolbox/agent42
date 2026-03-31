@@ -8,6 +8,7 @@ Paperclip's callback URL when complete.
 import asyncio
 import logging
 import time
+from datetime import UTC, datetime
 from typing import Any
 
 import httpx
@@ -169,6 +170,40 @@ class SidecarOrchestrator:
                 except Exception as exc:
                     logger.debug("Failed to log routing decision: %s", exc)
 
+            # Step 1.6: Auto-memory injection (ADV-01, D-12, D-14, D-15, D-16)
+            if recalled_memories and getattr(ctx.adapter_config, "auto_memory", True):
+                ctx.context["memoryContext"] = {
+                    "memories": [
+                        {"text": m["text"], "score": m["score"], "source": m.get("source", "")}
+                        for m in recalled_memories
+                    ],
+                    "injectedAt": datetime.now(UTC).isoformat(),
+                    "count": len(recalled_memories),
+                }
+                logger.info(
+                    "Auto-injected %d memories into context for run %s",
+                    len(recalled_memories),
+                    run_id,
+                )
+
+            # Step 1.7: Strategy detection (D-17, D-18, D-19)
+            strategy = ctx.context.get("strategy", "standard")
+            known_strategies = {"standard", "fan-out", "wave"}
+            if strategy not in known_strategies:
+                logger.warning(
+                    "Unknown strategy '%s' for run %s — falling back to 'standard'",
+                    strategy,
+                    run_id,
+                )
+                strategy = "standard"
+            if strategy != "standard":
+                logger.info(
+                    "Run %s using strategy '%s' for agent %s",
+                    run_id,
+                    strategy,
+                    ctx.agent_id,
+                )
+
             # Step 2: Agent execution stub (Phase 24 — full AgentRuntime wired later)
             # recalled_memories stored in context for when AgentRuntime is wired (D-04)
             result = {
@@ -176,6 +211,12 @@ class SidecarOrchestrator:
                 "wakeReason": ctx.wake_reason,
                 "taskId": ctx.task_id,
                 "recalledMemories": len(recalled_memories),
+                "autoMemory": {
+                    "count": len(recalled_memories),
+                    "injectedAt": ctx.context.get("memoryContext", {}).get("injectedAt"),
+                }
+                if recalled_memories and getattr(ctx.adapter_config, "auto_memory", True)
+                else None,
             }
             usage = {
                 "inputTokens": 0,
