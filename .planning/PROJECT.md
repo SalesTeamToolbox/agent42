@@ -72,10 +72,11 @@ Agent42 must always be able to run agents reliably, with tiered provider routing
 ### Active
 
 - [x] Agent42 sidecar mode with adapter-friendly endpoints — Validated in Phase 24
-- [ ] Paperclip adapter package (TypeScript, heartbeat/execute/status)
+- [x] Paperclip adapter package (TypeScript, heartbeat/execute/status) — Validated in Phase 27
 - [x] Memory bridge (inject at heartbeat start, extract learnings after execution) — Validated in Phase 25
-- [ ] Tiered routing bridge (task metadata → provider/model selection)
-- [ ] Paperclip plugin (memory tools, MCP tool proxy, effectiveness panel)
+- [x] Tiered routing bridge (task metadata → provider/model selection) — Validated in Phase 26
+- [x] Paperclip plugin (memory tools, MCP tool proxy, effectiveness panel) — Validated in Phase 28
+- [x] Plugin UI + Learning extraction (effectiveness tabs, provider health widget, memory browser, hourly learning job) — Validated in Phase 29
 - [ ] TeamTool integration as Paperclip task strategies
 - [ ] Docker Compose deployment (Paperclip + Agent42 + Qdrant + PostgreSQL)
 - [ ] Migration tooling (import existing agents into Paperclip company structure)
@@ -255,4 +256,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-30 — Phase 27 (Paperclip Adapter) complete: TypeScript adapter package with ServerAdapterModule, session codec, 58 tests*
+*Last updated: 2026-03-31 — Phase 29 (Plugin UI + Learning Extraction) complete: 4 UI slots, hourly learning job, 128 tests*
