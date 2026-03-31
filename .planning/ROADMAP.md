@@ -156,7 +156,12 @@ Plans:
 3. Opening a Paperclip run page shows a memory browser tab listing which memories were injected before the run and which learnings were extracted after
 4. One hour after the extract_learnings job runs, a subsequent `memory_recall` for the same agent type returns learnings derived from Paperclip run transcripts — demonstrating the feedback loop is closed
 
-**Plans**: TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 29-01-PLAN.md — Python sidecar data endpoints, run_id threading, transcript capture, SQLite tables
+- [ ] 29-02-PLAN.md — TypeScript plugin wiring: manifest, client methods, worker data/job handlers
+- [ ] 29-03-PLAN.md — React UI components, esbuild build, visual checkpoint
 
 ### Phase 30: Advanced — TeamTool + Auto Memory
 
@@ -253,7 +258,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 26. Tiered Routing Bridge | v4.0 | 2/2 | Complete   | 2026-03-30 |
 | 27. Paperclip Adapter | v4.0 | 2/2 | Complete    | 2026-03-30 |
 | 28. Paperclip Plugin | v4.0 | 3/3 | Complete   | 2026-03-31 |
-| 29. Plugin UI + Learning Extraction | v4.0 | 0/TBD | Not started | - |
+| 29. Plugin UI + Learning Extraction | v4.0 | 0/3 | Planning complete | - |
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 0/TBD | Not started | - |
 | 31. Advanced — Migration + Docker | v4.0 | 0/TBD | Not started | - |
 
