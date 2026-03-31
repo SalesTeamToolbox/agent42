@@ -142,7 +142,7 @@ Plans:
 Plans:
 - [x] 28-01-PLAN.md — Sidecar extensions: Pydantic models, config, routing/effectiveness/MCP endpoints
 - [x] 28-02-PLAN.md — Plugin package scaffold: manifest, types, Agent42Client, client tests
-- [ ] 28-03-PLAN.md — Plugin worker, tool registrations, lifecycle handlers, full test suite
+- [x] 28-03-PLAN.md — Plugin worker, tool registrations, lifecycle handlers, full test suite
 
 ### Phase 29: Plugin UI + Learning Extraction
 
@@ -252,7 +252,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 25. Memory Bridge | v4.0 | 2/2 | Complete    | 2026-03-29 |
 | 26. Tiered Routing Bridge | v4.0 | 2/2 | Complete   | 2026-03-30 |
 | 27. Paperclip Adapter | v4.0 | 2/2 | Complete    | 2026-03-30 |
-| 28. Paperclip Plugin | v4.0 | 2/3 | In Progress|  |
+| 28. Paperclip Plugin | v4.0 | 3/3 | Complete   | 2026-03-31 |
 | 29. Plugin UI + Learning Extraction | v4.0 | 0/TBD | Not started | - |
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 0/TBD | Not started | - |
 | 31. Advanced — Migration + Docker | v4.0 | 0/TBD | Not started | - |
