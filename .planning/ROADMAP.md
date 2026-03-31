@@ -159,7 +159,7 @@ Plans:
 **Plans:** 3 plans
 
 Plans:
-- [ ] 29-01-PLAN.md — Python sidecar data endpoints, run_id threading, transcript capture, SQLite tables
+- [x] 29-01-PLAN.md — Python sidecar data endpoints, run_id threading, transcript capture, SQLite tables
 - [ ] 29-02-PLAN.md — TypeScript plugin wiring: manifest, client methods, worker data/job handlers
 - [ ] 29-03-PLAN.md — React UI components, esbuild build, visual checkpoint
 
@@ -258,7 +258,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 26. Tiered Routing Bridge | v4.0 | 2/2 | Complete   | 2026-03-30 |
 | 27. Paperclip Adapter | v4.0 | 2/2 | Complete    | 2026-03-30 |
 | 28. Paperclip Plugin | v4.0 | 3/3 | Complete   | 2026-03-31 |
-| 29. Plugin UI + Learning Extraction | v4.0 | 0/3 | Planning complete | - |
+| 29. Plugin UI + Learning Extraction | v4.0 | 1/3 | In Progress|  |
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 0/TBD | Not started | - |
 | 31. Advanced — Migration + Docker | v4.0 | 0/TBD | Not started | - |
 

@@ -54,15 +54,15 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Plugin UI
 
-- [ ] **UI-01**: Agent effectiveness detailTab on Paperclip agent pages shows tier badge, success rates by task type, model routing history
-- [ ] **UI-02**: Provider health dashboardWidget shows Agent42 provider availability at a glance
-- [ ] **UI-03**: Memory browser detailTab on run pages shows which memories were injected and which learnings were extracted
-- [ ] **UI-04**: Routing decisions dashboardWidget shows token spend distribution across providers over last 24h
+- [x] **UI-01**: Agent effectiveness detailTab on Paperclip agent pages shows tier badge, success rates by task type, model routing history
+- [x] **UI-02**: Provider health dashboardWidget shows Agent42 provider availability at a glance
+- [x] **UI-03**: Memory browser detailTab on run pages shows which memories were injected and which learnings were extracted
+- [x] **UI-04**: Routing decisions dashboardWidget shows token spend distribution across providers over last 24h
 
 ### Learning Extraction
 
-- [ ] **LEARN-01**: extract_learnings job runs hourly, fetches recent Paperclip run transcripts, extracts structured learnings, stores in Qdrant
-- [ ] **LEARN-02**: Extracted learnings feed into memory_recall results for future agent executions
+- [x] **LEARN-01**: extract_learnings job runs hourly, fetches recent Paperclip run transcripts, extracts structured learnings, stores in Qdrant
+- [x] **LEARN-02**: Extracted learnings feed into memory_recall results for future agent executions
 
 ### Advanced Features
 
@@ -132,12 +132,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | PLUG-05 | Phase 28 | Pending |
 | PLUG-06 | Phase 28 | Pending |
 | PLUG-07 | Phase 28 | Pending |
-| UI-01 | Phase 29 | Pending |
-| UI-02 | Phase 29 | Pending |
-| UI-03 | Phase 29 | Pending |
-| UI-04 | Phase 29 | Pending |
-| LEARN-01 | Phase 29 | Pending |
-| LEARN-02 | Phase 29 | Pending |
+| UI-01 | Phase 29 | Complete |
+| UI-02 | Phase 29 | Complete |
+| UI-03 | Phase 29 | Complete |
+| UI-04 | Phase 29 | Complete |
+| LEARN-01 | Phase 29 | Complete |
+| LEARN-02 | Phase 29 | Complete |
 | ADV-01 | Phase 30 | Pending |
 | ADV-02 | Phase 30 | Pending |
 | ADV-03 | Phase 30 | Pending |

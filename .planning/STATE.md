@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Custom Claude Code UI
-status: Executing Phase 28
-stopped_at: Phase 29 plans complete (3 plans, 3 waves)
-last_updated: "2026-03-31T07:02:55.050Z"
+status: Ready to execute
+stopped_at: Completed 29-plugin-ui-learning-extraction 29-01-PLAN.md
+last_updated: "2026-03-31T17:18:22.674Z"
 progress:
   total_phases: 8
   completed_phases: 5
   total_plans: 15
-  completed_plans: 12
+  completed_plans: 13
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-28)
 
 **Core value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
-**Current focus:** Phase 28 — paperclip-plugin
+**Current focus:** Phase 29 — plugin-ui-learning-extraction
 
 ## Current Position
 
-Phase: 28 (paperclip-plugin) — EXECUTING
-Plan: 1 of 3
+Phase: 29 (plugin-ui-learning-extraction) — EXECUTING
+Plan: 2 of 3
 
 ## Completed Milestones
 
@@ -63,6 +63,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 27]: Near-identity serialize/deserialize: codec's role is defensive parsing + forward-compat, not compression
 - [Phase 27]: agentId resolved as (config.agentId || ctx.agent.id): falsy empty-string also falls back to Paperclip ID
 - [Phase 27]: JSON.stringify(sessionState) as sessionKey string: matches Python Pydantic sessionKey field type (D-08)
+- [Phase 29-01]: TierDeterminator.determine(success_rate, task_volume) used for agent tier in /agent/profile endpoint — sidecar agents use tool invocation counts as obs_count
+- [Phase 29-01]: drain_pending_transcripts strips internal SQLite id before returning — prevents leaking DB internals to callers
 
 ### Pending Todos
 
@@ -86,6 +88,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-31T07:02:55.046Z
-Stopped at: Phase 29 plans complete (3 plans, 3 waves)
-Resume file: .planning/phases/29-plugin-ui-learning-extraction/29-01-PLAN.md
+Last session: 2026-03-31T17:18:22.667Z
+Stopped at: Completed 29-plugin-ui-learning-extraction 29-01-PLAN.md
+Resume file: None
