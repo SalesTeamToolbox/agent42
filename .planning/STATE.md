@@ -1,15 +1,15 @@
 ---
 gsd_state_version: 1.0
-milestone: v2.0
-milestone_name: Custom Claude Code UI
-status: Phase 31 complete — v4.0 milestone complete
-stopped_at: Phase 31 verified — all artifacts delivered
-last_updated: "2026-03-31T23:08:31.302Z"
+milestone: v6.0
+milestone_name: Dashboard Unification
+status: Not started (defining requirements)
+stopped_at: Milestone v6.0 started
+last_updated: "2026-04-02T10:00:00.000Z"
 progress:
-  total_phases: 8
-  completed_phases: 8
-  total_plans: 19
-  completed_plans: 19
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
 ---
 
 # Project State
@@ -18,13 +18,15 @@ progress:
 
 See: .planning/PROJECT.md (updated 2026-03-28)
 
-**Core value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
-**Current focus:** Phase 31 — advanced-migration-docker
+**Core value:** Agent42 must always provide reliable intelligence services to Claude Code and Paperclip harnesses, with tiered provider routing ensuring no single provider outage stops the platform.
+**Current focus:** Defining requirements for v6.0 Dashboard Unification
 
 ## Current Position
 
-Phase: 31 (advanced-migration-docker) — COMPLETE
-Plan: 2 of 2 — all plans delivered
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-04-02 — Milestone v6.0 started
 
 ## Completed Milestones
 

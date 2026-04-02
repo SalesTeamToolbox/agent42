@@ -13,6 +13,8 @@
 - 🚧 **v2.0 Custom Claude Code UI** — Phases 1-4 complete, 5-6 remaining
 - 🚧 **v3.0 GSD & jcodemunch Integration** — Phase 1 complete, Phases 2-4 remaining
 - ✅ **v4.0 Paperclip Integration** — Phases 24-31 (shipped 2026-03-31)
+- 🚧 **v5.0 Provider Selection Refactor** — Phases 32-35 (in progress)
+- 🚧 **v6.0 Dashboard Unification** — Phases 36-40 (not started)
 
 ## Active Workstreams
 
@@ -32,6 +34,25 @@ See: `workstreams/gsd-and-jcodemunch-integration/ROADMAP.md`
 See: `workstreams/custom-claude-code-ui/ROADMAP.md`
 
 Phases 1-4 complete, Phases 5-6 remaining (PTY streaming + chat UX polish).
+
+### 🚧 Provider Selection Refactor (active)
+
+See: `workstreams/provider-selection-refactor/ROADMAP.md`
+
+- [x] Phase 32: Provider Selection Core (1/1 plans) — planned 2026-04-01
+- [x] Phase 33: Synthetic.new Integration (1/1 plans) — planned 2026-04-01
+- [ ] Phase 34: System Simplification (0/1 plans)
+- [ ] Phase 35: Paperclip Integration (0/1 plans)
+
+### 🚧 Dashboard Unification (active)
+
+See: `workstreams/dashboard-unification/ROADMAP.md`
+
+- [ ] Phase 36: Paperclip Integration Core (0/1 plans) — not started
+- [ ] Phase 37: Standalone Dashboard (0/1 plans) — not started
+- [ ] Phase 38: Provider UI Updates (0/1 plans) — not started
+- [ ] Phase 39: Unified Agent Management (0/1 plans) — not started
+- [ ] Phase 40: Settings Consolidation (0/1 plans) — not started
 
 ## ✅ v4.0 Paperclip Integration (Shipped 2026-03-31)
 

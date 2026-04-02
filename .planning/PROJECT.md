@@ -2,11 +2,11 @@
 
 ## What This Is
 
-An AI agent platform that operates across 9 LLM providers with tiered routing (L1 workhorse, L2 premium, free fallback), per-agent model configuration, performance-based rewards (Bronze/Silver/Gold tiers earn better models and higher limits), and graceful degradation. Features intelligent memory (ONNX + Qdrant with auto-sync from Claude Code), task-aware learning (effectiveness tracking + proactive injection), and native desktop app experience (PWA + GSD auto-activation).
+An AI intelligence layer that provides specialized tools, skills, and capabilities to Claude Code and Paperclip harnesses. When integrated with Paperclip, Agent42 contributes intelligent memory (ONNX + Qdrant with auto-sync), task-aware learning (effectiveness tracking + proactive injection), and performance-based rewards (Bronze/Silver/Gold tiers). When running standalone with Claude Code, Agent42 provides a simplified dashboard for settings and tool/skill management. Features tiered provider routing across 9 LLM providers (Claude Code Subscription first, Synthetic.new fallback) with graceful degradation.
 
 ## Core Value
 
-Agent42 must always be able to run agents reliably, with tiered provider routing (L1 workhorse -> free fallback -> L2 premium) ensuring no single provider outage stops the platform.
+Agent42 must always provide reliable intelligence services to Claude Code and Paperclip harnesses, with tiered provider routing (Claude Code Subscription first -> Synthetic.new fallback -> other providers) ensuring no single provider outage stops the platform.
 
 ## Requirements
 
@@ -81,20 +81,30 @@ Agent42 must always be able to run agents reliably, with tiered provider routing
 - [ ] Docker Compose deployment (Paperclip + Agent42 + Qdrant + PostgreSQL)
 - [ ] Migration tooling (import existing agents into Paperclip company structure)
 
-## Current Milestone: v4.0 Paperclip Integration
+## Current Milestone: v6.0 Dashboard Unification
 
-**Goal:** Integrate Agent42 with Paperclip as a plugin+adapter — Paperclip handles org management, scheduling, budgets, and governance; Agent42 contributes the intelligence layer (semantic memory, tiered routing, effectiveness tracking, MCP tools).
+**Goal:** Unify Agent42's dashboard experience for both standalone Claude Code integration and Paperclip orchestration, with simplified provider management and integrated workspace features.
 
 **Target features:**
 
-- Agent42 sidecar mode (FastAPI without dashboard, adapter-friendly endpoints)
-- Paperclip adapter package (TypeScript wrapper implementing heartbeat/execute/status)
-- Memory bridge (inject relevant memories at heartbeat start, extract learnings after execution)
-- Tiered routing bridge (task metadata → optimal provider/model selection)
-- Paperclip plugin (memory tools, MCP tool proxy, effectiveness dashboard panel)
-- TeamTool integration (fan-out-fan-in/wave workflows as Paperclip task strategies)
-- Docker Compose deployment (Paperclip + Agent42 sidecar + Qdrant + PostgreSQL)
-- Migration tooling (import existing agents into Paperclip company structure)
+- Paperclip Integration Mode — When Paperclip is active, integrate workspace coding terminal, sandboxed apps, tools and skills into Paperclip dashboard
+- Standalone Mode — When running without Paperclip (Claude Code only), provide simplified dashboard for settings and tool/skill management
+- Provider UI Updates — Remove StrongWall references, update provider configuration UI to match current provider structure
+- Unified Agent Management — Single interface to monitor and control agents from both Agent42 and Paperclip
+- Settings Consolidation — Streamlined settings management that works in both modes
+
+## Previous Milestone: v5.0 Provider Selection Refactor
+
+**Goal:** Modernize Agent42's provider selection system with Claude Code Subscription as the primary provider, properly integrated Synthetic.new as the reliable fallback, and dynamic model discovery for all providers.
+
+**Target features:**
+
+- Claude Code Subscription first — Check CC Subscription status before falling back to other providers
+- Remove StrongWall/fix Synthetic.new — Clean up StrongWall references and properly integrate Synthetic.new
+- Dynamic model discovery — Pull available models from Synthetic.new dynamically for agent and UI selection
+- Simplify L1/L2 tier system — Remove complex tiered routing in favor of simpler provider selection
+- Performance monitoring — Track model response times and reliability for intelligent selection
+- Cost optimization — Select models based on cost/performance ratio for different task types
 
 ## Previous Milestone: v1.3 Agent LLM Control
 

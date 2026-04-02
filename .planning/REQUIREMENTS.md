@@ -1,156 +1,109 @@
-# Requirements: Agent42 v4.0 Paperclip Integration
+# Requirements: Agent42 v6.0 Dashboard Unification
 
-**Defined:** 2026-03-28
-**Core Value:** Agent42 must always be able to run agents reliably, with tiered provider routing ensuring no single provider outage stops the platform.
+**Defined:** 2026-04-02
+**Core Value:** Agent42 must always provide reliable intelligence services to Claude Code and Paperclip harnesses, with tiered provider routing ensuring no single provider outage stops the platform.
 
 ## v1 Requirements
 
 Requirements for this milestone. Each maps to roadmap phases.
 
-### Sidecar Mode
+### Paperclip Integration Mode
 
-- [x] **SIDE-01**: Agent42 starts in sidecar mode via `--sidecar` flag, exposing adapter-friendly endpoints without dashboard UI
-- [x] **SIDE-02**: Sidecar accepts heartbeat execution requests via `POST /sidecar/execute` with Paperclip's AdapterExecutionContext payload
-- [x] **SIDE-03**: Sidecar returns 202 Accepted for long-running tasks and POSTs results to Paperclip's callback endpoint when done
-- [x] **SIDE-04**: Sidecar exposes `GET /sidecar/health` returning memory, provider, and Qdrant connectivity status
-- [x] **SIDE-05**: Sidecar validates Bearer token auth on all endpoints (reuses existing JWT middleware)
-- [x] **SIDE-06**: Sidecar deduplicates execution requests by `runId` to prevent duplicate work on retries
-- [x] **SIDE-07**: Sidecar produces structured JSON logging (no ANSI codes, no spinners) suitable for log aggregation
-- [x] **SIDE-08**: Core services (MemoryStore, QdrantStore, AgentRuntime, EffectivenessStore) start identically in sidecar and dashboard modes
-- [x] **SIDE-09**: Config extends with PAPERCLIP_SIDECAR_PORT, PAPERCLIP_API_URL, SIDECAR_ENABLED settings
+- [ ] **PAPERCLIP-01**: When Paperclip is active, integrate workspace coding terminal into Paperclip dashboard
+- [ ] **PAPERCLIP-02**: When Paperclip is active, integrate sandboxed apps into Paperclip dashboard
+- [ ] **PAPERCLIP-03**: When Paperclip is active, integrate tools and skills into Paperclip dashboard
+- [ ] **PAPERCLIP-04**: Retain settings management in Paperclip dashboard
+- [ ] **PAPERCLIP-05**: Remove redundant Agent42 dashboard components when Paperclip is active
 
-### Memory Bridge
+### Standalone Mode
 
-- [x] **MEM-01**: MemoryBridge.recall() retrieves top-K relevant memories for an agent+task before execution starts
-- [x] **MEM-02**: Memory recall has a 200ms hard timeout — returns empty list on timeout, never blocks execution
-- [x] **MEM-03**: MemoryBridge.learn_async() extracts learnings from agent transcripts via fire-and-forget after execution
-- [x] **MEM-04**: Sidecar exposes `POST /memory/recall` and `POST /memory/store` endpoints for plugin access
-- [x] **MEM-05**: Memory scope supports agent-level and company-level isolation (agent_id vs company_id partitioning)
+- [ ] **STANDALONE-01**: When running without Paperclip (Claude Code only), provide simplified dashboard for settings management
+- [ ] **STANDALONE-02**: When running without Paperclip, provide tool/skill management interface
+- [ ] **STANDALONE-03**: When running without Paperclip, provide basic agent monitoring capabilities
+- [ ] **STANDALONE-04**: When running without Paperclip, provide provider configuration UI
 
-### Tiered Routing Bridge
+### Provider UI Updates
 
-- [x] **ROUTE-01**: TieredRoutingBridge maps Paperclip agent roles (engineer/researcher/writer/analyst) to Agent42 task categories
-- [x] **ROUTE-02**: Routing bridge queries RewardSystem for agent tier and upgrades model selection accordingly
-- [x] **ROUTE-03**: AdapterConfig.preferredProvider overrides default provider selection when set
-- [x] **ROUTE-04**: Routing bridge reports costUsd, usage tokens, model, and provider in callback response for Paperclip budget tracking
+- [ ] **PROVIDER-01**: Remove all StrongWall.ai references from dashboard UI
+- [ ] **PROVIDER-02**: Update provider configuration UI to match current provider structure (Claude Code Subscription, Synthetic.new, Anthropic, OpenRouter)
+- [ ] **PROVIDER-03**: Display dynamic model discovery from Synthetic.new in provider selection UI
+- [ ] **PROVIDER-04**: Show provider status and connectivity in dashboard
+- [ ] **PROVIDER-05**: Enable model selection from dynamically discovered Synthetic.new models
 
-### Paperclip Adapter
+### Unified Agent Management
 
-- [x] **ADAPT-01**: TypeScript adapter package implements Paperclip's ServerAdapterModule interface (execute, testEnvironment)
-- [x] **ADAPT-02**: Adapter POSTs to Agent42 sidecar and handles both synchronous and async (202+callback) response patterns
-- [x] **ADAPT-03**: Adapter maps wakeReason (heartbeat/task_assigned/manual) to appropriate execution behavior
-- [x] **ADAPT-04**: Adapter preserves Agent42 agent ID in adapterConfig.agentId for memory and effectiveness continuity
-- [x] **ADAPT-05**: Adapter includes sessionCodec for cross-heartbeat state persistence
+- [ ] **AGENT-01**: Single interface to monitor and control agents from both Agent42 and Paperclip
+- [ ] **AGENT-02**: Unified view of agent performance metrics across both systems
+- [ ] **AGENT-03**: Consistent agent configuration interface regardless of deployment mode
+- [ ] **AGENT-04**: Shared agent templates that work in both Paperclip and standalone modes
 
-### Paperclip Plugin
+### Settings Consolidation
 
-- [ ] **PLUG-01**: Plugin package has valid manifest.json with apiVersion 1, capability declarations, and instance config schema
-- [ ] **PLUG-02**: Plugin registers `memory_recall` agent tool — agents query semantically relevant memories by providing query, agentId, taskType
-- [ ] **PLUG-03**: Plugin registers `memory_store` agent tool — agents persist learnings with content, agentId, tags
-- [ ] **PLUG-04**: Plugin registers `route_task` agent tool — agents get optimal provider+model recommendation for a task type and quality target
-- [ ] **PLUG-05**: Plugin registers `tool_effectiveness` agent tool — agents query top tools by success rate for their task type
-- [ ] **PLUG-06**: Plugin exposes `mcp_tool_proxy` tool — agents invoke any Agent42 MCP tool through the plugin
-- [ ] **PLUG-07**: Plugin implements health(), initialize(config), and onShutdown() lifecycle handlers
-
-### Plugin UI
-
-- [x] **UI-01**: Agent effectiveness detailTab on Paperclip agent pages shows tier badge, success rates by task type, model routing history
-- [x] **UI-02**: Provider health dashboardWidget shows Agent42 provider availability at a glance
-- [x] **UI-03**: Memory browser detailTab on run pages shows which memories were injected and which learnings were extracted
-- [x] **UI-04**: Routing decisions dashboardWidget shows token spend distribution across providers over last 24h
-
-### Learning Extraction
-
-- [x] **LEARN-01**: extract_learnings job runs hourly, fetches recent Paperclip run transcripts, extracts structured learnings, stores in Qdrant
-- [x] **LEARN-02**: Extracted learnings feed into memory_recall results for future agent executions
-
-### Advanced Features
-
-- [x] **ADV-01**: Automatic memory injection on heartbeat — plugin subscribes to heartbeat event and prepends relevant context to agent prompt
-- [x] **ADV-02**: TeamTool fan-out strategy — tasks tagged strategy:fan-out spawn parallel sub-agents and aggregate results
-- [x] **ADV-03**: TeamTool wave strategy — sequential wave execution mapped to single Paperclip ticket lifecycle
-- [x] **ADV-04**: Migration CLI imports existing Agent42 agents into Paperclip company structure preserving agent IDs
-- [x] **ADV-05**: Docker Compose config runs Paperclip + Agent42 sidecar + Qdrant + PostgreSQL with health checks and configurable ports
+- [ ] **SETTINGS-01**: Streamlined settings management that works in both Paperclip and standalone modes
+- [ ] **SETTINGS-02**: Unified API key management interface
+- [ ] **SETTINGS-03**: Consistent memory and learning configuration across both modes
+- [ ] **SETTINGS-04**: Shared tool and skill enable/disable controls
 
 ## v2 Requirements
 
 Deferred to future release. Tracked but not in current roadmap.
 
-### Scaling & Multi-Tenant
+### Advanced Features
 
-- **SCALE-01**: Multi-company Qdrant partitioning (company_id filter on all collections)
-- **SCALE-02**: Multiple sidecar instances behind nginx proxy for high-agent-count deployments
-- **SCALE-03**: Plugin per-company config via plugin_state keyed by companyId
+- **ADV-01**: Real-time collaboration features in Paperclip-integrated mode
+- **ADV-02**: Cross-node monitoring and management
+- **ADV-03**: Advanced analytics and reporting dashboard
+- **ADV-04**: Custom dashboard widgets and layouts
 
-### Marketplace
+### Mobile Support
 
-- **MARKET-01**: Publish Agent42 plugin to ClipMart marketplace
-- **MARKET-02**: Pre-built company templates featuring Agent42-powered agents
+- **MOBILE-01**: Responsive dashboard design for mobile devices
+- **MOBILE-02**: Mobile-specific features and optimizations
+- **MOBILE-03**: Offline capabilities for standalone mode
 
 ## Out of Scope
 
 | Feature | Reason |
 | ------- | ------ |
-| TypeScript rewrite of Agent42 sidecar | Agent42's value (ONNX, Qdrant, asyncio) is Python-native; rewriting wastes months |
-| Agent42 plugin managing Paperclip budgets | Budget authority belongs to Paperclip; dual accounting creates drift |
-| Full Agent42 dashboard embedded via iframe | Maintenance liability; use native Paperclip UI slots instead |
-| Plugin storing full conversation transcripts | Transcripts live in Paperclip's DB; duplicating creates bloat and consistency issues |
-| Agent42 reading Paperclip's PostgreSQL directly | Creates tight schema coupling; trust the AdapterExecutionContext payload |
-| Per-company plugin instances | Plugins are installation-global by design; use per-company config in plugin_state |
+| Full Agent42 dashboard when Paperclip is active | Redundant UI, maintenance liability; use native Paperclip UI slots instead |
+| Agent template management in standalone mode | Paperclip handles orchestration; Agent42 focuses on intelligence layer |
+| Complex workflow orchestration in standalone mode | Paperclip's responsibility; Agent42 provides tools/skills |
+| Real-time collaborative editing | High complexity, out of scope for v1 |
+| Native mobile app | Web-first approach; mobile later if needed |
 
 ## Traceability
 
 | Requirement | Phase | Status |
 | ----------- | ----- | ------ |
-| SIDE-01 | Phase 24 | Complete — 24-03 |
-| SIDE-02 | Phase 24 | Complete — 24-02 |
-| SIDE-03 | Phase 24 | Complete — 24-02 |
-| SIDE-04 | Phase 24 | Complete — 24-02 |
-| SIDE-05 | Phase 24 | Complete — 24-02 |
-| SIDE-06 | Phase 24 | Complete — 24-02 |
-| SIDE-07 | Phase 24 | Complete — 24-01 |
-| SIDE-08 | Phase 24 | Complete — 24-03 |
-| SIDE-09 | Phase 24 | Complete — 24-01 |
-| MEM-01 | Phase 25 | Complete |
-| MEM-02 | Phase 25 | Complete |
-| MEM-03 | Phase 25 | Complete |
-| MEM-04 | Phase 25 | Complete |
-| MEM-05 | Phase 25 | Complete |
-| ROUTE-01 | Phase 26 | Complete |
-| ROUTE-02 | Phase 26 | Complete |
-| ROUTE-03 | Phase 26 | Complete |
-| ROUTE-04 | Phase 26 | Complete |
-| ADAPT-01 | Phase 27 | Complete |
-| ADAPT-02 | Phase 27 | Complete |
-| ADAPT-03 | Phase 27 | Complete |
-| ADAPT-04 | Phase 27 | Complete |
-| ADAPT-05 | Phase 27 | Complete |
-| PLUG-01 | Phase 28 | Pending |
-| PLUG-02 | Phase 28 | Pending |
-| PLUG-03 | Phase 28 | Pending |
-| PLUG-04 | Phase 28 | Pending |
-| PLUG-05 | Phase 28 | Pending |
-| PLUG-06 | Phase 28 | Pending |
-| PLUG-07 | Phase 28 | Pending |
-| UI-01 | Phase 29 | Complete |
-| UI-02 | Phase 29 | Complete |
-| UI-03 | Phase 29 | Complete |
-| UI-04 | Phase 29 | Complete |
-| LEARN-01 | Phase 29 | Complete |
-| LEARN-02 | Phase 29 | Complete |
-| ADV-01 | Phase 30 | Complete |
-| ADV-02 | Phase 30 | Complete |
-| ADV-03 | Phase 30 | Complete |
-| ADV-04 | Phase 31 | Complete |
-| ADV-05 | Phase 31 | Complete |
+| PAPERCLIP-01 | TBD | Pending |
+| PAPERCLIP-02 | TBD | Pending |
+| PAPERCLIP-03 | TBD | Pending |
+| PAPERCLIP-04 | TBD | Pending |
+| PAPERCLIP-05 | TBD | Pending |
+| STANDALONE-01 | TBD | Pending |
+| STANDALONE-02 | TBD | Pending |
+| STANDALONE-03 | TBD | Pending |
+| STANDALONE-04 | TBD | Pending |
+| PROVIDER-01 | TBD | Pending |
+| PROVIDER-02 | TBD | Pending |
+| PROVIDER-03 | TBD | Pending |
+| PROVIDER-04 | TBD | Pending |
+| PROVIDER-05 | TBD | Pending |
+| AGENT-01 | TBD | Pending |
+| AGENT-02 | TBD | Pending |
+| AGENT-03 | TBD | Pending |
+| AGENT-04 | TBD | Pending |
+| SETTINGS-01 | TBD | Pending |
+| SETTINGS-02 | TBD | Pending |
+| SETTINGS-03 | TBD | Pending |
+| SETTINGS-04 | TBD | Pending |
 
 **Coverage:**
 
-- v1 requirements: 41 total
-- Mapped to phases: 41
-- Unmapped: 0 ✓
+- v1 requirements: 24 total
+- Mapped to phases: 0
+- Unmapped: 24 ✓
 
 ---
-
-*Requirements defined: 2026-03-28*
-*Last updated: 2026-03-28 — traceability updated with milestone phase numbers (24-31)*
+*Requirements defined: 2026-04-02*
+*Last updated: 2026-04-02 — v6.0 Dashboard Unification requirements*
