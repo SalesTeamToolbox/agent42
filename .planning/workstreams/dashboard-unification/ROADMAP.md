@@ -100,6 +100,6 @@ Plans:
 | ----- | -------------- | ------ | --------- |
 | 36. Paperclip Integration Core | 3/3 | Complete | 2026-04-03 |
 | 37. Standalone Dashboard | 2/2 | Complete | 2026-04-03 |
-| 38. Provider UI Updates | 2/2 | Complete   | 2026-04-04 |
+| 38. Provider UI Updates | 2/2 | Complete    | 2026-04-04 |
 | 39. Unified Agent Management | 0/1 | Not started | - |
 | 40. Settings Consolidation | 0/1 | Not started | - |
