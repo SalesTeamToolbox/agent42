@@ -55,6 +55,12 @@ Plans:
 **Goal**: Update provider configuration UI to match current provider structure
 **Depends on**: Phase 36, Phase 37
 **Requirements**: PROVIDER-01, PROVIDER-02, PROVIDER-03, PROVIDER-04, PROVIDER-05
+**Plans:** 2 plans
+
+Plans:
+- [ ] 38-01-PLAN.md — Backend: StrongWall cleanup + Synthetic models endpoint + provider status endpoint + tests
+- [ ] 38-02-PLAN.md — Frontend: Providers tab restructure + dynamic agent model dropdown + visual verification
+
 **Success Criteria** (what must be TRUE):
 
 1. All StrongWall.ai references are removed from dashboard UI
@@ -93,6 +99,6 @@ Plans:
 | ----- | -------------- | ------ | --------- |
 | 36. Paperclip Integration Core | 3/3 | Complete | 2026-04-03 |
 | 37. Standalone Dashboard | 2/2 | Complete | 2026-04-03 |
-| 38. Provider UI Updates | 0/1 | Not started | - |
+| 38. Provider UI Updates | 0/2 | Planned | - |
 | 39. Unified Agent Management | 0/1 | Not started | - |
 | 40. Settings Consolidation | 0/1 | Not started | - |
