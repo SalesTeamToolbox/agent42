@@ -85,11 +85,13 @@ Agent42 must always provide reliable intelligence services to Claude Code and Pa
 
 **Goal:** Unify Agent42's dashboard experience for both standalone Claude Code integration and Paperclip orchestration, with simplified provider management and integrated workspace features.
 
+**Current state:** Phase 38 (Provider UI Updates) complete — Providers tab restructured with CC Subscription/API Key/Media & Search sections, Synthetic model catalog, connectivity health dots, dynamic agent model selection. Phases 39-40 remaining.
+
 **Target features:**
 
 - Paperclip Integration Mode — When Paperclip is active, integrate workspace coding terminal, sandboxed apps, tools and skills into Paperclip dashboard
 - Standalone Mode — When running without Paperclip (Claude Code only), provide simplified dashboard for settings and tool/skill management
-- Provider UI Updates — Remove StrongWall references, update provider configuration UI to match current provider structure
+- ~~Provider UI Updates~~ — ✓ Validated in Phase 38: StrongWall removed, provider UI restructured, dynamic model selection
 - Unified Agent Management — Single interface to monitor and control agents from both Agent42 and Paperclip
 - Settings Consolidation — Streamlined settings management that works in both modes
 
@@ -158,7 +160,7 @@ Multi-project workspaces: Tabbed workspace scoping with isolated file explorer, 
 ## Constraints
 
 - **API compatibility**: All providers use OpenAI Chat Completions compatible APIs
-- **Tiered defaults**: L1 (StrongWall) when configured, free tier fallback, L2 premium opt-in
+- **Tiered defaults**: CC Subscription first, Synthetic.new fallback, other providers as needed
 - **Graceful degradation**: Missing API keys never crash Agent42
 - **Backward compatible**: Users without new API keys keep existing routing
 
