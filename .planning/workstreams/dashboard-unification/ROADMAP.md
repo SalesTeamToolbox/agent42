@@ -75,6 +75,12 @@ Plans:
 **Goal**: Single interface to monitor and control agents from both Agent42 and Paperclip
 **Depends on**: Phase 36, Phase 37
 **Requirements**: AGENT-01, AGENT-02, AGENT-03, AGENT-04
+**Plans:** 2 plans
+
+Plans:
+- [ ] 39-01-PLAN.md — Backend: Unified agent endpoint with Paperclip proxy, embedded performance data, graceful degradation + tests
+- [ ] 39-02-PLAN.md — Frontend: Enhanced agent cards with source badges, sparklines, filter controls, stats row, template badges + tests
+
 **Success Criteria** (what must be TRUE):
 
 1. Single interface allows monitoring and control of agents from both Agent42 and Paperclip
@@ -101,5 +107,5 @@ Plans:
 | 36. Paperclip Integration Core | 3/3 | Complete | 2026-04-03 |
 | 37. Standalone Dashboard | 2/2 | Complete | 2026-04-03 |
 | 38. Provider UI Updates | 2/2 | Complete    | 2026-04-04 |
-| 39. Unified Agent Management | 0/1 | Not started | - |
+| 39. Unified Agent Management | 0/2 | Planning complete | - |
 | 40. Settings Consolidation | 0/1 | Not started | - |
