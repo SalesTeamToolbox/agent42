@@ -77,6 +77,32 @@ See: `phases/41-abacus-provider-integration/`
 | ----- | -------------- | ------ | --------- |
 | 41. Abacus Provider Integration | 2/2 | Complete | 2026-04-05 |
 
+### 🚧 N8N Workflow Integration
+
+See: `phases/42-n8n-workflow-integration/`
+
+### Phase 42: N8N Workflow Integration
+
+**Goal**: Add two new Agent42 tools (`n8n_workflow` and `n8n_create_workflow`) that let agents offload repetitive, token-expensive tasks to deterministic N8N workflows. N8N runs locally via Docker for dev and on the Contabo VPS for production.
+**Depends on**: None (standalone feature)
+**Requirements**: D-01 through D-23 (from 42-CONTEXT.md)
+**Success Criteria** (what must be TRUE):
+
+1. Agents can list available N8N workflows via `n8n_workflow list`
+2. Agents can trigger a workflow via webhook and get synchronous results via `n8n_workflow trigger`
+3. Agents can check execution status and retrieve output via `n8n_workflow status/output`
+4. Agents can design and deploy new N8N workflows from natural language via `n8n_create_workflow`
+5. Dangerous N8N nodes (executeCommand, ssh, code, git) are blocked by default in generated workflows
+6. Both tools gracefully degrade when N8N is not configured (return informative error, never crash)
+7. N8N runs via Docker Compose with persistent storage and security hardening
+
+**Plans:** 3 plans
+
+Plans:
+- [ ] 42-01-PLAN.md — Config fields + n8n_workflow tool (list/trigger/status/output) + tests
+- [ ] 42-02-PLAN.md — n8n_create_workflow tool + templates + node validation + tests
+- [ ] 42-03-PLAN.md — MCP registration wiring + Docker Compose for N8N deployment
+
 ## ✅ v4.0 Paperclip Integration (Shipped 2026-03-31)
 
 **Milestone Goal:** Integrate Agent42 with Paperclip as a plugin+adapter — Paperclip handles org management, scheduling, budgets, and governance; Agent42 contributes the intelligence layer (semantic memory, tiered routing, effectiveness tracking, MCP tools).
@@ -313,6 +339,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 29. Plugin UI + Learning Extraction | v4.0 | 3/3 | Complete    | 2026-03-31 |
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 2/2 | Complete    | 2026-03-31 |
 | 31. Advanced — Migration + Docker | v4.0 | 2/2 | Complete   | 2026-03-31 |
+| 42. N8N Workflow Integration | v8.0 | 0/3 | Planned | — |
 
 | Milestone | Phases | Plans | Status | Shipped |
 | ----------- | -------- | ------- | -------- | --------- |
@@ -327,3 +354,4 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | v2.0 CC UI | 6 | - | In Progress | - |
 | v3.0 GSD Integration | 4 | 8+ | In Progress | - |
 | v4.0 Paperclip Integration | 8 | 19 | Complete | 2026-03-31 |
+| v8.0 N8N Integration | 1 | 3 | Planned | — |
