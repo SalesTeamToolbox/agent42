@@ -17,6 +17,7 @@
 - 🚧 **v6.0 Dashboard Unification** — Phases 36-40 (not started)
 - ✅ **v7.0 Abacus Provider & Paperclip Autonomy** — Phase 41 (complete 2026-04-05)
 - ✅ **v8.0 N8N Workflow Integration** — Phase 42 (complete 2026-04-05)
+- 🚧 **v9.0 Intelligent Workflow Offloading** — Phases 43-44 (not started)
 
 ## Active Workstreams
 
@@ -102,6 +103,35 @@ Plans:
 - [x] 42-01-PLAN.md — Config fields + n8n_workflow tool (list/trigger/status/output) + tests
 - [x] 42-02-PLAN.md — n8n_create_workflow tool + templates + node validation + tests
 - [x] 42-03-PLAN.md — MCP registration wiring + Docker Compose for N8N deployment
+
+### Phase 43: Effectiveness-Driven Workflow Offloading
+
+**Goal**: When Agent42's effectiveness tracker detects an agent repeating the same tool pattern 3+ times (same tool sequence, similar inputs), automatically suggest creating an N8N workflow. Integrate with the existing effectiveness scoring and learning extraction pipeline.
+**Depends on**: Phase 42
+**Success Criteria** (what must be TRUE):
+
+1. Effectiveness tracker detects repeated tool patterns (same tool chain executed 3+ times by same agent type)
+2. System generates a suggestion: "This pattern has repeated {N} times. Create an N8N workflow to save ~{tokens} tokens/run?"
+3. If agent confirms, `n8n_create_workflow` is called automatically with the detected pattern mapped to a template
+4. On subsequent runs, the agent routes to the workflow instead of executing the tool chain directly
+5. Token savings are tracked and visible in effectiveness dashboard
+
+Plans: none yet
+
+### Phase 44: Workflow Advisor Hook
+
+**Goal**: A pre-execution hook that intercepts agent tasks before they run and checks: (1) does an N8N workflow already exist for this pattern? (2) should one be created? Routes deterministic work to N8N and LLM-dependent work to the agent, splitting hybrid tasks when possible.
+**Depends on**: Phase 43
+**Success Criteria** (what must be TRUE):
+
+1. Pre-execution hook fires before every agent task execution
+2. Hook queries N8N workflow list and matches against incoming task description + tool requirements
+3. If matching workflow found, task is routed to `n8n_workflow trigger` instead of agent execution — zero tokens spent
+4. If no workflow but task matches a "workflow-eligible" heuristic (deterministic, no LLM reasoning needed), hook suggests creation
+5. Hybrid tasks are split: deterministic subtasks go to N8N, reasoning subtasks go to agent
+6. All routing decisions are logged for effectiveness tracking
+
+Plans: none yet
 
 ## ✅ v4.0 Paperclip Integration (Shipped 2026-03-31)
 
@@ -340,6 +370,8 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 2/2 | Complete    | 2026-03-31 |
 | 31. Advanced — Migration + Docker | v4.0 | 2/2 | Complete   | 2026-03-31 |
 | 42. N8N Workflow Integration | v8.0 | 3/3 | Complete | 2026-04-05 |
+| 43. Effectiveness-Driven Workflow Offloading | v9.0 | 0/0 | Not Started | — |
+| 44. Workflow Advisor Hook | v9.0 | 0/0 | Not Started | — |
 
 | Milestone | Phases | Plans | Status | Shipped |
 | ----------- | -------- | ------- | -------- | --------- |
@@ -354,4 +386,5 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | v2.0 CC UI | 6 | - | In Progress | - |
 | v3.0 GSD Integration | 4 | 8+ | In Progress | - |
 | v4.0 Paperclip Integration | 8 | 19 | Complete | 2026-03-31 |
-| v8.0 N8N Integration | 1 | 3 | Planned | — |
+| v8.0 N8N Integration | 1 | 3 | Complete | 2026-04-05 |
+| v9.0 Intelligent Offloading | 2 | — | Not Started | — |
