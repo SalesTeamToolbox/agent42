@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v6.0
 milestone_name: Dashboard Unification
-status: Executing Phase 39
-last_updated: "2026-04-05T04:51:18.227Z"
+status: Phase 39 Complete
+last_updated: "2026-04-05T05:16:00Z"
 progress:
   total_phases: 5
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 4
 ---
 
 # Workstream State
@@ -22,8 +22,8 @@ See: .planning/workstreams/dashboard-unification/ROADMAP.md
 
 ## Current Position
 
-Phase: 39 (Unified Agent Management) — EXECUTING
-Plan: 2 of 2 (39-01 complete)
+Phase: 39 (Unified Agent Management) — COMPLETE
+Plan: 2 of 2 (39-01 and 39-02 complete)
 
 ## Completed Phases
 
@@ -120,6 +120,18 @@ Plan: 2 of 2 (39-01 complete)
   - Settings mock must patch `dashboard.server.settings` (not `core.config.settings`) — direct import binding
   - httpx imported locally inside endpoint handler per project convention
   - asyncio.gather() for concurrent stats fetching to avoid N+1
+
+## Plan 39-02 Metrics
+
+- Duration: ~7 minutes
+- Tasks: 3/3 completed
+- Files modified: 3 (dashboard/frontend/dist/app.js, dashboard/frontend/dist/style.css, tests/test_unified_agents.py)
+- Tests: 24/24 passing (8 backend + 16 frontend content)
+- Commits: 3 (046ef45, 8453950, 2c915d4)
+- Decisions:
+  - _makeSparkline approximates daily_activity with flat distribution when data absent
+  - agentShowDetail falls back to /api/agents/{id} for Agent42 full detail fields
+  - Test file reads app.js/style.css at module level (not per-test) per Phase 38 pattern
 
 ## Blockers/Concerns
 

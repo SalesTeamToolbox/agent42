@@ -9,7 +9,7 @@
 - [x] **Phase 36: Paperclip Integration Core** — Integrate workspace features into Paperclip dashboard (COMPLETE)
 - [x] **Phase 37: Standalone Dashboard** — Create simplified dashboard for standalone mode (COMPLETE)
 - [x] **Phase 38: Provider UI Updates** — Update provider configuration UI to match current structure (COMPLETE)
-- [ ] **Phase 39: Unified Agent Management** — Single interface for agent monitoring and control
+- [x] **Phase 39: Unified Agent Management** — Single interface for agent monitoring and control (COMPLETE)
 - [ ] **Phase 40: Settings Consolidation** — Streamlined settings management across both modes
 
 ### Phase 36: Paperclip Integration Core
@@ -79,7 +79,7 @@ Plans:
 
 Plans:
 - [x] 39-01-PLAN.md — Backend: Unified agent endpoint with Paperclip proxy, embedded performance data, graceful degradation + tests (COMPLETE: 9e3b201, 7275511)
-- [ ] 39-02-PLAN.md — Frontend: Enhanced agent cards with source badges, sparklines, filter controls, stats row, template badges + tests
+- [x] 39-02-PLAN.md — Frontend: Enhanced agent cards with source badges, sparklines, filter controls, stats row, template badges + tests (COMPLETE: 046ef45, 8453950, 2c915d4)
 
 **Success Criteria** (what must be TRUE):
 
@@ -107,5 +107,5 @@ Plans:
 | 36. Paperclip Integration Core | 3/3 | Complete | 2026-04-03 |
 | 37. Standalone Dashboard | 2/2 | Complete | 2026-04-03 |
 | 38. Provider UI Updates | 2/2 | Complete    | 2026-04-04 |
-| 39. Unified Agent Management | 0/2 | Planning complete | - |
+| 39. Unified Agent Management | 2/2 | Complete | 2026-04-05 |
 | 40. Settings Consolidation | 0/1 | Not started | - |
