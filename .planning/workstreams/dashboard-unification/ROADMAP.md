@@ -10,7 +10,7 @@
 - [x] **Phase 37: Standalone Dashboard** — Create simplified dashboard for standalone mode (COMPLETE)
 - [x] **Phase 38: Provider UI Updates** — Update provider configuration UI to match current structure (COMPLETE)
 - [x] **Phase 39: Unified Agent Management** — Single interface for agent monitoring and control (COMPLETE)
-- [ ] **Phase 40: Settings Consolidation** — Streamlined settings management across both modes
+- [x] **Phase 40: Settings Consolidation** — Streamlined settings management across both modes (completed 2026-04-05)
 
 ### Phase 36: Paperclip Integration Core
 
@@ -93,12 +93,12 @@ Plans:
 **Goal**: Streamlined settings management that works in both Paperclip and standalone modes
 **Depends on**: Phase 36, Phase 37, Phase 38, Phase 39
 **Requirements**: SETTINGS-01, SETTINGS-02, SETTINGS-03, SETTINGS-04
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
-- [ ] 40-01-PLAN.md — Backend: Source field on settings keys, delete-on-empty, LEARNING_ENABLED config, learning guards, memory purge endpoint, sidecar proxies + tests
+- [x] 40-01-PLAN.md — Backend: Source field on settings keys, delete-on-empty, LEARNING_ENABLED config, learning guards, memory purge endpoint, sidecar proxies + tests
 - [x] 40-02-PLAN.md — Paperclip TypeScript: Updated types, client methods (toggleTool/Skill, memoryStats, purge), worker handlers, sidecar PATCH proxies (COMPLETE: 7a1e135, a0e5c82)
-- [ ] 40-03-PLAN.md — Frontend: Paperclip SettingsPage 6-tab expansion + standalone Memory & Learning tab + visual verification
+- [x] 40-03-PLAN.md — Frontend: Paperclip SettingsPage 6-tab expansion + standalone Memory & Learning tab + visual verification
 
 **Success Criteria** (what must be TRUE):
 
@@ -115,4 +115,4 @@ Plans:
 | 37. Standalone Dashboard | 2/2 | Complete | 2026-04-03 |
 | 38. Provider UI Updates | 2/2 | Complete    | 2026-04-04 |
 | 39. Unified Agent Management | 2/2 | Complete | 2026-04-05 |
-| 40. Settings Consolidation | 1/3 | In progress | - |
+| 40. Settings Consolidation | 3/3 | Complete   | 2026-04-05 |
