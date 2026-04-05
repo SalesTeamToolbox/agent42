@@ -82,6 +82,9 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 31]: ensure_target_collections reuses QdrantStore._ensure_collection via __new__ pattern
 - [Phase 31]: docker-compose.paperclip.yml is a NEW file alongside existing docker-compose.yml — standalone and Paperclip stacks stay independent (D-04)
 - [Phase 31]: Internal Docker URLs set in compose environment: blocks, NOT in .env — prevents container networking breakage (D-12)
+- [Phase 42]: N8N tools use Group A registration (no constructor args) with _safe_import — MCP server gracefully skips if httpx/tools missing
+- [Phase 42]: Separate docker-compose.n8n.yml (not merged into existing compose) — matches Phase 31 pattern for independent lifecycle management
+- [Phase 42]: N8N_ENCRYPTION_KEY uses Docker Compose :? required-var syntax — fails fast rather than silently corrupting stored credentials
 
 ### Pending Todos
 
@@ -106,6 +109,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-31T23:08:31.298Z
-Stopped at: Completed 31-02-PLAN.md
+Last session: 2026-04-05T20:14:34Z
+Stopped at: Completed 42-03-PLAN.md (Phase 42 N8N Workflow Integration — all 3 plans complete)
 Resume file: None
