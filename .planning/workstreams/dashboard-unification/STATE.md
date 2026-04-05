@@ -2,12 +2,12 @@
 gsd_state_version: 1.0
 milestone: v6.0
 milestone_name: Dashboard Unification
-status: Ready to plan
-last_updated: "2026-04-04T22:03:37.172Z"
+status: Executing Phase 39
+last_updated: "2026-04-05T04:51:18.227Z"
 progress:
   total_phases: 5
   completed_phases: 1
-  total_plans: 2
+  total_plans: 4
   completed_plans: 2
 ---
 
@@ -18,12 +18,12 @@ progress:
 See: .planning/workstreams/dashboard-unification/ROADMAP.md
 
 **Goal:** Unify Agent42's dashboard experience for both standalone Claude Code integration and Paperclip orchestration
-**Current focus:** Phase 38 — provider-ui-updates
+**Current focus:** Phase 39 — Unified Agent Management
 
 ## Current Position
 
-Phase: 39
-Plan: Not started
+Phase: 39 (Unified Agent Management) — EXECUTING
+Plan: 2 of 2 (39-01 complete)
 
 ## Completed Phases
 
@@ -42,6 +42,9 @@ Plan: Not started
 - [Phase 38]: Request-time accessor for _synthetic_client avoids import-time None capture
 - [Phase 38]: import os inline inside get_provider_status function body — not at server.py module level
 - [Phase 38]: TestProvidersTabStructure tests intentionally red — TDD red phase for PROVIDER-02 UI structure
+- [Phase 39-01]: Settings mock must patch `dashboard.server.settings` not `core.config.settings` — direct import binding
+- [Phase 39-01]: httpx imported locally inside endpoint handler per project convention
+- [Phase 39-01]: asyncio.gather() for concurrent stats fetching to avoid N+1
 
 ## Plan 36-01 Metrics
 
@@ -106,6 +109,17 @@ Plan: Not started
   - loadAgentModels called after DOM injection so #agent-model exists when function runs
   - Gemini demoted to Media and Search (no longer Recommended primary) per D-02
   - TDD cycle complete: TestProvidersTabStructure (8 tests) now green (was intentionally red in 38-01)
+
+## Plan 39-01 Metrics
+
+- Tasks: 2/2 completed
+- Files modified: 4 (dashboard/server.py, core/config.py, .env.example, tests/test_unified_agents.py)
+- Tests: 8/8 passing
+- Commits: 2 (9e3b201, 7275511)
+- Decisions:
+  - Settings mock must patch `dashboard.server.settings` (not `core.config.settings`) — direct import binding
+  - httpx imported locally inside endpoint handler per project convention
+  - asyncio.gather() for concurrent stats fetching to avoid N+1
 
 ## Blockers/Concerns
 

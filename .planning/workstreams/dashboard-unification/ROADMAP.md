@@ -78,7 +78,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 39-01-PLAN.md — Backend: Unified agent endpoint with Paperclip proxy, embedded performance data, graceful degradation + tests
+- [x] 39-01-PLAN.md — Backend: Unified agent endpoint with Paperclip proxy, embedded performance data, graceful degradation + tests (COMPLETE: 9e3b201, 7275511)
 - [ ] 39-02-PLAN.md — Frontend: Enhanced agent cards with source badges, sparklines, filter controls, stats row, template badges + tests
 
 **Success Criteria** (what must be TRUE):
