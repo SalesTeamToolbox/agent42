@@ -116,7 +116,11 @@ Plans:
 4. On subsequent runs, the agent routes to the workflow instead of executing the tool chain directly
 5. Token savings are tracked and visible in effectiveness dashboard
 
-Plans: none yet
+**Plans:** 2 plans
+
+Plans:
+- [ ] 43-01-PLAN.md — DB schema (3 tables) + EffectivenessStore methods + config + task_context accumulator helpers
+- [ ] 43-02-PLAN.md — ToolRegistry accumulator wiring + end_task flush + async _build_prompt suggestion injection
 
 ### Phase 44: Workflow Advisor Hook
 
@@ -131,7 +135,11 @@ Plans: none yet
 5. Hybrid tasks are split: deterministic subtasks go to N8N, reasoning subtasks go to agent
 6. All routing decisions are logged for effectiveness tracking
 
-Plans: none yet
+**Plans:** 2 plans
+
+Plans:
+- [ ] 43-01-PLAN.md — DB schema (3 tables) + EffectivenessStore methods + config + task_context accumulator helpers
+- [ ] 43-02-PLAN.md — ToolRegistry accumulator wiring + end_task flush + async _build_prompt suggestion injection
 
 ## ✅ v4.0 Paperclip Integration (Shipped 2026-03-31)
 
@@ -370,7 +378,7 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | 30. Advanced — TeamTool + Auto Memory | v4.0 | 2/2 | Complete    | 2026-03-31 |
 | 31. Advanced — Migration + Docker | v4.0 | 2/2 | Complete   | 2026-03-31 |
 | 42. N8N Workflow Integration | v8.0 | 3/3 | Complete | 2026-04-05 |
-| 43. Effectiveness-Driven Workflow Offloading | v9.0 | 0/0 | Not Started | — |
+| 43. Effectiveness-Driven Workflow Offloading | v9.0 | 0/2 | Planned | — |
 | 44. Workflow Advisor Hook | v9.0 | 0/0 | Not Started | — |
 
 | Milestone | Phases | Plans | Status | Shipped |
@@ -387,4 +395,4 @@ Archive: `milestones/v1.0-ROADMAP.md`
 | v3.0 GSD Integration | 4 | 8+ | In Progress | - |
 | v4.0 Paperclip Integration | 8 | 19 | Complete | 2026-03-31 |
 | v8.0 N8N Integration | 1 | 3 | Complete | 2026-04-05 |
-| v9.0 Intelligent Offloading | 2 | — | Not Started | — |
+| v9.0 Intelligent Offloading | 2 | 2 | In Progress | — |
