@@ -113,8 +113,8 @@ Plans:
 1. Effectiveness tracker detects repeated tool patterns (same tool chain executed 3+ times by same agent type)
 2. System generates a suggestion: "This pattern has repeated {N} times. Create an N8N workflow to save ~{tokens} tokens/run?"
 3. If agent confirms, `n8n_create_workflow` is called automatically with the detected pattern mapped to a template
-4. On subsequent runs, the agent routes to the workflow instead of executing the tool chain directly
-5. Token savings are tracked and visible in effectiveness dashboard
+4. Workflow mappings are persisted when agent creates a workflow from a suggestion (routing to workflows on subsequent runs is Phase 44)
+5. Token savings estimates are tracked in workflow_suggestions table (dashboard visualization deferred per D-12)
 
 **Plans:** 2 plans
 
