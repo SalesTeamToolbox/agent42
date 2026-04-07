@@ -2,8 +2,8 @@
 phase: 51
 slug: rebrand-and-repurpose
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-04-07
 ---
 
@@ -38,22 +38,14 @@ created: 2026-04-07
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 51-01-01 | 01 | 1 | BRAND-01 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_agent_apps_renamed -x` | ❌ W0 | ⬜ pending |
-| 51-01-02 | 01 | 1 | BRAND-02 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_sidebar_nav -x` | ❌ W0 | ⬜ pending |
-| 51-01-03 | 01 | 1 | BRAND-03 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_no_agent42_visible -x` | ❌ W0 | ⬜ pending |
-| 51-01-04 | 01 | 1 | BRAND-04 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_setup_wizard_copy -x` | ❌ W0 | ⬜ pending |
-| 51-02-01 | 02 | 1 | RPT-01 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_reports_tabs -x` | ❌ W0 | ⬜ pending |
-| 51-02-02 | 02 | 1 | RPT-02 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_tasks_tab_removed -x` | ❌ W0 | ⬜ pending |
-| 51-02-03 | 02 | 1 | RPT-03 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_health_tab_present -x` | ❌ W0 | ⬜ pending |
-| 51-02-04 | 02 | 1 | RPT-04 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_intelligence_overview -x` | ❌ W0 | ⬜ pending |
-| 51-03-01 | 03 | 2 | FEED-01 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_activity_renderer -x` | ❌ W0 | ⬜ pending |
-| 51-03-02 | 03 | 2 | FEED-02 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_intelligence_event_types -x` | ❌ W0 | ⬜ pending |
-| 51-03-03 | 03 | 2 | FEED-03 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_activity_endpoint -x` | ❌ W0 | ⬜ pending |
-| 51-04-01 | 04 | 1 | SET-01 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_channels_tab_removed -x` | ❌ W0 | ⬜ pending |
-| 51-04-02 | 04 | 1 | SET-02 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_routing_tab -x` | ❌ W0 | ⬜ pending |
-| 51-04-03 | 04 | 1 | SET-03 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_max_concurrent_removed -x` | ❌ W0 | ⬜ pending |
-| 51-04-04 | 04 | 1 | SET-04 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_load_channels_removed -x` | ❌ W0 | ⬜ pending |
-| 51-05-01 | 05 | 2 | CLEAN-05 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_readme_updated -x` | ❌ W0 | ⬜ pending |
+| 51-01-01 | 01 | 1 | W0 bootstrap | W0 create | `python -m pytest tests/test_rebrand_phase51.py -x -q` | W0 task | ⬜ pending |
+| 51-01-02 | 01 | 1 | BRAND-01, BRAND-03, SET-01..04 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py -x -q` | ✅ (51-01-01) | ⬜ pending |
+| 51-02-01 | 02 | 2 | RPT-01, RPT-02, RPT-03 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_reports_tabs -x` | ✅ (51-01-01) | ⬜ pending |
+| 51-02-02 | 02 | 2 | RPT-04 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_intelligence_overview -x` | ✅ (51-01-01) | ⬜ pending |
+| 51-03-01 | 03 | 3 | FEED-01, FEED-02, FEED-03 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_activity_endpoint -x` | ✅ (51-01-01) | ⬜ pending |
+| 51-03-02 | 03 | 3 | BRAND-02 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_sidebar_nav -x` | ✅ (51-01-01) | ⬜ pending |
+| 51-04-01 | 04 | 4 | BRAND-04 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_setup_wizard_copy -x` | ✅ (51-01-01) | ⬜ pending |
+| 51-04-02 | 04 | 4 | CLEAN-05 | unit (grep) | `python -m pytest tests/test_rebrand_phase51.py::test_readme_updated -x` | ✅ (51-01-01) | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
