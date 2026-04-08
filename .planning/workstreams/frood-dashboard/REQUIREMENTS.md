@@ -25,7 +25,7 @@
 - [x] **BRAND-01**: Rename "Sandboxed Apps" to "Agent Apps" throughout UI and API
 - [x] **BRAND-02**: Update sidebar navigation to show only kept features
 - [x] **BRAND-03**: Ensure all remaining pages use Frood branding (no "Agent42" remnants — logo alt, provider routing text, page titles, etc.)
-- [ ] **BRAND-04**: Update setup wizard to reflect Frood-as-service identity
+- [x] **BRAND-04**: Update setup wizard to reflect Frood-as-service identity
 
 ### Repurpose Reports Page
 
@@ -53,13 +53,73 @@
 - [x] **CLEAN-02**: Remove dead frontend code for stripped pages/components
 - [x] **CLEAN-03**: Remove unused Python modules (if any become orphaned)
 - [x] **CLEAN-04**: Ensure all tests still pass after removal
-- [ ] **CLEAN-05**: Update README to reflect Frood Dashboard as intelligence layer admin panel
+- [x] **CLEAN-05**: Update README to reflect Frood Dashboard as intelligence layer admin panel
+
+## v7.0 Requirements
+
+### Sidecar Auth
+
+- [ ] **AUTH-01**: Sidecar exposes a `/sidecar/token` endpoint that generates a JWT given valid credentials (API key or password)
+- [ ] **AUTH-02**: Adapter config accepts `apiKey` field that auto-provisions a bearer token on first connect
+- [ ] **AUTH-03**: Sidecar health endpoint (`/sidecar/health`) remains unauthenticated for container probes
+
+### Entry Point & Config
+
+- [ ] **ENTRY-01**: Main entry point renamed from `agent42.py` to `frood.py`
+- [ ] **ENTRY-02**: `agent42.py` backward-compat shim exists that imports and runs `frood.py`
+- [ ] **ENTRY-03**: All `AGENT42_*` environment variables renamed to `FROOD_*` with fallback to old names
+- [ ] **ENTRY-04**: `core/config.py` Settings reads `FROOD_*` vars (falling back to `AGENT42_*`)
+- [ ] **ENTRY-05**: `.env.example` updated with `FROOD_*` variable names
+
+### Data Directory Migration
+
+- [ ] **DATA-01**: Default data directory changed from `.agent42/` to `.frood/`
+- [ ] **DATA-02**: On startup, if `.agent42/` exists and `.frood/` does not, auto-migrate (rename) with log message
+- [ ] **DATA-03**: All hardcoded `.agent42/` path references in code updated to `.frood/`
+
+### Python Internals
+
+- [ ] **PY-01**: All logger names changed from `agent42.*` to `frood.*`
+- [ ] **PY-02**: All `[agent42-*]` print prefixes changed to `[frood-*]`
+- [ ] **PY-03**: MCP server module references updated from `agent42` to `frood`
+- [ ] **PY-04**: CLAUDE.md marker injection updated from `AGENT42_MEMORY` to `FROOD_MEMORY`
+
+### Frontend Identity
+
+- [ ] **FE-01**: localStorage key renamed from `agent42_token` to `frood_token` (with migration on load)
+- [ ] **FE-02**: BroadcastChannel renamed from `agent42_auth` to `frood_auth`
+- [ ] **FE-03**: Zero `agent42` references remain in `app.js` (case-insensitive, excluding comments about migration)
+
+### Docker & Infrastructure
+
+- [ ] **INFRA-01**: Docker service renamed from `agent42-sidecar` to `frood-sidecar` in compose files
+- [ ] **INFRA-02**: Docker volume renamed from `agent42-data` to `frood-data`
+- [ ] **INFRA-03**: Dockerfile updated: user, command references use `frood`
+- [ ] **INFRA-04**: `docker-compose.paperclip.yml` env vars use `FROOD_*` names
+
+### NPM Packages
+
+- [ ] **NPM-01**: Adapter package renamed from `@agent42/paperclip-adapter` to `@frood/paperclip-adapter`
+- [ ] **NPM-02**: Plugin package renamed from `@agent42/paperclip-plugin` to `@frood/paperclip-plugin`
+- [ ] **NPM-03**: Adapter/plugin directory names renamed from `agent42-paperclip` to `frood-paperclip`
+
+### Qdrant Collections
+
+- [ ] **QDRANT-01**: Default collection names changed from `agent42_memory`/`agent42_history` to `frood_memory`/`frood_history`
+- [ ] **QDRANT-02**: Migration code creates aliases from old collection names to new ones for backward compat
+- [ ] **QDRANT-03**: `QDRANT_COLLECTION_PREFIX` env var default updated
+
+### Tests & Documentation
+
+- [ ] **DOCS-01**: All test files updated to reference `frood` instead of `agent42`
+- [ ] **DOCS-02**: CLAUDE.md updated with `frood` references (entry point, data dir, env vars)
+- [ ] **DOCS-03**: `.env.example` fully reflects Frood naming
+- [ ] **DOCS-04**: Full test suite passes after all renames
 
 ## Out of Scope
 
 | Feature | Reason |
 | ------- | ------ |
-| Internal package rename (agent42 → frood) | Separate effort, high blast radius |
-| Sidecar API changes | Sidecar is the integration surface, not a dashboard concern |
-| Paperclip plugin changes | Plugin is a separate deliverable |
-| New dashboard features | Strip first, add later |
+| Git repo rename (agent42 → frood) | GitHub repo URL stays as-is for now — separate concern |
+| New dashboard features | Rename first, add features later |
+| Paperclip core changes | Only rename Frood-side adapter/plugin packages |
