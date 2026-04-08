@@ -2,11 +2,11 @@
 
 ## What This Is
 
-An AI intelligence layer that provides specialized tools, skills, and capabilities to Claude Code and Paperclip harnesses. When integrated with Paperclip, Agent42 contributes intelligent memory (ONNX + Qdrant with auto-sync), task-aware learning (effectiveness tracking + proactive injection), and performance-based rewards (Bronze/Silver/Gold tiers). When running standalone with Claude Code, Agent42 provides a simplified dashboard for settings and tool/skill management. Features tiered provider routing across 9 LLM providers (Claude Code Subscription first, Synthetic.new fallback) with graceful degradation.
+Frood is an AI intelligence layer that provides specialized tools, skills, and capabilities to Claude Code and Paperclip harnesses. When integrated with Paperclip, Frood contributes intelligent memory (ONNX + Qdrant with auto-sync), task-aware learning (effectiveness tracking + proactive injection), and performance-based rewards (Bronze/Silver/Gold tiers). When running standalone with Claude Code, Frood provides a simplified dashboard for settings and tool/skill management. Features tiered provider routing across 9 LLM providers (Claude Code Subscription first, Synthetic.new fallback) with graceful degradation.
 
 ## Core Value
 
-Agent42 must always provide reliable intelligence services to Claude Code and Paperclip harnesses, with tiered provider routing (Claude Code Subscription first -> Synthetic.new fallback -> other providers) ensuring no single provider outage stops the platform.
+Frood must always provide reliable intelligence services to Claude Code and Paperclip harnesses, with tiered provider routing (Claude Code Subscription first -> Synthetic.new fallback -> other providers) ensuring no single provider outage stops the platform.
 
 ## Requirements
 
@@ -81,19 +81,28 @@ Agent42 must always provide reliable intelligence services to Claude Code and Pa
 - [ ] Docker Compose deployment (Paperclip + Agent42 + Qdrant + PostgreSQL)
 - [ ] Migration tooling (import existing agents into Paperclip company structure)
 
-## Current Milestone: v6.0 Dashboard Unification
+## Current Milestone: v7.0 Full Agent42 → Frood Rename
 
-**Goal:** Unify Agent42's dashboard experience for both standalone Claude Code integration and Paperclip orchestration, with simplified provider management and integrated workspace features.
-
-**Current state:** Phase 38 (Provider UI Updates) complete — Providers tab restructured with CC Subscription/API Key/Media & Search sections, Synthetic model catalog, connectivity health dots, dynamic agent model selection. Phases 39-40 remaining.
+**Goal:** Complete the Frood identity by renaming every Agent42 reference in the codebase, fixing the sidecar auth gap Paperclip exposed, and ensuring backward compatibility for existing deployments.
 
 **Target features:**
 
-- Paperclip Integration Mode — When Paperclip is active, integrate workspace coding terminal, sandboxed apps, tools and skills into Paperclip dashboard
-- Standalone Mode — When running without Paperclip (Claude Code only), provide simplified dashboard for settings and tool/skill management
-- ~~Provider UI Updates~~ — ✓ Validated in Phase 38: StrongWall removed, provider UI restructured, dynamic model selection
-- Unified Agent Management — Single interface to monitor and control agents from both Agent42 and Paperclip
-- Settings Consolidation — Streamlined settings management that works in both modes
+- Sidecar Auth Fix — Add API key or token provisioning endpoint so external consumers (Paperclip, adapters) can authenticate
+- Entry Point Rename — `agent42.py` → `frood.py` (with backward-compat shim)
+- Data Directory Migration — `.agent42/` → `.frood/` with auto-migration on startup
+- Environment Variables — `AGENT42_*` → `FROOD_*` (accept both, prefer new)
+- Python Internals — Logger names, config paths, module references
+- Docker & Compose — Service names, volumes, env vars, Dockerfile references
+- NPM Packages — `@agent42/*` → `@frood/*` adapter and plugin packages
+- Frontend — localStorage keys, BroadcastChannel names (D-15 deferred items)
+- Qdrant Collections — Collection name migration with aliases
+- Tests & Docs — Update all references across test suite and planning docs
+
+## Previous Milestone: v6.0 Dashboard Unification + Frood Dashboard
+
+**Goal:** Unify dashboard experience, strip harness features, rebrand to Frood.
+
+**Delivered:** Paperclip integration mode, standalone mode, provider UI restructuring, settings consolidation (dashboard-unification workstream). Harness feature stripping, Frood rebrand, intelligence Reports, Activity Feed, setup wizard + README rewrite (frood-dashboard workstream). Phase 51 shipped with 24/24 tests, 9/9 must-haves verified.
 
 ## Previous Milestone: v5.0 Provider Selection Refactor
 

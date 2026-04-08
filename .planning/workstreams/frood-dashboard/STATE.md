@@ -1,14 +1,14 @@
 ---
 gsd_state_version: 1.0
-milestone: v6.0
-milestone_name: Frood Dashboard
-status: Milestone complete
-last_updated: "2026-04-08T00:27:32.500Z"
+milestone: v7.0
+milestone_name: Full Agent42 → Frood Rename
+status: Defining requirements
+last_updated: "2026-04-08T00:45:00.000Z"
 progress:
-  total_phases: 2
-  completed_phases: 2
-  total_plans: 8
-  completed_plans: 8
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
 ---
 
 # Workstream State
@@ -17,27 +17,23 @@ progress:
 
 See: .planning/workstreams/frood-dashboard/ROADMAP.md
 
-**Goal:** Transform the Agent42 dashboard into the Frood Dashboard — strip harness features, rebrand, repurpose intelligence surfaces
-**Current focus:** Phase 51 — COMPLETE
+**Goal:** Complete the Frood identity — rename all Agent42 references, fix sidecar auth, ensure backward compatibility
+**Current focus:** Defining requirements for v7.0
 
 ## Current Position
 
-Phase: 51
-Plan: Not started
-Last session: 2026-04-07 — Completed 51-04 (Setup wizard copy + README rewrite + all xfails removed)
+Phase: Not started (defining requirements)
+Plan: —
+Last session: 2026-04-08 — Milestone v7.0 started
 
-## Completed Phases
+## Completed Phases (v6.0)
 
 - **Phase 50: Strip Harness Features** — Completed 2026-04-07 (4/4 plans, verified)
+- **Phase 51: Rebrand & Repurpose** — Completed 2026-04-08 (4/4 plans, verified, 24/24 tests)
 
-## Decisions Made
+## Decisions Made (v6.0)
 
-- Deferred internal renames (agent42_token localStorage key, agent42_auth BroadcastChannel, .agent42/ paths, Python logger names) per D-15
-- Renamed Orchestrator tab ID to 'routing' in both tabs array and panels object (Pitfall 1 avoided)
-- Channels panel body deleted entirely, not just hidden — removes dead code cleanly
-- Routing tier logic: zen: prefix = L1, free model set (qwen3.6-plus-free/minimax-m2.5-free/nemotron-3-super-free) = free, else = L2
-- `_routing_stats` lives inside `create_app()` closure matching `_memory_stats` pattern
-- Ring buffer and `_record_intelligence_event()` defined inside `create_app()` closure to access `ws_manager` (Pitfall 3)
-- Routing hooks use `await` directly (non-blocking in-memory append); reason field: free-model / zen-prefix / premium-fallback
-- README rewritten from scratch — removed all harness/orchestrator content, focused on Frood Dashboard intelligence layer
-- Setup wizard tagline changed from 'all your tasks' to 'intelligent tools'; step 4 completion changed from 'Loading Mission Control' to 'Launching Frood Dashboard'
+- Deferred internal renames (agent42_token localStorage key, agent42_auth BroadcastChannel, .agent42/ paths, Python logger names) per D-15 — NOW IN SCOPE for v7.0
+- Routing tier logic: zen: prefix = L1, free model set = free, else = L2
+- Ring buffer and `_record_intelligence_event()` inside `create_app()` closure
+- README rewritten for Frood Dashboard intelligence layer identity
