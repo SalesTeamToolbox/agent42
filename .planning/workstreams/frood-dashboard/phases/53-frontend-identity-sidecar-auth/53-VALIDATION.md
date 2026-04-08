@@ -2,8 +2,8 @@
 phase: 53
 slug: frontend-identity-sidecar-auth
 status: draft
-nyquist_compliant: false
-wave_0_complete: false
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-04-08
 ---
 
@@ -41,7 +41,7 @@ created: 2026-04-08
 | 53-01-01 | 01 | 1 | FE-01 | grep | `grep -c "frood_token" dashboard/frontend/dist/app.js` | ✅ | ⬜ pending |
 | 53-01-02 | 01 | 1 | FE-02 | grep | `grep -c "frood_auth" dashboard/frontend/dist/app.js` | ✅ | ⬜ pending |
 | 53-01-03 | 01 | 1 | FE-03 | grep | `grep -c "agent42" dashboard/frontend/dist/app.js` (expect 0 or migration comments only) | ✅ | ⬜ pending |
-| 53-02-01 | 02 | 1 | AUTH-01 | unit | `python -m pytest tests/test_sidecar_token.py -v` | ❌ W0 | ⬜ pending |
+| 53-02-01 | 02 | 1 | AUTH-01 | unit | `python -m pytest tests/test_sidecar.py -x -q -k TestSidecarToken` | ✅ | ⬜ pending |
 | 53-02-02 | 02 | 1 | AUTH-03 | curl | `curl -s http://localhost:8001/sidecar/health` (manual) | ✅ | ⬜ pending |
 | 53-03-01 | 03 | 2 | AUTH-02 | grep | `grep "apiKey" adapters/agent42-paperclip/src/types.ts` | ✅ | ⬜ pending |
 
@@ -51,7 +51,7 @@ created: 2026-04-08
 
 ## Wave 0 Requirements
 
-- [ ] `tests/test_sidecar_token.py` — stubs for AUTH-01 (POST /sidecar/token password + API key paths)
+Existing infrastructure covers all phase requirements. Plan 02 Task 1 uses TDD (tests written first within task action, before implementation).
 
 *Note: No framework install needed — pytest already present.*
 
