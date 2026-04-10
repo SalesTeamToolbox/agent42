@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <service>
-  <id>agent42</id>
-  <name>Agent42</name>
-  <description>Agent42 AI Agent Platform - Dashboard, MCP Server, and LLM Proxy</description>
+  <id>frood</id>
+  <name>Frood</name>
+  <description>Frood AI Agent Platform - Dashboard, MCP Server, and LLM Proxy</description>
   <executable>C:\Users\rickw\AppData\Local\Python\pythoncore-3.14-64\python.exe</executable>
-  <arguments>agent42.py</arguments>
-  <workingdirectory>C:\Users\rickw\projects\agent42</workingdirectory>
+  <arguments>frood.py</arguments>
+  <workingdirectory>C:\Users\rickw\projects\frood</workingdirectory>
   <log mode="roll-by-size">
     <sizeThreshold>10240</sizeThreshold>
     <keepFiles>5</keepFiles>

@@ -12,7 +12,7 @@
     },
     "frood-remote": {
       "command": "ssh",
-      "args": ["agent42-prod", "cd ~/agent42 && FROOD_WORKSPACE=~/agent42 .venv/bin/python mcp_server.py"],
+      "args": ["frood-prod", "cd ~/frood && FROOD_WORKSPACE=~/frood .venv/bin/python mcp_server.py"],
       "env": {}
     },
     "jcodemunch": {
