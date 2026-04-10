@@ -1,5 +1,6 @@
 {
   "api_keys": {
-    "ZEN_API_KEY": "fernet:1:gAAAAABp1pZjWkVE28-iPAQ2y5UF1k83Q1v1ZAjMPdbJbmIuw7U_OhDVP71UzDuuKlnULl1M8wyJga-skqaYVbY6tsAZwDYqsCHcy4XIPZE0uyrCC46xhcLmlGeDT_2RZGHICPS1Rxl4yQ_GwOH9lBMv6TafraiLdsYPxdJwbFKOTZvuWIAQA8Q="
+    "ZEN_API_KEY": "fernet:1:gAAAAABp2CKcfaSclfH42hpvp907-M8kD7dzns3rWW8VM-kDrgsKEIs75e9pWKcaBWrk4Fjb6PsQme0SxjYieXkyY0R97hV5WD31dDZhddd5z5BHwbhPuCBKoEiDOqXUgpCme92ADX9do0HJOBuSY6T1bYdZxajnFPOSxzXzXz5aTlWiMwTyFLI=",
+    "NVIDIA_API_KEY": "nvapi-final-test-key-12345"
   }
 }

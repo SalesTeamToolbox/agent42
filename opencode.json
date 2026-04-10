@@ -1,14 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
-    "agent42": {
+    "frood": {
       "type": "local",
       "command": [
-        "c:\\Users\\rickw\\projects\\agent42\\.venv\\Scripts\\python.exe",
-        "c:\\Users\\rickw\\projects\\agent42\\mcp_server.py"
+        "c:\\Users\\rickw\\projects\\frood\\.venv\\Scripts\\python.exe",
+        "c:\\Users\\rickw\\projects\\frood\\mcp_server.py"
       ],
       "environment": {
-        "AGENT42_WORKSPACE": "c:\\Users\\rickw\\projects\\agent42",
+        "FROOD_WORKSPACE": "c:\\Users\\rickw\\projects\\frood",
         "REDIS_URL": "redis://localhost:6379/0",
         "QDRANT_URL": "http://localhost:6333",
         "ZEN_PROXY_ENABLED": "true",
@@ -18,8 +18,13 @@
     },
     "jcodemunch": {
       "type": "local",
-      "command": ["uvx", "jcodemunch-mcp"],
+      "command": ["python", "-m", "jcodemunch_mcp.server"],
       "enabled": true
+    },
+    "frood-remote": {
+      "type": "local",
+      "command": ["ssh", "prod-server", "cd", "/opt/frood", "&&", "python", "mcp_server.py"],
+      "enabled": false
     }
   },
   "provider": {

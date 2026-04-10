@@ -1,17 +1,17 @@
 {
   "mcpServers": {
     "frood": {
-      "command": "c:\\Users\\rickw\\projects\\agent42\\.venv\\Scripts\\python.exe",
-      "args": ["c:\\Users\\rickw\\projects\\agent42\\mcp_server.py"],
+      "command": "c:\\Users\\rickw\\projects\\frood\\.venv\\Scripts\\python.exe",
+      "args": ["c:\\Users\\rickw\\projects\\frood\\mcp_server.py"],
       "env": {
-        "FROOD_WORKSPACE": "c:\\Users\\rickw\\projects\\agent42",
+        "FROOD_WORKSPACE": "c:\\Users\\rickw\\projects\\frood",
         "REDIS_URL": "redis://localhost:6379/0",
         "QDRANT_URL": "http://localhost:6333"
       }
     },
     "jcodemunch": {
-      "command": "uvx",
-      "args": ["jcodemunch-mcp"],
+      "command": "python",
+      "args": ["-m", "jcodemunch_mcp.server"],
       "env": {}
     }
   }
