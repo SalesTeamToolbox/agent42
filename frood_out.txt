@@ -1,0 +1,137 @@
+Frood v2.0 initializing (MCP architecture)...
+2026-04-08 22:24:07,131 [INFO] frood.key_store: Loaded admin-configured ZEN_API_KEY
+2026-04-08 22:24:07,135 [INFO] frood.skills: Loaded skill: api-design from C:\Users\rickw\projects\frood\skills\builtins\api-design
+2026-04-08 22:24:07,135 [INFO] frood.skills: Loaded skill: app-builder from C:\Users\rickw\projects\frood\skills\builtins\app-builder
+2026-04-08 22:24:07,136 [INFO] frood.skills: Loaded skill: app-tester from C:\Users\rickw\projects\frood\skills\builtins\app-tester
+2026-04-08 22:24:07,137 [INFO] frood.skills: Loaded skill: brand-guidelines from C:\Users\rickw\projects\frood\skills\builtins\brand-guidelines
+2026-04-08 22:24:07,137 [INFO] frood.skills: Loaded skill: browser-load-test from C:\Users\rickw\projects\frood\skills\builtins\browser-load-test
+2026-04-08 22:24:07,138 [INFO] frood.skills: Loaded skill: ci-cd from C:\Users\rickw\projects\frood\skills\builtins\ci-cd
+2026-04-08 22:24:07,138 [INFO] frood.skills: Loaded skill: cms-deploy from C:\Users\rickw\projects\frood\skills\builtins\cms-deploy
+2026-04-08 22:24:07,138 [INFO] frood.skills: Loaded skill: code-review from C:\Users\rickw\projects\frood\skills\builtins\code-review
+2026-04-08 22:24:07,139 [INFO] frood.skills: Loaded skill: competitive-analysis from C:\Users\rickw\projects\frood\skills\builtins\competitive-analysis
+2026-04-08 22:24:07,139 [INFO] frood.skills: Loaded skill: content-writing from C:\Users\rickw\projects\frood\skills\builtins\content-writing
+2026-04-08 22:24:07,139 [INFO] frood.skills: Loaded skill: cowork from C:\Users\rickw\projects\frood\skills\builtins\cowork
+2026-04-08 22:24:07,140 [INFO] frood.skills: Loaded skill: data-analysis from C:\Users\rickw\projects\frood\skills\builtins\data-analysis
+2026-04-08 22:24:07,140 [INFO] frood.skills: Loaded skill: database-migration from C:\Users\rickw\projects\frood\skills\builtins\database-migration
+2026-04-08 22:24:07,140 [INFO] frood.skills: Loaded skill: debugging from C:\Users\rickw\projects\frood\skills\builtins\debugging
+2026-04-08 22:24:07,141 [INFO] frood.skills: Loaded skill: dependency-management from C:\Users\rickw\projects\frood\skills\builtins\dependency-management
+2026-04-08 22:24:07,141 [INFO] frood.skills: Loaded skill: deployment from C:\Users\rickw\projects\frood\skills\builtins\deployment
+2026-04-08 22:24:07,143 [INFO] frood.skills: Loaded skill: design-review from C:\Users\rickw\projects\frood\skills\builtins\design-review
+2026-04-08 22:24:07,144 [INFO] frood.skills: Loaded skill: docker-deploy from C:\Users\rickw\projects\frood\skills\builtins\docker-deploy
+2026-04-08 22:24:07,145 [INFO] frood.skills: Loaded skill: documentation from C:\Users\rickw\projects\frood\skills\builtins\documentation
+2026-04-08 22:24:07,145 [INFO] frood.skills: Loaded skill: email-marketing from C:\Users\rickw\projects\frood\skills\builtins\email-marketing
+2026-04-08 22:24:07,145 [INFO] frood.skills: Loaded skill: email-writing from C:\Users\rickw\projects\frood\skills\builtins\email-writing
+2026-04-08 22:24:07,146 [INFO] frood.skills: Loaded skill: geo from C:\Users\rickw\projects\frood\skills\builtins\geo
+2026-04-08 22:24:07,146 [INFO] frood.skills: Loaded skill: git-workflow from C:\Users\rickw\projects\frood\skills\builtins\git-workflow
+2026-04-08 22:24:07,146 [INFO] frood.skills: Loaded skill: github from C:\Users\rickw\projects\frood\skills\builtins\github
+2026-04-08 22:24:07,147 [INFO] frood.skills: Loaded skill: marketing from C:\Users\rickw\projects\frood\skills\builtins\marketing
+2026-04-08 22:24:07,147 [INFO] frood.skills: Loaded skill: memory from C:\Users\rickw\projects\frood\skills\builtins\memory
+2026-04-08 22:24:07,148 [INFO] frood.skills: Loaded skill: monitoring from C:\Users\rickw\projects\frood\skills\builtins\monitoring
+2026-04-08 22:24:07,148 [INFO] frood.skills: Loaded skill: n8n-automation from C:\Users\rickw\projects\frood\skills\builtins\n8n-automation
+2026-04-08 22:24:07,148 [INFO] frood.skills: Loaded skill: performance from C:\Users\rickw\projects\frood\skills\builtins\performance
+2026-04-08 22:24:07,149 [INFO] frood.skills: Loaded skill: platform-identity from C:\Users\rickw\projects\frood\skills\builtins\platform-identity
+2026-04-08 22:24:07,149 [INFO] frood.skills: Loaded skill: presentation from C:\Users\rickw\projects\frood\skills\builtins\presentation
+2026-04-08 22:24:07,149 [INFO] frood.skills: Loaded skill: project-interview from C:\Users\rickw\projects\frood\skills\builtins\project-interview
+2026-04-08 22:24:07,150 [INFO] frood.skills: Loaded skill: project-planning from C:\Users\rickw\projects\frood\skills\builtins\project-planning
+2026-04-08 22:24:07,150 [INFO] frood.skills: Loaded skill: qa-team from C:\Users\rickw\projects\frood\skills\builtins\qa-team
+2026-04-08 22:24:07,150 [INFO] frood.skills: Loaded skill: refactoring from C:\Users\rickw\projects\frood\skills\builtins\refactoring
+2026-04-08 22:24:07,151 [INFO] frood.skills: Loaded skill: release-notes from C:\Users\rickw\projects\frood\skills\builtins\release-notes
+2026-04-08 22:24:07,151 [INFO] frood.skills: Loaded skill: research from C:\Users\rickw\projects\frood\skills\builtins\research
+2026-04-08 22:24:07,151 [INFO] frood.skills: Loaded skill: security-audit from C:\Users\rickw\projects\frood\skills\builtins\security-audit
+2026-04-08 22:24:07,152 [INFO] frood.skills: Loaded skill: seo from C:\Users\rickw\projects\frood\skills\builtins\seo
+2026-04-08 22:24:07,152 [INFO] frood.skills: Loaded skill: server-management from C:\Users\rickw\projects\frood\skills\builtins\server-management
+2026-04-08 22:24:07,152 [INFO] frood.skills: Loaded skill: skill-creator from C:\Users\rickw\projects\frood\skills\builtins\skill-creator
+2026-04-08 22:24:07,153 [INFO] frood.skills: Loaded skill: social-media from C:\Users\rickw\projects\frood\skills\builtins\social-media
+2026-04-08 22:24:07,153 [INFO] frood.skills: Loaded skill: standup-report from C:\Users\rickw\projects\frood\skills\builtins\standup-report
+2026-04-08 22:24:07,153 [INFO] frood.skills: Loaded skill: strategy-analysis from C:\Users\rickw\projects\frood\skills\builtins\strategy-analysis
+2026-04-08 22:24:07,154 [INFO] frood.skills: Loaded skill: testing from C:\Users\rickw\projects\frood\skills\builtins\testing
+2026-04-08 22:24:07,154 [INFO] frood.skills: Loaded skill: tool-creator from C:\Users\rickw\projects\frood\skills\builtins\tool-creator
+2026-04-08 22:24:07,154 [INFO] frood.skills: Loaded skill: weather from C:\Users\rickw\projects\frood\skills\builtins\weather
+2026-04-08 22:24:07,155 [INFO] frood.skills: Loaded skill: wordpress from C:\Users\rickw\projects\frood\skills\builtins\wordpress
+2026-04-08 22:24:07,155 [INFO] frood.skills: Loaded skill: advanced-content-optimizer from C:\Users\rickw\projects\frood\skills\workspace\advanced-content-optimizer
+2026-04-08 22:24:07,156 [INFO] frood.skills: Loaded skill: file-management-optimizer from C:\Users\rickw\projects\frood\skills\workspace\file-management-optimizer
+2026-04-08 22:24:07,156 [INFO] frood.skills: Loaded skill: identical-vulnerability-persistence-breaker from C:\Users\rickw\projects\frood\skills\workspace\identical-vulnerability-persistence-breaker
+2026-04-08 22:24:07,156 [INFO] frood.skills: Loaded skill: repeated-security-issue-resolution from C:\Users\rickw\projects\frood\skills\workspace\repeated-security-issue-resolution
+2026-04-08 22:24:07,156 [INFO] frood.skills: Loaded skill: vulnerability-recurrence-prevention from C:\Users\rickw\projects\frood\skills\workspace\vulnerability-recurrence-prevention
+2026-04-08 22:24:07,157 [INFO] frood.skills: Loaded skill: vulnerability-remediation from C:\Users\rickw\projects\frood\skills\workspace\vulnerability-remediation
+2026-04-08 22:24:07,157 [INFO] frood.skills: Loaded 54 skills total
+2026-04-08 22:24:07,488 [INFO] frood.mcp.server: Workspace: C:\Users\rickw\projects\frood
+2026-04-08 22:24:07,828 [INFO] frood.memory.qdrant: Qdrant backend: connecting to server at http://localhost:6333
+2026-04-08 22:24:09,883 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:10,082 [INFO] httpx: HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2026-04-08 22:24:11,959 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:14,011 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:16,058 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:18,104 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:18,116 [INFO] frood.memory.redis_session: Redis backend: connected to redis://localhost:6379/0
+2026-04-08 22:24:18,118 [INFO] frood.memory.embeddings: Embeddings: no provider available — semantic search disabled
+2026-04-08 22:24:18,119 [INFO] frood.mcp.server: Memory backend: keyword search, dir=C:\Users\rickw\projects\frood\.frood\memory
+2026-04-08 22:24:18,198 [INFO] frood.mcp.server: Registered 31 tools for MCP
+2026-04-08 22:24:18,849 [INFO] frood.memory.qdrant: Qdrant backend: connecting to server at http://localhost:6333
+2026-04-08 22:24:20,901 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:21,537 [INFO] httpx: HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2026-04-08 22:24:22,949 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:24,982 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:27,013 [INFO] httpx: HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2026-04-08 22:24:27,043 [INFO] frood.memory.redis_session: Redis backend: connected to redis://localhost:6379/0
+2026-04-08 22:24:27,047 [INFO] frood.agent_manager: Loaded 0 agents
+2026-04-08 22:24:27,048 [INFO] frood: Frood v2.0 initialized (MCP architecture)
+2026-04-08 22:24:27,051 [INFO] frood: Frood starting...
+2026-04-08 22:24:27,052 [INFO] frood:   Skills loaded: 54
+2026-04-08 22:24:27,052 [INFO] frood:   Tools registered: 31
+2026-04-08 22:24:27,053 [WARNING] frood: Auth config: username='admin', password=not set, hash=set (bcrypt)
+2026-04-08 22:24:27,054 [INFO] frood.heartbeat: Heartbeat service started (interval: 30s)
+2026-04-08 22:24:27,054 [INFO] frood:   Security scanning: enabled (every 8h)
+2026-04-08 22:24:27,066 [INFO] frood.app_manager: Loaded 1 app(s) from apps\apps.json
+2026-04-08 22:24:27,218 [INFO] frood:   Dashboard: http://127.0.0.1:8000
+2026-04-08 22:24:27,220 [INFO] frood: Frood ready — MCP tools available via Claude Code
+2026-04-08 22:24:27,221 [INFO] frood.tools.cron: Loaded 0 cron jobs
+2026-04-08 22:24:27,221 [INFO] frood.tools.cron: Cron scheduler started with 0 jobs
+2026-04-08 22:24:27,222 [INFO] frood.tools.cron: Computed stagger offsets for 0 jobs
+2026-04-08 22:24:27,224 [INFO] frood.security_scanner: Security scanner started (interval: 8.0h)
+2026-04-08 22:24:27,317 [INFO] frood: Frood stopped
+Frood process exiting (atexit)
+2026-04-08 22:24:27,438 [ERROR] asyncio: Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<HeartbeatService._monitor_loop() done, defined at C:\Users\rickw\projects\frood\core\heartbeat.py:362> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-04-08 22:24:27,439 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<Server.serve() done, defined at C:\Users\rickw\AppData\Roaming\Python\Python314\site-packages\uvicorn\server.py:77> exception=SystemExit(1)>
+Traceback (most recent call last):
+  File "C:\Users\rickw\AppData\Roaming\Python\Python314\site-packages\uvicorn\server.py", line 172, in startup
+    server = await loop.create_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 1638, in create_server
+    raise OSError(err.errno, msg) from None
+OSError: [Errno 10048] error while attempting to bind on address ('127.0.0.1', 8000): [winerror 10048] only one usage of each socket address (protocol/network address/port) is normally permitted
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\rickw\projects\frood\frood.py", line 430, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\rickw\projects\frood\frood.py", line 418, in main
+    loop.run_until_complete(frood.start())
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 706, in run_until_complete
+    self.run_forever()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 677, in run_forever
+    self._run_once()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 2057, in _run_once
+    handle._run()
+    ~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\events.py", line 94, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rickw\AppData\Roaming\Python\Python314\site-packages\uvicorn\server.py", line 79, in serve
+    await self._serve(sockets)
+  File "C:\Users\rickw\AppData\Roaming\Python\Python314\site-packages\uvicorn\server.py", line 94, in _serve
+    await self.startup(sockets=sockets)
+  File "C:\Users\rickw\AppData\Roaming\Python\Python314\site-packages\uvicorn\server.py", line 182, in startup
+    sys.exit(1)
+    ~~~~~~~~^^^
+SystemExit: 1
