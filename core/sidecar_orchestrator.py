@@ -96,6 +96,10 @@ class SidecarOrchestrator:
         total_output = 0
         all_results: list[str] = []
 
+        # Use nemotron for research — better tool calling than minimax
+        if provider == "zen":
+            model = "nemotron-3-super-free"
+
         # Extract API config from the task prompt
         api_token = "3399cb9b2df4c5bfb7d1204d326cb64d04ffaf5314f7115a98a1ca9a7f7bd80f"
         api_base = "https://synergicsolar.com/api/v1/prospects"
@@ -690,13 +694,19 @@ Step 3: Report what was imported vs skipped."""
             if fallback not in providers_to_try:
                 providers_to_try.append(fallback)
 
+        task_type = kwargs.get("task_type", "")
+
+        # Route to best free model per task type
+        zen_model_for_task = {
+            "research": "nemotron-3-super-free",
+            "email": "minimax-m2.5-free",
+        }.get(task_type, "minimax-m2.5-free")
+
         fallback_models = {
-            "zen": "minimax-m2.5-free",
+            "zen": zen_model_for_task,
             "nvidia": "nvidia/nemotron-3-super:free",
             "openrouter": "google/gemini-2.0-flash-001",
         }
-
-        task_type = kwargs.get("task_type", "")
         tool_schemas = self._get_tool_schemas(task_type)
         total_input = 0
         total_output = 0
