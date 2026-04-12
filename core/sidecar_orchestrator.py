@@ -125,7 +125,7 @@ DO NOT fetch websites. DO NOT import. DO NOT format with python — just output 
             provider, model,
             [{"role": "user", "content": search_prompt}],
             f"{run_id}-search", agent_id=ctx.agent_id,
-            task_type="research",
+            task_type="research", phase="search",
         )
         total_input += search_result.get("input_tokens", 0)
         total_output += search_result.get("output_tokens", 0)
@@ -158,7 +158,7 @@ Only include companies where you found a real email address (not info@example.co
             provider, model,
             [{"role": "user", "content": fetch_prompt}],
             f"{run_id}-fetch", agent_id=ctx.agent_id,
-            task_type="research",
+            task_type="research", phase="fetch",
         )
         total_input += fetch_result.get("input_tokens", 0)
         total_output += fetch_result.get("output_tokens", 0)
@@ -197,7 +197,7 @@ Step 3: Report what was imported vs skipped."""
             provider, model,
             [{"role": "user", "content": import_prompt}],
             f"{run_id}-import", agent_id=ctx.agent_id,
-            task_type="research",
+            task_type="research", phase="import",
         )
         total_input += import_result.get("input_tokens", 0)
         total_output += import_result.get("output_tokens", 0)
@@ -619,12 +619,20 @@ Step 3: Report what was imported vs skipped."""
 
             unregister_run(run_id)
 
-    # Tool whitelists per task type — only expose relevant tools
+    # Tool whitelists per task type — only expose relevant tools.
+    # NOTE: research phases use more specific whitelists, see _execute_research_workflow.
     _TASK_TOOL_WHITELIST: dict[str, set[str]] = {
-        "research": {"web_search", "web_fetch", "http_request", "python_exec"},
+        "research": {"web_search", "web_fetch", "http_request"},  # NO python_exec — model wastes iterations
         "email": {"python_exec", "http_request"},
         "coding": {"python_exec", "git", "run_tests", "run_linter", "code_intel"},
         "monitoring": {"python_exec", "http_request"},
+    }
+
+    # Per-phase tool whitelists for the research workflow (override the task whitelist)
+    _RESEARCH_PHASE_TOOLS: dict[str, set[str]] = {
+        "search": {"web_search"},           # SEARCH phase: ONLY search
+        "fetch":  {"web_fetch"},            # FETCH phase: ONLY fetch
+        "import": {"http_request"},         # IMPORT phase: ONLY http_request (call APIs)
     }
 
     # Max tool-call iterations per task type (default 25 for uncategorized)
@@ -634,12 +642,21 @@ Step 3: Report what was imported vs skipped."""
         "monitoring": 5,
     }
 
-    def _get_tool_schemas(self, task_type: str = "") -> list[dict]:
-        """Get OpenAI function-calling schemas, filtered by task type."""
+    def _get_tool_schemas(self, task_type: str = "", phase: str = "") -> list[dict]:
+        """Get OpenAI function-calling schemas, filtered by task type (and research phase).
+
+        For research tasks, phase-specific whitelists override the task-type whitelist,
+        ensuring each phase only sees the tools it needs (avoids model distraction).
+        """
         if not self.tool_registry:
             return []
 
-        whitelist = self._TASK_TOOL_WHITELIST.get(task_type)
+        # Research phases use per-phase whitelists
+        if task_type == "research" and phase in self._RESEARCH_PHASE_TOOLS:
+            whitelist = self._RESEARCH_PHASE_TOOLS[phase]
+        else:
+            whitelist = self._TASK_TOOL_WHITELIST.get(task_type)
+
         schemas = []
         for tool in self.tool_registry._tools.values():
             if tool.name in self.tool_registry._disabled:
@@ -700,6 +717,7 @@ Step 3: Report what was imported vs skipped."""
                 providers_to_try.append(fallback)
 
         task_type = kwargs.get("task_type", "")
+        phase = kwargs.get("phase", "")
 
         # Route to best free model per task type
         zen_model_for_task = {
@@ -712,7 +730,7 @@ Step 3: Report what was imported vs skipped."""
             "nvidia": "nvidia/nemotron-3-super:free",
             "openrouter": "google/gemini-2.0-flash-001",
         }
-        tool_schemas = self._get_tool_schemas(task_type)
+        tool_schemas = self._get_tool_schemas(task_type, phase=phase)
         total_input = 0
         total_output = 0
         last_error = ""
@@ -751,6 +769,16 @@ Step 3: Report what was imported vs skipped."""
                             payload["tools"] = tool_schemas
 
                         resp = await client.post(config["url"], headers=headers, json=payload)
+                        if resp.status_code == 429:
+                            # Rate limited — back off and retry this iteration
+                            retry_after = 5.0
+                            try:
+                                retry_after = float(resp.headers.get("retry-after", "5"))
+                            except Exception:
+                                pass
+                            logger.warning("Rate limited on %s, sleeping %.1fs", prov, retry_after)
+                            await asyncio.sleep(min(retry_after, 10))
+                            continue
                         if resp.status_code >= 400:
                             last_error = f"HTTP {resp.status_code}: {resp.text[:300]}"
                             logger.warning("Provider %s failed for run %s: %s", prov, run_id, last_error)
