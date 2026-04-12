@@ -754,6 +754,21 @@ Step 3: Report what was imported vs skipped."""
         except Exception as exc:
             return f"Error executing {name}: {exc}"
 
+    @staticmethod
+    def _extract_message_content(msg: dict) -> str:
+        """Extract textual content from an LLM response message.
+
+        Prefers `content`, but falls back to `reasoning_content` for reasoning
+        models (e.g. nvidia/llama-3.3-nemotron-super-49b-v1.5) that return
+        `content: null` with the actual output buried in `reasoning_content`.
+        Returns an empty string if neither is present.
+        """
+        content = msg.get("content")
+        if content:
+            return content
+        reasoning = msg.get("reasoning_content") or msg.get("reasoning")
+        return reasoning or ""
+
     async def _call_provider(
         self,
         provider: str,
@@ -801,9 +816,12 @@ Step 3: Report what was imported vs skipped."""
         for zm in zen_models_to_try:
             if (provider, model) != ("zen", zm):
                 attempts.append(("zen", zm))
-        # NVIDIA fallback — meta/llama-3.1-70b-instruct works for simple tool use
-        # but gives up early on multi-phase research salvage synthesis, so keep it
-        # as a backup rather than primary.
+        # NVIDIA fallbacks — meta/llama-3.1-70b-instruct handles simple tool
+        # use but gives up early on multi-phase research salvage.
+        # llama-3.3-nemotron-super-49b-v1.5 is reasoning-mode (content=null,
+        # output in reasoning_content) — the _extract_message_content helper
+        # handles that shape, but the model hallucinates when it should call
+        # tools mid-workflow, so keep it as a last-resort backup.
         attempts.append(("nvidia", "meta/llama-3.1-70b-instruct"))
         attempts.append(("nvidia", "nvidia/llama-3.3-nemotron-super-49b-v1.5"))
         attempts.append(("openrouter", "google/gemini-2.0-flash-001"))
@@ -851,7 +869,12 @@ Step 3: Report what was imported vs skipped."""
                         payload: dict[str, Any] = {
                             "model": use_model,
                             "messages": conv,
-                            "max_tokens": 4096,
+                            # 8192 headroom — reasoning models (e.g. NVIDIA
+                            # llama-3.3-nemotron-super-49b) can burn hundreds
+                            # to thousands of tokens on reasoning_content
+                            # before emitting the final answer. Non-reasoning
+                            # models pay only for what they actually generate.
+                            "max_tokens": 8192,
                         }
                         if tool_schemas:
                             payload["tools"] = tool_schemas
@@ -939,8 +962,11 @@ Step 3: Report what was imported vs skipped."""
 
                             continue  # Next iteration — model sees tool results
 
-                        # Model returned text (no tool calls) — we're done
-                        content = msg.get("content", "")
+                        # Model returned text (no tool calls) — we're done.
+                        # Use _extract_message_content so reasoning models
+                        # (content=null, answer in reasoning_content) are
+                        # handled the same as normal models.
+                        content = self._extract_message_content(msg)
                         return {
                             "summary": content,
                             "input_tokens": total_input,
@@ -963,7 +989,7 @@ Step 3: Report what was imported vs skipped."""
                         final_payload: dict[str, Any] = {
                             "model": use_model,
                             "messages": conv,
-                            "max_tokens": 4096,
+                            "max_tokens": 8192,  # headroom for reasoning models
                         }
                         # No tools in payload — force text response
                         final_resp = await client.post(config["url"], headers=headers, json=final_payload)
@@ -974,7 +1000,8 @@ Step 3: Report what was imported vs skipped."""
                             total_output += final_usage.get("completion_tokens", 0)
                             final_choices = final_data.get("choices", [])
                             if final_choices:
-                                final_content = final_choices[0].get("message", {}).get("content", "")
+                                final_msg = final_choices[0].get("message", {})
+                                final_content = self._extract_message_content(final_msg)
                                 if final_content:
                                     return {
                                         "summary": final_content,
