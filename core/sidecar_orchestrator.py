@@ -711,31 +711,38 @@ Step 3: Report what was imported vs skipped."""
             },
         }
 
-        providers_to_try = [provider]
-        for fallback in ["zen", "nvidia", "openrouter"]:
-            if fallback not in providers_to_try:
-                providers_to_try.append(fallback)
-
         task_type = kwargs.get("task_type", "")
         phase = kwargs.get("phase", "")
 
-        # Route to best free model per task type
-        zen_model_for_task = {
-            "research": "nemotron-3-super-free",
-            "email": "minimax-m2.5-free",
-        }.get(task_type, "minimax-m2.5-free")
+        # Build ordered (provider, model) attempts for this task type.
+        # First try the requested provider/model, then fall back through Zen models and other providers.
+        if task_type == "research":
+            zen_models_to_try = ["nemotron-3-super-free", "minimax-m2.5-free"]
+        else:
+            zen_models_to_try = ["minimax-m2.5-free", "nemotron-3-super-free"]
 
-        fallback_models = {
-            "zen": zen_model_for_task,
-            "nvidia": "nvidia/nemotron-3-super:free",
-            "openrouter": "google/gemini-2.0-flash-001",
-        }
+        attempts: list[tuple[str, str]] = [(provider, model)]
+        for zm in zen_models_to_try:
+            if (provider, model) != ("zen", zm):
+                attempts.append(("zen", zm))
+        attempts.append(("nvidia", "nvidia/nemotron-3-super:free"))
+        attempts.append(("openrouter", "google/gemini-2.0-flash-001"))
+
+        # Deduplicate while preserving order
+        seen = set()
+        dedup_attempts: list[tuple[str, str]] = []
+        for prov_model in attempts:
+            if prov_model not in seen:
+                seen.add(prov_model)
+                dedup_attempts.append(prov_model)
+        attempts = dedup_attempts
+
         tool_schemas = self._get_tool_schemas(task_type, phase=phase)
         total_input = 0
         total_output = 0
         last_error = ""
 
-        for prov in providers_to_try:
+        for prov, attempt_model in attempts:
             config = provider_config.get(prov)
             if not config:
                 continue
@@ -744,7 +751,7 @@ Step 3: Report what was imported vs skipped."""
                 last_error = f"{config['key_env']} not set"
                 continue
 
-            use_model = model if prov == provider else fallback_models.get(prov, model)
+            use_model = attempt_model
             logger.info("Calling %s/%s for run %s (tools=%d)", prov, use_model, run_id, len(tool_schemas))
 
             headers = {
@@ -770,14 +777,19 @@ Step 3: Report what was imported vs skipped."""
 
                         resp = await client.post(config["url"], headers=headers, json=payload)
                         if resp.status_code == 429:
-                            # Rate limited — back off and retry this iteration
+                            # Rate limited — check retry-after to decide retry vs fail-fast
                             retry_after = 5.0
                             try:
                                 retry_after = float(resp.headers.get("retry-after", "5"))
                             except Exception:
                                 pass
+                            if retry_after > 30:
+                                # Long rate limit (model quota exhausted) — fall through to next provider/model
+                                last_error = f"HTTP 429: rate limited for {retry_after:.0f}s, giving up on {prov}/{use_model}"
+                                logger.warning("%s for run %s", last_error, run_id)
+                                break
                             logger.warning("Rate limited on %s, sleeping %.1fs", prov, retry_after)
-                            await asyncio.sleep(min(retry_after, 10))
+                            await asyncio.sleep(retry_after)
                             continue
                         if resp.status_code >= 400:
                             last_error = f"HTTP {resp.status_code}: {resp.text[:300]}"
