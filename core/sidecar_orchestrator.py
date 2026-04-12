@@ -236,41 +236,66 @@ Output ALL companies from the search phase. Leave unknown fields as empty string
         if fetch_result.get("error"):
             return {**fetch_result, "input_tokens": total_input, "output_tokens": total_output}
 
-        # --- Phase 3: Deduplicate + Import (http_request only, 3 iterations max) ---
-        import_prompt = f"""You are a solar dealer research agent. Phase 3: check for duplicates and import new prospects.
+        # --- Phase 3: Deterministic import (pure Python, no LLM) ---
+        #
+        # Previous versions asked the LLM to call /check-duplicates and /import
+        # via the http_request tool. This failed repeatedly: small/reasoning
+        # models dropped the required `url` parameter, hallucinated company
+        # lists when grounding was thin, or gave up after long reasoning.
+        # None of that work actually needed a model — it's two HTTP calls
+        # against a payload the LLM already produced in phase 2. So we do
+        # them directly. The /import endpoint handles its own duplicate
+        # checking internally (see synergic_solar/controllers/prospect_api.py,
+        # import_prospects() line 149), so /check-duplicates is redundant here.
+        logger.info("Research phase 3: IMPORT (run %s, deterministic)", run_id)
 
-Here are the enriched companies with emails:
-{fetch_output[:4000]}
+        prospects = self._parse_json_array(fetch_output)
+        if not prospects:
+            import_summary = (
+                "Import skipped: phase 2 produced no parseable JSON array. "
+                "Check the FETCH phase output above."
+            )
+            logger.warning("Research run %s phase 3 aborted: %s", run_id, import_summary)
+        else:
+            import_payload = {
+                "batch_name": f"Research Import — {target_region}",
+                "source": "web_search",
+                "target_region": target_region,
+                "prospects": prospects,
+            }
+            try:
+                async with httpx.AsyncClient(timeout=60.0) as client:
+                    resp = await client.post(
+                        f"{api_base}/import",
+                        headers={
+                            "Authorization": f"Bearer {api_token}",
+                            "Content-Type": "application/json",
+                        },
+                        json=import_payload,
+                    )
+                    if resp.status_code < 400:
+                        result = resp.json()
+                        import_summary = (
+                            f"Imported {result.get('new_created', 0)} new prospects, "
+                            f"skipped {result.get('duplicates_skipped', 0)} duplicates "
+                            f"(submitted {result.get('total_submitted', len(prospects))}, "
+                            f"batch {result.get('batch_id')})"
+                        )
+                        logger.info("Research run %s phase 3: %s", run_id, import_summary)
+                    else:
+                        import_summary = (
+                            f"Import HTTP {resp.status_code}: {resp.text[:200]}"
+                        )
+                        logger.warning(
+                            "Research run %s phase 3 failed: %s", run_id, import_summary,
+                        )
+            except Exception as exc:
+                import_summary = f"Import request threw: {exc}"
+                logger.warning(
+                    "Research run %s phase 3 threw: %s", run_id, exc,
+                )
 
-Step 1: Check duplicates by calling:
-POST {api_base}/check-duplicates
-Authorization: Bearer {api_token}
-Content-Type: application/json
-Body: {{"companies": [list of {{"email": "...", "name": "..."}}]}}
-
-Step 2: Import non-duplicates by calling:
-POST {api_base}/import
-Authorization: Bearer {api_token}
-Content-Type: application/json
-Body: {{"batch_name": "Research Import", "source": "web_search", "target_region": "...", "prospects": [array of prospect objects]}}
-
-Each prospect needs: name, contact_name, email, phone, website, city, state_code, company_size, source (use "web_search"), ai_research_notes (2 sentences), ai_personalization_context (2 bullet points about pain point + Synergic angle).
-
-Synergic value props: keep your brand, PPW commissions, team hierarchy with overrides, AI tools, Dealer>Pro>Master growth path.
-
-Step 3: Report what was imported vs skipped."""
-
-        logger.info("Research phase 3: IMPORT (run %s)", run_id)
-        import_result = await self._call_provider(
-            provider, model,
-            [{"role": "user", "content": import_prompt}],
-            f"{run_id}-import", agent_id=ctx.agent_id,
-            task_type="research", phase="import",
-        )
-        total_input += import_result.get("input_tokens", 0)
-        total_output += import_result.get("output_tokens", 0)
-        import_output = import_result.get("summary", "")
-        all_results.append(f"IMPORT: {import_output[:500]}")
+        all_results.append(f"IMPORT: {import_summary}")
 
         summary = f"Research workflow complete.\n\n" + "\n\n".join(all_results)
 
@@ -768,6 +793,52 @@ Step 3: Report what was imported vs skipped."""
             return content
         reasoning = msg.get("reasoning_content") or msg.get("reasoning")
         return reasoning or ""
+
+    @staticmethod
+    def _parse_json_array(text: str) -> list[dict]:
+        """Extract the first JSON array-of-objects from a text blob.
+
+        LLM outputs for the research FETCH phase are typically a JSON array
+        of company dicts, but models often wrap the array in markdown code
+        fences (```json ... ```) or prefix it with explanatory prose. This
+        helper is tolerant of those cases so the deterministic import phase
+        doesn't need the LLM to produce perfectly clean output.
+
+        Returns [] on any parse failure — caller must handle the empty case.
+        """
+        import json as _json
+        import re
+
+        if not text:
+            return []
+
+        # Prefer a JSON array inside a fenced code block when present.
+        fence_match = re.search(
+            r"```(?:json)?\s*(\[.*?\])\s*```",
+            text,
+            re.DOTALL,
+        )
+        if fence_match:
+            candidate = fence_match.group(1)
+        else:
+            # Otherwise, take the substring between the first '[' and the
+            # last ']'. This assumes the array is the dominant payload.
+            start = text.find("[")
+            end = text.rfind("]")
+            if start == -1 or end == -1 or end < start:
+                return []
+            candidate = text[start : end + 1]
+
+        try:
+            data = _json.loads(candidate)
+        except _json.JSONDecodeError:
+            return []
+
+        if not isinstance(data, list):
+            return []
+        # Only keep dict entries — ignores stray strings/numbers from a
+        # malformed array.
+        return [x for x in data if isinstance(x, dict)]
 
     async def _call_provider(
         self,
