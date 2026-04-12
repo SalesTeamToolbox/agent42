@@ -173,9 +173,19 @@ _SUCCESS_MARKERS = [
 
 
 # Submit button selectors, ordered from most-specific to most-general.
-# We prefer buttons whose visible text or value contains "submit"/"send"/
-# "contact" over generic button[type="submit"] to avoid accidentally
-# clicking a newsletter-signup button that happens to precede the main form.
+# We prefer buttons whose visible text or value contains specific action
+# verbs over generic button[type="submit"] to avoid accidentally clicking
+# a newsletter-signup button that happens to precede the main form.
+#
+# The text list covers the common action-phrase vocabulary we've seen on
+# real solar/contractor sites during Arianna-FormSubmit DRY_RUN runs:
+#   - "Send" / "Send Message" / "Submit" — standard WordPress/CF7 forms
+#   - "Contact Us" / "Get in Touch" — common "contact page" CTAs
+#   - "Request Quote" / "Request Info" / "Get a Quote" — quote-funnel sites
+#   - "Book Appointment" / "Schedule" — appointment-funnel sites (e.g.
+#     Touch Of Power Solutions, surfaced in the first DRY_RUN batch)
+#   - "Get Started" — generic lead-capture pattern
+#   - "Get My Free Estimate" / "Free Estimate" — roofing/estimate forms
 _SUBMIT_SELECTORS = [
     'button[type="submit"]',
     'input[type="submit"]',
@@ -185,7 +195,39 @@ _SUBMIT_SELECTORS = [
     'button:has-text("Submit")',
     'button:has-text("Contact Us")',
     'button:has-text("Get in Touch")',
+    'button:has-text("Request Quote")',
+    'button:has-text("Request a Quote")',
+    'button:has-text("Request Info")',
+    'button:has-text("Get a Quote")',
+    'button:has-text("Get Quote")',
     'button:has-text("Request")',
+    'button:has-text("Book Appointment")',
+    'button:has-text("Book Now")',
+    'button:has-text("Schedule")',
+    'button:has-text("Get Started")',
+    'button:has-text("Get My Free Estimate")',
+    'button:has-text("Free Estimate")',
+    'button:has-text("Free Quote")',
+    # input-based variants (some forms still use <input type="button">)
+    'input[type="button"][value*="Send" i]',
+    'input[type="button"][value*="Submit" i]',
+    'input[type="button"][value*="Request" i]',
+    'input[type="button"][value*="Book" i]',
+]
+
+
+# Selectors for unfilled required fields that would block submission.
+# We check these AFTER our own heuristic fill pass but BEFORE clicking
+# submit in live mode. If any of these resolve to a non-empty visible
+# input/select/textarea that we didn't fill, we abort to
+# `no_form_detected` rather than submitting a form that will fail
+# server-side validation. Same list works for estimate-request funnels
+# and standard contact forms because the [required] attribute is the
+# lingua franca of HTML form validation.
+_REQUIRED_FIELD_SELECTORS = [
+    'input[required]:not([type="hidden"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"])',
+    'select[required]',
+    'textarea[required]',
 ]
 
 
@@ -275,6 +317,59 @@ async def _fill_field(page, field_key: str, value: str) -> bool:
     except Exception as exc:
         logger.debug("Fill failed for %s: %s", field_key, exc)
         return False
+
+
+async def _count_unfilled_required(page) -> tuple[int, list[str]]:
+    """Count required inputs/selects/textareas that are still empty.
+
+    Returns (count, sample_labels) where sample_labels is up to 5
+    human-readable identifiers (name, id, or placeholder) for logging.
+    An unfilled required field means our heuristic fill pass missed
+    something the form needs — submitting anyway would fail server-side
+    validation, so the caller should abort to `no_form_detected`.
+    """
+    unfilled = 0
+    labels: list[str] = []
+    for selector in _REQUIRED_FIELD_SELECTORS:
+        try:
+            elements = await page.locator(selector).all()
+        except Exception:
+            continue
+        for el in elements:
+            try:
+                if not await el.is_visible():
+                    continue
+                # For select elements, an unfilled state is value=="" or
+                # value equal to the first option's value when that option
+                # is a placeholder ("Select a service", "--choose--", etc.).
+                tag = (await el.evaluate("e => e.tagName")).lower()
+                if tag == "select":
+                    value = await el.input_value()
+                    if not value:
+                        unfilled += 1
+                        if len(labels) < 5:
+                            label = (
+                                await el.get_attribute("name")
+                                or await el.get_attribute("id")
+                                or "select"
+                            )
+                            labels.append(label)
+                    continue
+                # Text-like inputs + textarea: unfilled if empty string
+                value = await el.input_value()
+                if not value:
+                    unfilled += 1
+                    if len(labels) < 5:
+                        label = (
+                            await el.get_attribute("name")
+                            or await el.get_attribute("id")
+                            or await el.get_attribute("placeholder")
+                            or "input"
+                        )
+                        labels.append(label)
+            except Exception:
+                continue
+    return unfilled, labels
 
 
 async def _detect_success(page, pre_submit_url: str) -> tuple[str, str]:
@@ -448,15 +543,39 @@ async def submit_contact_form(
         except Exception as exc:
             logger.debug("Pre-submit screenshot failed: %s", exc)
 
+        # Required-field pre-flight check. Runs in both dry-run and live
+        # mode so operators can see in the DRY_RUN output which forms
+        # would be aborted in live mode — lets us tune the heuristics
+        # before flipping DRY_RUN off without getting surprised.
+        unfilled_required, unfilled_labels = await _count_unfilled_required(page)
+
         if dry_run:
+            required_note = ""
+            if unfilled_required > 0:
+                required_note = (
+                    f" ⚠ {unfilled_required} required fields UNFILLED "
+                    f"({', '.join(unfilled_labels)}) — would abort in live mode"
+                )
             result["status"] = "dry_run"
             result["evidence"] = (
                 f"DRY RUN — filled {len(filled)} fields, did not submit. "
-                f"Filled: {filled}"
+                f"Filled: {filled}.{required_note}"
             )
             return result
 
-        # Real submit path
+        # Live submit path: bail if required fields we didn't know about
+        # are still empty. A submit with unfilled required fields will be
+        # rejected by the form's server-side validation anyway, so this
+        # just saves us a round trip and produces a clearer audit log.
+        if unfilled_required > 0:
+            result["status"] = "no_form_detected"
+            result["evidence"] = (
+                f"Aborted pre-submit: {unfilled_required} required fields "
+                f"unfilled ({', '.join(unfilled_labels)}). Our heuristic fill "
+                f"didn't cover all required inputs — form would reject."
+            )
+            return result
+
         submit_btn = await _first_visible(page, _SUBMIT_SELECTORS)
         if submit_btn is None:
             result["status"] = "no_form_detected"

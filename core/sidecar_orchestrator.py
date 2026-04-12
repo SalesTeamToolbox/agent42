@@ -1063,6 +1063,11 @@ Output the message text only. No preamble, no quotes, no markdown."""
         "email": {"python_exec", "http_request"},
         "coding": {"python_exec", "git", "run_tests", "run_linter", "code_intel"},
         "monitoring": {"python_exec", "http_request"},
+        # form_submit's only LLM call is _generate_form_message which
+        # produces a short text response with no tool use. Exposing the
+        # full 34-tool catalog was wasting ~6800 input tokens per call
+        # on unused schemas. Empty set = no tools in the payload.
+        "form_submit": set(),
     }
 
     # Per-phase tool whitelists for the research workflow (override the task whitelist)
@@ -1093,6 +1098,12 @@ Output the message text only. No preamble, no quotes, no markdown."""
             whitelist = self._RESEARCH_PHASE_TOOLS[phase]
         else:
             whitelist = self._TASK_TOOL_WHITELIST.get(task_type)
+
+        # Distinguish "no entry in whitelist dict" (None → allow all tools)
+        # from "empty set" (→ allow no tools, e.g. for form_submit's
+        # message-generation call which should be pure text).
+        if whitelist == set():
+            return []
 
         schemas = []
         for tool in self.tool_registry._tools.values():
