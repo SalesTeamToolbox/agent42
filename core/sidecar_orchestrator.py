@@ -104,18 +104,21 @@ class SidecarOrchestrator:
         api_token = "3399cb9b2df4c5bfb7d1204d326cb64d04ffaf5314f7115a98a1ca9a7f7bd80f"
         api_base = "https://synergicsolar.com/api/v1/prospects"
 
-        # --- Phase 1: Search (web_search only, 5 iterations max) ---
-        search_prompt = f"""You are a solar dealer research agent. Your ONLY job in this phase is to search the web for independent solar sales companies.
+        # --- Phase 1: Search (web_search only) ---
+        search_prompt = f"""You are a solar dealer research agent. Phase 1: SEARCH ONLY.
 
 {task_prompt}
 
-Use web_search to find solar sales companies. Run 5-8 varied search queries.
-For each result, extract: company name, city, state, website URL.
+RULES:
+- Use ONLY web_search. DO NOT use python_exec, web_fetch, or http_request.
+- Run 8-12 varied search queries with different keywords/regions.
+- Extract every company you can find from the search results — aim for 15+ companies.
+- After your last search, output the final JSON array as your response text.
 
-Output a JSON array of companies found:
-[{{"name": "...", "city": "...", "state": "...", "website": "...", "source_query": "..."}}]
+Output format (after searches are done):
+[{{"name": "...", "city": "...", "state": "...", "website": "...", "source_query": "..."}}, ...]
 
-Do NOT fetch websites yet. Do NOT import. Just search and list what you find."""
+DO NOT fetch websites. DO NOT import. DO NOT format with python — just output the JSON directly in your text response."""
 
         logger.info("Research phase 1: SEARCH (run %s)", run_id)
         search_result = await self._call_provider(
@@ -132,21 +135,23 @@ Do NOT fetch websites yet. Do NOT import. Just search and list what you find."""
         if search_result.get("error"):
             return {**search_result, "summary": f"Search phase failed: {search_result['error']}"}
 
-        # --- Phase 2: Fetch emails (web_fetch only, 5 iterations max) ---
-        fetch_prompt = f"""You are a solar dealer research agent. Phase 2: fetch company websites to find contact emails.
+        # --- Phase 2: Fetch emails (web_fetch only) ---
+        fetch_prompt = f"""You are a solar dealer research agent. Phase 2: FETCH WEBSITES.
 
 Here are the companies found in the search phase:
-{search_output[:3000]}
+{search_output[:5000]}
 
-For each company with a website URL, use web_fetch to visit their website or contact page.
-Extract: email address, phone number, owner/contact name.
+RULES (CRITICAL — do NOT deviate):
+- Use ONLY web_fetch. DO NOT use python_exec to parse HTML — web_fetch already returns text with emails visible.
+- For EACH company, fetch ONE URL: try the website root or "/contact" page.
+- ONE fetch per company. If no email visible in the result, SKIP and move to the next company.
+- DO NOT retry the same site with different paths.
+- DO NOT use python_exec — emails appear as plain text in web_fetch results.
 
-SKIP companies where you cannot find an email address.
+After fetching all companies, output the final JSON array as your text response:
+[{{"name": "...", "contact_name": "...", "email": "...", "phone": "...", "website": "...", "city": "...", "state_code": "...", "company_size": "1-10"}}, ...]
 
-Output a JSON array of enriched companies:
-[{{"name": "...", "contact_name": "...", "email": "...", "phone": "...", "website": "...", "city": "...", "state_code": "...", "company_size": "1-10"}}]
-
-Only include companies with verified email addresses."""
+Only include companies where you found a real email address (not info@example.com placeholders)."""
 
         logger.info("Research phase 2: FETCH (run %s)", run_id)
         fetch_result = await self._call_provider(
@@ -624,7 +629,7 @@ Step 3: Report what was imported vs skipped."""
 
     # Max tool-call iterations per task type (default 25 for uncategorized)
     _TASK_MAX_ITERATIONS: dict[str, int] = {
-        "research": 8,
+        "research": 15,
         "email": 10,
         "monitoring": 5,
     }
