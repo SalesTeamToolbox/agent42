@@ -809,10 +809,11 @@ Step 3: Report what was imported vs skipped."""
                             "cost_usd": 0.0,
                         }
 
-                    # Hit max iterations — ask model for a final summary
+                    # Loop ended (either max iterations OR HTTP error) — try to salvage.
+                    # First, ask model for a final summary without tools.
                     conv.append({
                         "role": "user",
-                        "content": "You've used all available tool calls. Based on everything you've found so far, provide your final output now. Do NOT call any more tools — just output your results as text.",
+                        "content": "Provide your final output now as text. DO NOT call any more tools — just output your results.",
                     })
                     try:
                         final_payload: dict[str, Any] = {
@@ -820,6 +821,7 @@ Step 3: Report what was imported vs skipped."""
                             "messages": conv,
                             "max_tokens": 4096,
                         }
+                        # No tools in payload — force text response
                         final_resp = await client.post(config["url"], headers=headers, json=final_payload)
                         if final_resp.status_code < 400:
                             final_data = final_resp.json()
@@ -836,11 +838,27 @@ Step 3: Report what was imported vs skipped."""
                                         "output_tokens": total_output,
                                         "cost_usd": 0.0,
                                     }
-                    except Exception:
-                        pass  # Fall through to generic message
+                    except Exception as exc:
+                        logger.warning("Forced summary failed for run %s: %s", run_id, exc)
+
+                    # Last-resort: dump tool results from conv as raw summary
+                    tool_results = []
+                    for m in conv:
+                        if m.get("role") == "tool":
+                            content = m.get("content", "")
+                            if content:
+                                tool_results.append(str(content)[:1500])
+                    if tool_results:
+                        salvaged = "Tool results collected (model failed to summarize):\n\n" + "\n\n---\n\n".join(tool_results[:10])
+                        return {
+                            "summary": salvaged,
+                            "input_tokens": total_input,
+                            "output_tokens": total_output,
+                            "cost_usd": 0.0,
+                        }
 
                     return {
-                        "summary": f"Reached {max_iterations} tool-call iterations",
+                        "summary": f"Reached {max_iterations} tool-call iterations" + (f" — {last_error}" if last_error else ""),
                         "input_tokens": total_input,
                         "output_tokens": total_output,
                         "cost_usd": 0.0,
