@@ -791,28 +791,22 @@ Step 3: Report what was imported vs skipped."""
         phase = kwargs.get("phase", "")
 
         # Build ordered (provider, model) attempts for this task type.
+        # First try the requested provider/model, then fall back through Zen models and other providers.
         if task_type == "research":
-            # Research needs reliable tool-calling. Zen's nemotron-3-super-free
-            # is chronically rate-limited (shared free quota), and its fallback
-            # minimax-m2.5-free drops the required `url` arg on http_request
-            # calls, causing 0-import runs. NVIDIA-hosted llama-3.1-70b has
-            # its own quota and much stronger tool-use, so try it first.
-            attempts: list[tuple[str, str]] = [
-                ("nvidia", "meta/llama-3.1-70b-instruct"),
-                ("nvidia", "nvidia/llama-3.1-nemotron-70b-instruct"),
-                (provider, model),  # whatever routing resolved (usually zen/nemotron-3-super-free)
-                ("zen", "minimax-m2.5-free"),
-                ("openrouter", "google/gemini-2.0-flash-001"),
-            ]
+            zen_models_to_try = ["nemotron-3-super-free", "minimax-m2.5-free"]
         else:
             zen_models_to_try = ["minimax-m2.5-free", "nemotron-3-super-free"]
-            attempts = [(provider, model)]
-            for zm in zen_models_to_try:
-                if (provider, model) != ("zen", zm):
-                    attempts.append(("zen", zm))
-            attempts.append(("nvidia", "meta/llama-3.1-70b-instruct"))
-            attempts.append(("nvidia", "nvidia/llama-3.1-nemotron-70b-instruct"))
-            attempts.append(("openrouter", "google/gemini-2.0-flash-001"))
+
+        attempts: list[tuple[str, str]] = [(provider, model)]
+        for zm in zen_models_to_try:
+            if (provider, model) != ("zen", zm):
+                attempts.append(("zen", zm))
+        # NVIDIA fallback — meta/llama-3.1-70b-instruct works for simple tool use
+        # but gives up early on multi-phase research salvage synthesis, so keep it
+        # as a backup rather than primary.
+        attempts.append(("nvidia", "meta/llama-3.1-70b-instruct"))
+        attempts.append(("nvidia", "nvidia/llama-3.3-nemotron-super-49b-v1.5"))
+        attempts.append(("openrouter", "google/gemini-2.0-flash-001"))
 
         # Deduplicate while preserving order
         seen = set()
