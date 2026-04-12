@@ -739,7 +739,8 @@ Step 3: Report what was imported vs skipped."""
             max_iterations = self._TASK_MAX_ITERATIONS.get(task_type, 25)
 
             try:
-                async with httpx.AsyncClient(timeout=180.0) as client:
+                # Per-call timeout 90s — nemotron-3-super-free can be slow with growing context
+                async with httpx.AsyncClient(timeout=90.0) as client:
                     for iteration in range(max_iterations):
                         payload: dict[str, Any] = {
                             "model": use_model,
@@ -792,10 +793,17 @@ Step 3: Report what was imported vs skipped."""
                                     tool_name, tool_args, agent_id,
                                 )
 
+                                # Truncate tool results aggressively for research to keep context small
+                                # Research context grows fast with many search/fetch results.
+                                # web_fetch results are MUCH bigger (full HTML) than web_search results.
+                                if task_type == "research":
+                                    max_tool_chars = 2000 if tool_name == "web_fetch" else 3000
+                                else:
+                                    max_tool_chars = 8000
                                 conv.append({
                                     "role": "tool",
                                     "tool_call_id": tc.get("id", ""),
-                                    "content": tool_result[:8000],  # Truncate large results
+                                    "content": tool_result[:max_tool_chars],
                                 })
 
                             continue  # Next iteration — model sees tool results
