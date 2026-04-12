@@ -137,23 +137,36 @@ DO NOT fetch websites. DO NOT import. DO NOT format with python — just output 
         if search_result.get("error"):
             return {**search_result, "summary": f"Search phase failed: {search_result['error']}"}
 
-        # --- Phase 2: Fetch emails (web_fetch only) ---
-        fetch_prompt = f"""You are a solar dealer research agent. Phase 2: FETCH WEBSITES.
+        # --- Phase 2: Fetch contact info (web_fetch + http_request for raw HTML) ---
+        fetch_prompt = f"""You are a solar dealer research agent. Phase 2: FETCH CONTACT INFO.
 
 Here are the companies found in the search phase:
 {search_output[:5000]}
 
-RULES (CRITICAL — do NOT deviate):
-- Use ONLY web_fetch. DO NOT use python_exec to parse HTML — web_fetch already returns text with emails visible.
-- For EACH company, fetch ONE URL: try the website root or "/contact" page.
-- ONE fetch per company. If no email visible in the result, SKIP and move to the next company.
-- DO NOT retry the same site with different paths.
-- DO NOT use python_exec — emails appear as plain text in web_fetch results.
+TOOLS AVAILABLE:
+- web_fetch(url) — returns clean text of a page. Use first to find visible emails/phones.
+- http_request(url, method="GET") — returns raw HTML. Use to find mailto: hrefs that web_fetch strips.
+
+STRATEGY FOR EACH COMPANY (max 3 tool calls per company):
+1. First try web_fetch on `<website>/contact` or `<website>/contact-us`.
+2. If no email found, http_request the same URL — search raw HTML for `mailto:` hrefs and `<form action=` contact form URLs.
+3. If still no email, try web_fetch on `<website>/about` or the root URL.
+4. Extract whatever you find: email, phone, contact form URL, contact name.
+
+ACCEPTANCE RULES (keep the company in the output if ANY of these are true):
+- Has a real email (not placeholder like info@example.com or noreply@)
+- Has a phone number (format: matches \\d{{3}}[- ]?\\d{{3}}[- ]?\\d{{4}} or similar)
+- Has a contact form URL (a page with a form that POSTs contact info)
+
+For email-only companies: set `email`, leave `contact_form_url` empty.
+For phone-only companies: set `phone`, leave `email` empty.
+For form-only companies: set `contact_form_url` to the page URL with the form, leave `email` empty.
+Any combination is fine. SKIP a company only if you find NONE of these.
 
 After fetching all companies, output the final JSON array as your text response:
-[{{"name": "...", "contact_name": "...", "email": "...", "phone": "...", "website": "...", "city": "...", "state_code": "...", "company_size": "1-10"}}, ...]
+[{{"name": "...", "contact_name": "...", "email": "...", "phone": "...", "contact_form_url": "...", "website": "...", "city": "...", "state_code": "...", "company_size": "1-10"}}, ...]
 
-Only include companies where you found a real email address (not info@example.com placeholders)."""
+Omit any fields you couldn't find — the API fills in defaults."""
 
         logger.info("Research phase 2: FETCH (run %s)", run_id)
         fetch_result = await self._call_provider(
@@ -632,9 +645,9 @@ Step 3: Report what was imported vs skipped."""
 
     # Per-phase tool whitelists for the research workflow (override the task whitelist)
     _RESEARCH_PHASE_TOOLS: dict[str, set[str]] = {
-        "search": {"web_search"},           # SEARCH phase: ONLY search
-        "fetch":  {"web_fetch"},            # FETCH phase: ONLY fetch
-        "import": {"http_request"},         # IMPORT phase: ONLY http_request (call APIs)
+        "search": {"web_search"},                   # SEARCH phase: ONLY search
+        "fetch":  {"web_fetch", "http_request"},    # FETCH phase: web_fetch (text) + http_request (raw HTML for mailto:)
+        "import": {"http_request"},                 # IMPORT phase: ONLY http_request (call APIs)
     }
 
     # Max tool-call iterations per task type (default 25 for uncategorized)
