@@ -1170,9 +1170,14 @@ Output ONLY the subject line + email body. No preamble, no markdown, no quotes."
     }
 
     # Max tool-call iterations per task type (default 25 for uncategorized)
+    # email: 1 IMAP check + 1 follow-up-candidates + 5 sends + 5 log-email
+    #        + 2 buffer for inbound reply handling (check-duplicates,
+    #        mark-responded) = 14. Set to 18 for extra headroom; any lower
+    #        and the last 1-2 log-email calls get dropped, causing nurture
+    #        dedup to miss those prospects and triggering a spam loop.
     _TASK_MAX_ITERATIONS: dict[str, int] = {
         "research": 15,
-        "email": 10,
+        "email": 18,
         "monitoring": 5,
     }
 
