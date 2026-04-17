@@ -10,15 +10,13 @@
       "environment": {
         "FROOD_WORKSPACE": "c:\\Users\\rickw\\projects\\frood",
         "REDIS_URL": "redis://localhost:6379/0",
-        "QDRANT_URL": "http://localhost:6333",
-        "ZEN_PROXY_ENABLED": "true",
-        "ZEN_PROXY_PORT": "8765"
+        "QDRANT_URL": "http://localhost:6333"
       },
       "enabled": true
     },
     "jcodemunch": {
       "type": "local",
-      "command": ["python", "-m", "jcodemunch_mcp.server"],
+      "command": ["uvx", "jcodemunch-mcp"],
       "enabled": true
     },
     "frood-remote": {
@@ -28,12 +26,12 @@
     }
   },
   "provider": {
-    "zen": {
-      "name": "OpenCode Zen",
+    "frood": {
+      "name": "Frood LLM proxy (OpenAI-compatible)",
       "api": "openai",
       "options": {
-        "baseURL": "http://127.0.0.1:8765",
-        "apiKey": "${ZEN_API_KEY}"
+        "baseURL": "http://127.0.0.1:8002/llm/v1",
+        "apiKey": "frood-local"
       }
     }
   },
